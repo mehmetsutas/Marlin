@@ -241,7 +241,7 @@ void set_axis_is_at_home(const AxisEnum axis);
 
 void set_axis_is_not_at_home(const AxisEnum axis);
 
-void homeaxis(const AxisEnum axis);
+void homeaxis(const AxisEnum axis, const bool reverse=false);
 
 /**
  * Workspace offsets

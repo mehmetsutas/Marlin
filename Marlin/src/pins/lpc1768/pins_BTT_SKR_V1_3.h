@@ -27,21 +27,29 @@
 // Servos
 //
 #ifndef SERVO0_PIN
-  #define SERVO0_PIN       P2_00
+//  #define SERVO0_PIN       P2_00
 #endif
 
 //
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN  P1_24
+  #define Z_MIN_PROBE_PIN  P1_26
 #endif
 
 //
 // Filament Runout Sensor
 //
 #ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN   P1_28
+  #define FIL_RUNOUT_PIN   P2_00
+#endif
+
+//
+// POWER_FAILURE_FEATURE
+//
+#if ENABLED(POWER_LOSS_RECOVERY)
+  #define POWER_LOSS_PIN       P1_28
+  #define BATTERY_CONTROL_PIN  P2_03
 #endif
 
 //
@@ -76,7 +84,7 @@
 #endif
 
 #ifndef E1_CS_PIN
-  #define E1_CS_PIN        P1_01
+//  #define E1_CS_PIN        P1_01
 #endif
 
 //

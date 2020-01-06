@@ -138,6 +138,9 @@ class PrintJobRecovery {
           SET_INPUT(POWER_LOSS_PIN);
         #endif
       #endif
+	  #if PIN_EXISTS(POWER_LOSS)
+	      SET_OUTPUT(BATTERY_CONTROL_PIN);
+	  #endif
     }
 
     // Track each command's file offsets
@@ -167,10 +170,18 @@ class PrintJobRecovery {
     );
 
   #if PIN_EXISTS(POWER_LOSS)
-    static inline void outage() {
-      if (enabled && READ(POWER_LOSS_PIN) == POWER_LOSS_STATE)
-        _outage();
-    }
+    static bool loss_lock;
+    static void outage();
+  #endif
+  
+  #if (HAS_Z_MAX && HAS_Z_MIN)
+	static inline void save_stop() {
+      if (IS_SD_PRINTING())
+	  {
+		save(true);
+		raise_z();
+	  }
+    }  
   #endif
 
   static inline bool valid() { return info.valid_head && info.valid_head == info.valid_foot; }

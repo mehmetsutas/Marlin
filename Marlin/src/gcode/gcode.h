@@ -937,6 +937,11 @@ private:
     static void M7219();
   #endif
 
+  #if (HAS_Z_MAX && HAS_Z_MIN)
+	static void M821();
+	static void M822();
+  #endif
+
   static void T(const uint8_t tool_index);
 
 };

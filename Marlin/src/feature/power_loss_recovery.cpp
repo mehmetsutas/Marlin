@@ -159,7 +159,7 @@ void PrintJobRecovery::save(const bool force/*=false*/, const bool save_queue/*=
         || ELAPSED(ms, next_save_ms)
       #endif
       // Save if Z is above the last-saved position by some minimum height
-      || current_position.z > info.current_position.z + POWER_LOSS_MIN_Z_CHANGE
+//sutas      || current_position.z > info.current_position.z + POWER_LOSS_MIN_Z_CHANGE
     #endif
   ) {
 
@@ -238,29 +238,50 @@ void PrintJobRecovery::save(const bool force/*=false*/, const bool save_queue/*=
 }
 
 #if PIN_EXISTS(POWER_LOSS)
+bool PrintJobRecovery::loss_lock = false;
 
+  void PrintJobRecovery::outage() {
+      if (enabled && READ(POWER_LOSS_PIN) == POWER_LOSS_STATE)
+        _outage();
+		else loss_lock = false;
+    }
+	
   void PrintJobRecovery::_outage() {
     #if ENABLED(BACKUP_POWER_SUPPLY)
-      static bool lock = false;
-      if (lock) return; // No re-entrance from idle() during raise_z()
-      lock = true;
+//      static bool lock = false;
+	  bool battery_off = false;
+      if (loss_lock)
+	  {  
+		HOTEND_LOOP() battery_off = (thermalManager.degHotend(e) < 50 ? true : false);
+		if (battery_off) WRITE(BATTERY_CONTROL_PIN, HIGH);
+		return; // No re-entrance from idle() during raise_z()
+	  }
+      loss_lock = true;
     #endif
-    if (IS_SD_PRINTING()) save(true);
+    if (IS_SD_PRINTING())
+	{
+		save(true);
     #if ENABLED(BACKUP_POWER_SUPPLY)
-      raise_z();
+        raise_z();
     #endif
+	}
 
-    kill(GET_TEXT(MSG_OUTAGE_RECOVERY));
+//    kill(GET_TEXT(MSG_OUTAGE_RECOVERY));
   }
 
   #if ENABLED(BACKUP_POWER_SUPPLY)
 
     void PrintJobRecovery::raise_z() {
       // Disable all heaters to reduce power loss
+	  card.stopSDPrint();
+	  queue.clear();
+	  print_job_timer.stop();
       thermalManager.disable_all_heaters();
       quickstop_stepper();
+	  wait_for_heatup = false;
+	  thermalManager.set_fan_speed(0, 255);
       // Raise Z axis
-      gcode.process_subcommands_now_P(PSTR("G91\nG0 Z" STRINGIFY(POWER_LOSS_ZRAISE)));
+      gcode.process_subcommands_now_P(PSTR("G92.9 E0\nG1 E-3 F3000\nG91\nG0 Z" STRINGIFY(POWER_LOSS_ZRAISE) "G92\nG1 X195 Y195 F3000"));
       planner.synchronize();
     }
 
@@ -304,6 +325,11 @@ void PrintJobRecovery::resume() {
       #if ENABLED(MARLIN_DEV_MODE)
         "S"
       #endif
+	  
+	#elif (HAS_Z_MAX && HAS_Z_MIN)
+	  "\n"
+	  "G28 W\n"
+      "G28R0"
 
     #else // "G92.9 E0 ..."
 
@@ -436,7 +462,7 @@ void PrintJobRecovery::resume() {
 
   // Move back to the saved Z
   dtostrf(info.current_position.z, 1, 3, str_1);
-  #if Z_HOME_DIR > 0
+  #if ((Z_HOME_DIR > 0) || (HAS_Z_MAX && HAS_Z_MIN))
     sprintf_P(cmd, PSTR("G1 Z%s F200"), str_1);
   #else
     gcode.process_subcommands_now_P(PSTR("G1 Z0 F200"));
