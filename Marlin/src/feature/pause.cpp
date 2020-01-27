@@ -271,7 +271,7 @@ bool load_filament(const float &slow_load_length/*=0*/, const float &fast_load_l
 
       // Show "Purge More" / "Resume" menu and wait for reply
       #if ENABLED(HOST_PROMPT_SUPPORT)
-        host_prompt_reason = PROMPT_FILAMENT_RUNOUT;
+        host_prompt_reason = PROMPT_USER_CONTINUE;
         host_action_prompt_end();   // Close current prompt
         host_action_prompt_begin(PSTR("Paused"));
         host_action_prompt_button(PSTR("PurgeMore"));
@@ -282,7 +282,7 @@ bool load_filament(const float &slow_load_length/*=0*/, const float &fast_load_l
         )
           host_action_prompt_button(PSTR("DisableRunout"));
         else {
-          host_prompt_reason = PROMPT_FILAMENT_RUNOUT;
+          host_prompt_reason = PROMPT_USER_CONTINUE;
           host_action_prompt_button(CONTINUE_STR);
         }
         host_action_prompt_show();

@@ -154,6 +154,9 @@ void host_action(const char * const pstr, const bool eol) {
         #if HAS_RESUME_CONTINUE
           wait_for_user = false;
         #endif
+        #if ENABLED(ADVANCED_PAUSE_FEATURE)
+          pause_menu_response = PAUSE_RESPONSE_RESUME_PRINT;
+        #endif
         msg = PSTR("FILAMENT_RUNOUT_CONTINUE");
         break;
       case PROMPT_PAUSE_RESUME:

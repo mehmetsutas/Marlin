@@ -63,6 +63,8 @@ void GcodeSuite::M106() {
     NOMORE(s, 255U);
 
     thermalManager.set_fan_speed(p, s);
+	SERIAL_ECHOPAIR("Fan Speed: ",s);
+	SERIAL_EOL();
   }
 }
 
@@ -72,6 +74,8 @@ void GcodeSuite::M106() {
 void GcodeSuite::M107() {
   const uint8_t p = parser.byteval('P', _ALT_P);
   thermalManager.set_fan_speed(p, 0);
+  SERIAL_ECHOPAIR("Fan Speed: ",0);
+  SERIAL_EOL();
 }
 
 #endif // FAN_COUNT > 0

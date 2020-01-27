@@ -36,7 +36,7 @@ bool FilamentMonitorBase::enabled = true,
      FilamentMonitorBase::filament_ran_out;  // = false
 
 #if ENABLED(HOST_ACTION_COMMANDS)
-  bool FilamentMonitorBase::host_handling; // = false
+  bool FilamentMonitorBase::host_handling=false; // = false
 #endif
 
 /**
@@ -91,14 +91,14 @@ void event_filament_runout() {
   #endif
 
   //action:out_of_filament
-  #if ENABLED(HOST_PROMPT_SUPPORT)
+/*  #if ENABLED(HOST_PROMPT_SUPPORT)
     host_prompt_reason = PROMPT_FILAMENT_RUNOUT;
     host_action_prompt_end();
     host_action_prompt_begin(PSTR("FilamentRunout T"), false);
     SERIAL_CHAR(tool);
     SERIAL_EOL();
     host_action_prompt_show();
-  #endif
+  #endif*/
 
   const bool run_runout_script = !runout.host_handling;
 
@@ -111,6 +111,7 @@ void event_filament_runout() {
         #endif
       )
     ) {
+	  host_action("FilamentRunout", true);
       host_action_paused(false);
     }
     else {
