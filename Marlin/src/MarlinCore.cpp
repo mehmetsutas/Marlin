@@ -218,6 +218,8 @@ millis_t max_inactive_time, // = 0
   I2CPositionEncodersMgr I2CPEM;
 #endif
 
+float zmax_pos_calc;
+
 /**
  * ***************************************************************************
  * ******************************** FUNCTIONS ********************************

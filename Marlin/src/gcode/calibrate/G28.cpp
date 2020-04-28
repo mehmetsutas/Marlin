@@ -206,6 +206,7 @@
  *  X   Home to the X endstop
  *  Y   Home to the Y endstop
  *  Z   Home to the Z endstop
+ *  W   Home to the Zmax endstop
  *
  */
 void GcodeSuite::G28(const bool always_home_all) {
@@ -317,7 +318,8 @@ void GcodeSuite::G28(const bool always_home_all) {
 
   #else // NOT DELTA
 
-    const bool homeX = parser.seen('X'), homeY = parser.seen('Y'), homeZ = parser.seen('Z'),
+    const bool homeX = parser.seen('X'), homeY = parser.seen('Y'), homeZ = parser.seen('Z'), homeW = parser.seen('W'),
+//    const bool homeX = parser.seen('X'), homeY = parser.seen('Y'), homeZ = parser.seen('Z'),
                home_all = always_home_all || (homeX == homeY && homeX == homeZ),
                doX = home_all || homeX, doY = home_all || homeY, doZ = home_all || homeZ;
 
@@ -328,6 +330,12 @@ void GcodeSuite::G28(const bool always_home_all) {
       if (doZ) homeaxis(Z_AXIS);
 
     #endif
+	
+	#if ((Z_HOME_DIR < 0) && HAS_Z_MAX)
+
+		if (homeW) homeaxis(Z_AXIS, true); 
+
+	#endif
 
     const float z_homing_height = (
       #if ENABLED(UNKNOWN_Z_NO_RAISE)

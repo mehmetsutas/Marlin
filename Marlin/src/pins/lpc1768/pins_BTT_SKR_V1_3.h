@@ -33,7 +33,7 @@
   #define X_MAX_PIN          P1_29   // X_MIN
 #else                                // else, non-endstop is free and appears in M43 output
   #define X_MIN_PIN          P1_29   // X_MIN
-  #define X_MAX_PIN          P1_28   // X_MAX
+  #define X_MAX_PIN          -1 //P1_28   // X_MAX
 #endif
 
 #if Y_HOME_DIR > 0 && Y_STALL_SENSITIVITY && !defined(USE_YMAX_PLUG)
@@ -41,7 +41,7 @@
   #define Y_MAX_PIN          P1_27   // Y_MIN
 #else
   #define Y_MIN_PIN          P1_27   // Y_MIN
-  #define Y_MAX_PIN          P1_26   // Y_MAX
+  #define Y_MAX_PIN          -1 //P1_26   // Y_MAX
 #endif
 
 #if Z_HOME_DIR > 0 && Z_STALL_SENSITIVITY && !defined(USE_ZMAX_PLUG)
@@ -58,14 +58,14 @@
 // Servos
 //
 #ifndef SERVO0_PIN
-  #define SERVO0_PIN       P2_00
+  #define SERVO0_PIN       -1//P2_00
 #endif
 
 //
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN  P1_24
+  #define Z_MIN_PROBE_PIN  P1_26
 #endif
 
 //

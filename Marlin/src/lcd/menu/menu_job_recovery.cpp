@@ -43,12 +43,18 @@ void lcd_power_loss_recovery_cancel() {
   ui.return_to_status();
 }
 
+static void lcd_save_stop() {
+  ui.return_to_status();
+  queue.inject_P(PSTR("M822"));
+}
+
 // TODO: Display long filename with Cancel/Resume buttons
 //       Requires supporting methods in PLR class.
 void menu_job_recovery() {
   ui.defer_status_screen();
   START_MENU();
   STATIC_ITEM(MSG_OUTAGE_RECOVERY);
+  ACTION_ITEM(MSG_SAVE_STOP, lcd_save_stop);
   ACTION_ITEM(MSG_RESUME_PRINT, lcd_power_loss_recovery_resume);
   ACTION_ITEM(MSG_STOP_PRINT, lcd_power_loss_recovery_cancel);
   END_MENU();

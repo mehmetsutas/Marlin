@@ -273,7 +273,7 @@ inline void do_probe_raise(const float z_raise) {
   float z_dest = z_raise;
   if (probe_offset.z < 0) z_dest -= probe_offset.z;
 
-  NOMORE(z_dest, Z_MAX_POS);
+  NOMORE(z_dest, zmax_pos_calc);
 
   if (z_dest > current_position.z)
     do_blocking_move_to_z(z_dest);

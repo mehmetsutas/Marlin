@@ -332,8 +332,10 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 76: G76(); break;                                    // G76: Calibrate first layer compensation values
       #endif
 
-      case 60: G60(); break;                                      // G60:  save current position
-      case 61: G61(); break;                                      // G61:  Apply/restore saved coordinates.
+	  #if SAVED_POSITIONS
+        case 60: G60(); break;                                      // G60:  save current position
+        case 61: G61(); break;                                      // G61:  Apply/restore saved coordinates.
+      #endif
 
       #if ENABLED(GCODE_MOTION_MODES)
         case 80: G80(); break;                                    // G80: Reset the current motion mode
@@ -853,7 +855,12 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       #if ENABLED(POWER_LOSS_RECOVERY)
         case 413: M413(); break;                                  // M413: Enable/disable/query Power-Loss Recovery
         case 1000: M1000(); break;                                // M1000: Resume from power-loss
+		case 822: M822(); break;								  // M822: Stop printing and save remaining print job to SD
       #endif
+
+	  #if (HAS_Z_MAX && HAS_Z_MIN)
+		case 821: M821(); break;							  // M821: Measure and Save Zmax position
+	  #endif
 
       #if ENABLED(MAX7219_GCODE)
         case 7219: M7219(); break;                                // M7219: Set LEDs, columns, and rows
