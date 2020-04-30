@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -82,7 +82,9 @@ private:
     }
     transfer_active = true;
     data_waiting = 0;
-    TERN_(BINARY_STREAM_COMPRESSION, heatshrink_decoder_reset(&hsd));
+    #if ENABLED(BINARY_STREAM_COMPRESSION)
+      heatshrink_decoder_reset(&hsd);
+    #endif
     return true;
   }
 
@@ -125,7 +127,9 @@ private:
       card.closefile();
       card.release();
     }
-    TERN_(BINARY_STREAM_COMPRESSION, heatshrink_decoder_finish(&hsd));
+    #if ENABLED(BINARY_STREAM_COMPRESSION)
+      heatshrink_decoder_finish(&hsd);
+    #endif
     transfer_active = false;
     return true;
   }
@@ -135,7 +139,9 @@ private:
       card.closefile();
       card.removeFile(card.filename);
       card.release();
-      TERN_(BINARY_STREAM_COMPRESSION, heatshrink_decoder_finish(&hsd));
+      #if ENABLED(BINARY_STREAM_COMPRESSION)
+        heatshrink_decoder_finish(&hsd);
+      #endif
     }
     transfer_active = false;
     return;
@@ -236,7 +242,7 @@ public:
       uint8_t protocol() { return (meta >> 4) & 0xF; }
       uint8_t type() { return meta & 0xF; }
       void reset() { token = 0; sync = 0; meta = 0; size = 0; checksum = 0; }
-      uint8_t data[2];
+      uint8_t data[1];
     };
 
     union Footer {

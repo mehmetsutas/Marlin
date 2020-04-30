@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -37,7 +37,7 @@
 #endif
 
 #if ENABLED(EXTENSIBLE_UI)
-  #include "../../lcd/extui/ui_api.h"
+  #include "../../lcd/extensible_ui/ui_api.h"
 #endif
 
 void _man_probe_pt(const xy_pos_t &xy) {
@@ -61,10 +61,16 @@ void _man_probe_pt(const xy_pos_t &xy) {
 
   float lcd_probe_pt(const xy_pos_t &xy) {
     _man_probe_pt(xy);
+    KEEPALIVE_STATE(PAUSED_FOR_USER);
     ui.defer_status_screen();
-    TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_USER_CONTINUE, PSTR("Delta Calibration in progress"), CONTINUE_STR));
-    TERN_(EXTENSIBLE_UI, ExtUI::onUserConfirmRequired_P(PSTR("Delta Calibration in progress")));
-    wait_for_user_response();
+    wait_for_user = true;
+    #if ENABLED(HOST_PROMPT_SUPPORT)
+      host_prompt_do(PROMPT_USER_CONTINUE, PSTR("Delta Calibration in progress"), CONTINUE_STR);
+    #endif
+    #if ENABLED(EXTENSIBLE_UI)
+      ExtUI::onUserConfirmRequired_P(PSTR("Delta Calibration in progress"));
+    #endif
+    while (wait_for_user) idle();
     ui.goto_previous_screen_no_defer();
     return current_position.z;
   }
@@ -97,8 +103,10 @@ void _man_probe_pt(const xy_pos_t &xy) {
 #endif
 
 void lcd_delta_settings() {
-  auto _recalc_delta_settings = []{
-    TERN_(HAS_LEVELING, reset_bed_level()); // After changing kinematics bed-level data is no longer valid
+  auto _recalc_delta_settings = []() {
+    #if HAS_LEVELING
+      reset_bed_level(); // After changing kinematics bed-level data is no longer valid
+    #endif
     recalc_delta_settings();
   };
   START_MENU();
@@ -118,8 +126,6 @@ void lcd_delta_settings() {
 }
 
 void menu_delta_calibrate() {
-  const bool all_homed = all_axes_homed();
-
   START_MENU();
   BACK_ITEM(MSG_MAIN);
 
@@ -135,7 +141,7 @@ void menu_delta_calibrate() {
 
   #if ENABLED(DELTA_CALIBRATION_MENU)
     SUBMENU(MSG_AUTO_HOME, _lcd_delta_calibrate_home);
-    if (all_homed) {
+    if (all_axes_homed()) {
       SUBMENU(MSG_DELTA_CALIBRATE_X, _goto_tower_x);
       SUBMENU(MSG_DELTA_CALIBRATE_Y, _goto_tower_y);
       SUBMENU(MSG_DELTA_CALIBRATE_Z, _goto_tower_z);

@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -35,7 +35,9 @@ public:
    * commands to Marlin, and lines will be checked for sequentiality.
    * M110 N<int> sets the current line number.
    */
-  static long last_N;
+  static long last_N, stopped_N;
+
+  static inline void stop() { stopped_N = last_N; }
 
   /**
    * GCode Command Queue
@@ -66,41 +68,16 @@ public:
   static void clear();
 
   /**
-   * Next Injected Command (PROGMEM) pointer. (nullptr == empty)
-   * Internal commands are enqueued ahead of serial / SD commands.
+   * Enqueue one or many commands to run from program memory.
+   * Aborts the current queue, if any.
+   * Note: process_injected_command() will process them.
    */
-  static PGM_P injected_commands_P;
-
-  /**
-   * Injected Commands (SRAM)
-   */
-  static char injected_commands[64];
-
-  /**
-   * Enqueue command(s) to run from PROGMEM. Drained by process_injected_command_P().
-   * Don't inject comments or use leading spaces!
-   * Aborts the current PROGMEM queue so only use for one or two commands.
-   */
-  static inline void inject_P(PGM_P const pgcode) { injected_commands_P = pgcode; }
-
-  /**
-   * Enqueue command(s) to run from SRAM. Drained by process_injected_command().
-   * Aborts the current SRAM queue so only use for one or two commands.
-   */
-  static inline void inject(char * const gcode) {
-    strncpy(injected_commands, gcode, sizeof(injected_commands) - 1);
-  }
+  static void inject_P(PGM_P const pgcode);
 
   /**
    * Enqueue and return only when commands are actually enqueued
    */
   static void enqueue_one_now(const char* cmd);
-
-  /**
-   * Attempt to enqueue a single G-code command
-   * and return 'true' if successful.
-   */
-  static bool enqueue_one_P(PGM_P const pgcode);
 
   /**
    * Enqueue from program memory and return only when commands are actually enqueued
@@ -164,10 +141,7 @@ private:
     #endif
   );
 
-  // Process the next "immediate" command (PROGMEM)
-  static bool process_injected_command_P();
-
-  // Process the next "immediate" command (SRAM)
+  // Process the next "immediate" command
   static bool process_injected_command();
 
   /**

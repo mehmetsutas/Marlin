@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -29,6 +29,8 @@
 
 #include "pins_GT2560_REV_A.h"
 
-#if DISABLED(BLTOUCH)
+#if ENABLED(BLTOUCH)
+  #define SERVO0_PIN  11
+#else
   #define SERVO0_PIN  32
 #endif

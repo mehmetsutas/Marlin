@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -70,12 +70,14 @@ void plan_arc(
   ab_float_t rvec = -offset;
 
   const float radius = HYPOT(rvec.a, rvec.b),
+              #if ENABLED(AUTO_BED_LEVELING_UBL)
+                start_L  = current_position[l_axis],
+              #endif
               center_P = current_position[p_axis] - rvec.a,
               center_Q = current_position[q_axis] - rvec.b,
               rt_X = cart[p_axis] - center_P,
               rt_Y = cart[q_axis] - center_Q,
-              start_L = current_position[l_axis],
-              linear_travel = cart[l_axis] - start_L,
+              linear_travel = cart[l_axis] - current_position[l_axis],
               extruder_travel = cart.e - current_position.e;
 
   // CCW angle of rotation between position and target from the circle center. Only one atan2() trig computation required.
@@ -155,6 +157,7 @@ void plan_arc(
   // Initialize the extruder axis
   raw.e = current_position.e;
 
+
   #if ENABLED(SCARA_FEEDRATE_SCALING)
     const float inv_duration = scaled_fr_mm_s / seg_length;
   #endif
@@ -217,12 +220,15 @@ void plan_arc(
       #if ENABLED(SCARA_FEEDRATE_SCALING)
         , inv_duration
       #endif
-    )) break;
+    ))
+      break;
   }
 
   // Ensure last segment arrives at target location.
   raw = cart;
-  TERN_(AUTO_BED_LEVELING_UBL, raw[l_axis] = start_L);
+  #if ENABLED(AUTO_BED_LEVELING_UBL)
+    raw[l_axis] = start_L;
+  #endif
 
   apply_motion_limits(raw);
 
@@ -230,15 +236,16 @@ void plan_arc(
     planner.apply_leveling(raw);
   #endif
 
-  planner.buffer_line(raw, scaled_fr_mm_s, active_extruder, 0
+  planner.buffer_line(raw, scaled_fr_mm_s, active_extruder, seg_length
     #if ENABLED(SCARA_FEEDRATE_SCALING)
       , inv_duration
     #endif
   );
 
-  TERN_(AUTO_BED_LEVELING_UBL, raw[l_axis] = start_L);
+  #if ENABLED(AUTO_BED_LEVELING_UBL)
+    raw[l_axis] = start_L;
+  #endif
   current_position = raw;
-
 } // plan_arc
 
 /**
@@ -276,9 +283,11 @@ void GcodeSuite::G2_G3(const bool clockwise) {
       relative_mode = true;
     #endif
 
-    get_destination_from_command();   // Get X Y Z E F (and set cutter power)
+    get_destination_from_command();
 
-    TERN_(SF_ARC_FIX, relative_mode = relative_mode_backup);
+    #if ENABLED(SF_ARC_FIX)
+      relative_mode = relative_mode_backup;
+    #endif
 
     ab_float_t arc_offset = { 0, 0 };
     if (parser.seenval('R')) {
@@ -318,7 +327,7 @@ void GcodeSuite::G2_G3(const bool clockwise) {
         // P indicates number of circles to do
         int8_t circles_to_do = parser.byteval('P');
         if (!WITHIN(circles_to_do, 0, 100))
-          SERIAL_ERROR_MSG(STR_ERR_ARC_ARGS);
+          SERIAL_ERROR_MSG(MSG_ERR_ARC_ARGS);
 
         while (circles_to_do--)
           plan_arc(current_position, arc_offset, clockwise);
@@ -329,7 +338,7 @@ void GcodeSuite::G2_G3(const bool clockwise) {
       reset_stepper_timeout();
     }
     else
-      SERIAL_ERROR_MSG(STR_ERR_ARC_ARGS);
+      SERIAL_ERROR_MSG(MSG_ERR_ARC_ARGS);
   }
 }
 

@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -26,7 +26,7 @@
 
 #include "../../inc/MarlinConfigPre.h"
 
-#if BOTH(HAS_LCD_MENU, LED_CONTROL_MENU)
+#if HAS_LCD_MENU && ENABLED(LED_CONTROL_MENU)
 
 #include "menu.h"
 #include "../../feature/leds/leds.h"
@@ -70,10 +70,8 @@ void menu_led_custom() {
 void menu_led() {
   START_MENU();
   BACK_ITEM(MSG_MAIN);
-  MENU_ITEM_IF(1) {
-    bool led_on = leds.lights_on;
-    EDIT_ITEM(bool, MSG_LEDS, &led_on, leds.toggle);
-  }
+  bool led_on = leds.lights_on;
+  EDIT_ITEM(bool, MSG_LEDS, &led_on, leds.toggle);
   ACTION_ITEM(MSG_SET_LEDS_DEFAULT, leds.set_default);
   #if ENABLED(LED_COLOR_PRESETS)
     SUBMENU(MSG_LED_PRESETS, menu_led_presets);

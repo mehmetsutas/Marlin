@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -35,11 +35,19 @@
 class Joystick {
   friend class Temperature;
   private:
-    TERN_(HAS_JOY_ADC_X, static temp_info_t x);
-    TERN_(HAS_JOY_ADC_Y, static temp_info_t y);
-    TERN_(HAS_JOY_ADC_Z, static temp_info_t z);
+    #if HAS_JOY_ADC_X
+      static temp_info_t x;
+    #endif
+    #if HAS_JOY_ADC_Y
+      static temp_info_t y;
+    #endif
+    #if HAS_JOY_ADC_Z
+      static temp_info_t z;
+    #endif
   public:
-    TERN_(JOYSTICK_DEBUG, static void report());
+    #if ENABLED(JOYSTICK_DEBUG)
+      static void report();
+    #endif
     static void calculate(xyz_float_t &norm_jog);
     static void inject_jog_moves();
 };

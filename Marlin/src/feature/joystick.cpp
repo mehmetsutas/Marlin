@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -37,7 +37,7 @@
 Joystick joystick;
 
 #if ENABLED(EXTENSIBLE_UI)
-  #include "../lcd/extui/ui_api.h"
+  #include "../lcd/extensible_ui/ui_api.h"
 #endif
 
 #if HAS_JOY_ADC_X
@@ -154,7 +154,9 @@ Joystick joystick;
     // Other non-joystick poll-based jogging could be implemented here
     // with "jogging" encapsulated as a more general class.
 
-    TERN_(EXTENSIBLE_UI, ExtUI::_joystick_update(norm_jog));
+    #if ENABLED(EXTENSIBLE_UI)
+      ExtUI::_joystick_update(norm_jog);
+    #endif
 
     // norm_jog values of [-1 .. 1] maps linearly to [-feedrate .. feedrate]
     xyz_float_t move_dist{0};
@@ -162,7 +164,7 @@ Joystick joystick;
     LOOP_XYZ(i) if (norm_jog[i]) {
       move_dist[i] = seg_time * norm_jog[i] *
         #if ENABLED(EXTENSIBLE_UI)
-          manual_feedrate_mm_s[i];
+          MMM_TO_MMS(manual_feedrate_mm_m[i]);
         #else
           planner.settings.max_feedrate_mm_s[i];
         #endif
@@ -171,7 +173,6 @@ Joystick joystick;
 
     if (!UNEAR_ZERO(hypot2)) {
       current_position += move_dist;
-      apply_motion_limits(current_position);
       const float length = sqrt(hypot2);
       injecting_now = true;
       planner.buffer_line(current_position, length / seg_time, active_extruder, length);
