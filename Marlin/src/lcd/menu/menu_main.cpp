@@ -83,6 +83,11 @@ void menu_configuration();
 
 extern const char M21_STR[];
 
+static void lcd_save_stop() {
+  ui.return_to_status();
+  queue.inject_P(PSTR("M822"));
+}
+
 void menu_main() {
   const bool busy = printingIsActive()
     #if ENABLED(SDSUPPORT)
@@ -106,6 +111,7 @@ void menu_main() {
           GET_TEXT(MSG_STOP_PRINT), (PGM_P)nullptr, PSTR("?")
         );
       });
+      ACTION_ITEM(MSG_SAVE_STOP, lcd_save_stop);
     #endif
     SUBMENU(MSG_TUNE, menu_tune);
   }

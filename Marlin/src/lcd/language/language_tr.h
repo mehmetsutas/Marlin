@@ -66,11 +66,11 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_AUTO_HOME_X                     = _UxGT("X Sıfırla");
   PROGMEM Language_Str MSG_AUTO_HOME_Y                     = _UxGT("Y Sıfırla");
   PROGMEM Language_Str MSG_AUTO_HOME_Z                     = _UxGT("Z Sıfırla");
-  PROGMEM Language_Str MSG_AUTO_Z_ALIGN                    = _UxGT("Oto. Z-Hizalama");
+  PROGMEM Language_Str MSG_AUTO_Z_ALIGN                    = _UxGT("Oto. Z-Ayarlama");
   PROGMEM Language_Str MSG_LEVEL_BED_HOMING                = _UxGT("XYZ Sıfırlanıyor");
   PROGMEM Language_Str MSG_LEVEL_BED_WAITING               = _UxGT("Başlatmak için tıkla");
   PROGMEM Language_Str MSG_LEVEL_BED_NEXT_POINT            = _UxGT("Sonraki Nokta");
-  PROGMEM Language_Str MSG_LEVEL_BED_DONE                  = _UxGT("Hizalama Tamam!");
+  PROGMEM Language_Str MSG_LEVEL_BED_DONE                  = _UxGT("Seviyeleme Tamam!");
   PROGMEM Language_Str MSG_Z_FADE_HEIGHT                   = _UxGT("Kaçınma Yüksekliği");
   PROGMEM Language_Str MSG_SET_HOME_OFFSETS                = _UxGT("Ofset Ayarla");
   PROGMEM Language_Str MSG_HOME_OFFSETS_APPLIED            = _UxGT("Ofset Tamam");
@@ -90,7 +90,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_PREHEAT_2_BEDONLY               = _UxGT("Ön Isınma ") PREHEAT_2_LABEL _UxGT(" Tabla");
   PROGMEM Language_Str MSG_PREHEAT_2_SETTINGS              = _UxGT("Ön Isınma ") PREHEAT_2_LABEL _UxGT(" Ayarlar");
   PROGMEM Language_Str MSG_PREHEAT_CUSTOM                  = _UxGT("Özel Ön Isınma");
-  PROGMEM Language_Str MSG_COOLDOWN                        = _UxGT("Soğut/(Durdur)");
+  PROGMEM Language_Str MSG_COOLDOWN                        = _UxGT("Soğut");
   PROGMEM Language_Str MSG_LASER_MENU                      = _UxGT("Lazer Kontrolü");
   PROGMEM Language_Str MSG_LASER_OFF                       = _UxGT("Lazeri Kapat");
   PROGMEM Language_Str MSG_LASER_ON                        = _UxGT("Lazeri Aç");
@@ -104,10 +104,10 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_SWITCH_PS_OFF                   = _UxGT("Gücü Kapat");
   PROGMEM Language_Str MSG_EXTRUDE                         = _UxGT("Ekstrüzyon");
   PROGMEM Language_Str MSG_RETRACT                         = _UxGT("Geri Çek");
-  PROGMEM Language_Str MSG_MOVE_AXIS                       = _UxGT("Eksen Hareketleri");
-  PROGMEM Language_Str MSG_BED_LEVELING                    = _UxGT("Tabla Hizalama");
-  PROGMEM Language_Str MSG_LEVEL_BED                       = _UxGT("Tabla Hizası");
-  PROGMEM Language_Str MSG_LEVEL_CORNERS                   = _UxGT("Hizalama Köşeleri");
+  PROGMEM Language_Str MSG_MOVE_AXIS                       = _UxGT("Eksenleri Yönet");
+  PROGMEM Language_Str MSG_BED_LEVELING                    = _UxGT("Tabla Seviyeleme");
+  PROGMEM Language_Str MSG_LEVEL_BED                       = _UxGT("Tabla Seviyele");
+  PROGMEM Language_Str MSG_LEVEL_CORNERS                   = _UxGT("Köşeleri Seviyele");
   PROGMEM Language_Str MSG_NEXT_CORNER                     = _UxGT("Sonraki Köşe");
   PROGMEM Language_Str MSG_MESH_EDITOR                     = _UxGT("Mesh Editörü");
   PROGMEM Language_Str MSG_EDIT_MESH                       = _UxGT("Mesh Düzenle");
@@ -131,7 +131,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_HOTEND_OFFSET_Z                 = _UxGT("2. nozul Z");
   PROGMEM Language_Str MSG_UBL_DOING_G29                   = _UxGT("G29 Çalışıyor");
   PROGMEM Language_Str MSG_UBL_TOOLS                       = _UxGT("UBL Araçları");
-  PROGMEM Language_Str MSG_UBL_LEVEL_BED                   = _UxGT("UBL Yatak Hizalama");
+  PROGMEM Language_Str MSG_UBL_LEVEL_BED                   = _UxGT("UBL Yatak Seviyeleme");
   PROGMEM Language_Str MSG_LCD_TILTING_MESH                = _UxGT("Eğim Noktası");
   PROGMEM Language_Str MSG_UBL_MANUAL_MESH                 = _UxGT("Elle Mesh Oluştur");
   PROGMEM Language_Str MSG_UBL_BC_INSERT                   = _UxGT("Altlık & Ölçü Ver");
@@ -167,9 +167,9 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_G26_CANCELED                    = _UxGT("G26 İptal edildi");
   PROGMEM Language_Str MSG_G26_LEAVING                     = _UxGT("Çıkış G26");
   PROGMEM Language_Str MSG_UBL_CONTINUE_MESH               = _UxGT("Tabla Mesh Devam et");
-  PROGMEM Language_Str MSG_UBL_MESH_LEVELING               = _UxGT("Mesh Hizalama");
-  PROGMEM Language_Str MSG_UBL_3POINT_MESH_LEVELING        = _UxGT("3-Nokta Hizalama");
-  PROGMEM Language_Str MSG_UBL_GRID_MESH_LEVELING          = _UxGT("Kafes Mesh Hizalama");
+  PROGMEM Language_Str MSG_UBL_MESH_LEVELING               = _UxGT("Mesh Seviyeleme");
+  PROGMEM Language_Str MSG_UBL_3POINT_MESH_LEVELING        = _UxGT("3-Nokta Seviyeleme");
+  PROGMEM Language_Str MSG_UBL_GRID_MESH_LEVELING          = _UxGT("Kafes Mesh Seviyeleme");
   PROGMEM Language_Str MSG_UBL_MESH_LEVEL                  = _UxGT("Mesh Seviyesi");
   PROGMEM Language_Str MSG_UBL_SIDE_POINTS                 = _UxGT("Yan Noktalar");
   PROGMEM Language_Str MSG_UBL_MAP_TYPE                    = _UxGT("Haritalama Türü");
@@ -227,9 +227,9 @@ namespace Language_tr {
 
   PROGMEM Language_Str MSG_MOVING                          = _UxGT("Hareket Ediyor..");
   PROGMEM Language_Str MSG_FREE_XY                         = _UxGT("Durdur XY");
-  PROGMEM Language_Str MSG_MOVE_X                          = _UxGT("X Hareketi");
-  PROGMEM Language_Str MSG_MOVE_Y                          = _UxGT("Y Hareketi");
-  PROGMEM Language_Str MSG_MOVE_Z                          = _UxGT("Z Hareketi");
+  PROGMEM Language_Str MSG_MOVE_X                          = _UxGT("X");
+  PROGMEM Language_Str MSG_MOVE_Y                          = _UxGT("Y");
+  PROGMEM Language_Str MSG_MOVE_Z                          = _UxGT("Z");
   PROGMEM Language_Str MSG_MOVE_E                          = _UxGT("Ekstruder");
   PROGMEM Language_Str MSG_MOVE_EN                         = _UxGT("Ekstruder *");
   PROGMEM Language_Str MSG_HOTEND_TOO_COLD                 = _UxGT("Nozul Çok Soğuk");
@@ -319,6 +319,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_ERR_EEPROM_CRC                  = _UxGT("Hata: EEPROM CRC");
   PROGMEM Language_Str MSG_ERR_EEPROM_INDEX                = _UxGT("Hata: EEPROM Indeks");
   PROGMEM Language_Str MSG_ERR_EEPROM_VERSION              = _UxGT("Hata: EEPROM Versiyonu");
+  PROGMEM Language_Str MSG_SETTINGS_STORED                 = _UxGT("Ayarlar Kaydedildi");
   PROGMEM Language_Str MSG_MEDIA_UPDATE                    = _UxGT("SD Güncellemesi");
   PROGMEM Language_Str MSG_RESET_PRINTER                   = _UxGT("Yazıcıyı Resetle");
   PROGMEM Language_Str MSG_REFRESH                         = LCD_STR_REFRESH  _UxGT("Yenile");
@@ -449,11 +450,11 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_DELTA_RADIUS                    = _UxGT("Yarıçap");
   PROGMEM Language_Str MSG_INFO_MENU                       = _UxGT("Yazıcı Hakkında");
   PROGMEM Language_Str MSG_INFO_PRINTER_MENU               = _UxGT("Yazıcı Bilgisi");
-  PROGMEM Language_Str MSG_3POINT_LEVELING                 = _UxGT("3-Nokta Hizalama");
-  PROGMEM Language_Str MSG_LINEAR_LEVELING                 = _UxGT("Doğrusal Hizalama");
-  PROGMEM Language_Str MSG_BILINEAR_LEVELING               = _UxGT("İki Yönlü Doğ. Hiza.");
-  PROGMEM Language_Str MSG_UBL_LEVELING                    = _UxGT("Birleşik Tabla Hiza.");
-  PROGMEM Language_Str MSG_MESH_LEVELING                   = _UxGT("Mesh Hizalama");
+  PROGMEM Language_Str MSG_3POINT_LEVELING                 = _UxGT("3-Nokta Seviyele");
+  PROGMEM Language_Str MSG_LINEAR_LEVELING                 = _UxGT("Doğrusal Seviyeleme");
+  PROGMEM Language_Str MSG_BILINEAR_LEVELING               = _UxGT("İki Yönlü Doğ. Sev.");
+  PROGMEM Language_Str MSG_UBL_LEVELING                    = _UxGT("Birleşik Tabla Sev.");
+  PROGMEM Language_Str MSG_MESH_LEVELING                   = _UxGT("Mesh Seviyeleme");
   PROGMEM Language_Str MSG_INFO_STATS_MENU                 = _UxGT("İstatistikler");
   PROGMEM Language_Str MSG_INFO_BOARD_MENU                 = _UxGT("Kontrolcü Bilgisi");
   PROGMEM Language_Str MSG_INFO_THERMISTOR_MENU            = _UxGT("Termistörler");

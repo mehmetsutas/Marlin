@@ -262,7 +262,7 @@ bool PrintJobRecovery::loss_lock = false;
 
     void PrintJobRecovery::raise_z() {
       // Disable all heaters to reduce power loss
-	  card.stopSDPrint();
+	  card.endFilePrint();
 	  queue.clear();
 	  print_job_timer.stop();
       thermalManager.disable_all_heaters();

@@ -28,7 +28,7 @@
 #if ENABLED(POWER_LOSS_RECOVERY) //ENABLED(POWER_FAILURE_FEATURE)
 
 #include "../../gcode.h"
-#include "../../../feature/power_loss_recovery.h"
+#include "../../../feature/powerloss.h"
 #include "../../../lcd/ultralcd.h"
 
 void GcodeSuite::M822() {  
