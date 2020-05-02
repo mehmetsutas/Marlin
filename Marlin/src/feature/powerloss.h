@@ -36,6 +36,8 @@
   #define POWER_LOSS_STATE HIGH
 #endif
 
+#include "../module/planner.h"
+
 //#define DEBUG_POWER_LOSS_RECOVERY
 //#define SAVE_EACH_CMD_MODE
 //#define SAVE_INFO_INTERVAL_MS 0
@@ -137,6 +139,9 @@ class PrintJobRecovery {
         #else
           SET_INPUT(POWER_LOSS_PIN);
         #endif
+	    #if PIN_EXISTS(BATTERY_CONTROL)
+	      SET_OUTPUT(BATTERY_CONTROL_PIN);
+	    #endif
       #endif
     }
 
@@ -162,9 +167,24 @@ class PrintJobRecovery {
     static void save(const bool force=ENABLED(SAVE_EACH_CMD_MODE));
 
   #if PIN_EXISTS(POWER_LOSS)
-    static inline void outage() {
-      if (enabled && READ(POWER_LOSS_PIN) == POWER_LOSS_STATE)
-        _outage();
+//    static inline void outage() {
+//      if (enabled && READ(POWER_LOSS_PIN) == POWER_LOSS_STATE)
+//        _outage();
+//    }
+
+    static bool loss_lock;
+    static void outage();
+	
+  #endif
+
+  #if (HAS_Z_MAX && HAS_Z_MIN)
+	static inline void save_stop() {
+      if (IS_SD_PRINTING())
+	  {
+		planner.synchronize();
+		save(true);
+		raise_z();
+	  }
     }
   #endif
 
@@ -179,9 +199,9 @@ class PrintJobRecovery {
   private:
     static void write();
 
-  #if ENABLED(BACKUP_POWER_SUPPLY)
+//  #if ENABLED(BACKUP_POWER_SUPPLY)
     static void raise_z();
-  #endif
+//  #endif
 
   #if PIN_EXISTS(POWER_LOSS)
     static void _outage();

@@ -34,6 +34,8 @@
 
 #include "../inc/MarlinConfig.h"
 
+#include "../MarlinCore.h"
+
 #if IS_SCARA
   #include "../libs/buzzer.h"
   #include "../lcd/ultralcd.h"
@@ -549,7 +551,7 @@ void restore_feedrate_and_scaling() {
   // Software Endstops are based on the configured limits.
   axis_limits_t soft_endstop = {
     { X_MIN_POS, Y_MIN_POS, Z_MIN_POS },
-    { X_MAX_POS, Y_MAX_POS, Z_MAX_POS }
+    { X_MAX_POS, Y_MAX_POS, zmax_pos_calc }
   };
 
   /**
@@ -1503,7 +1505,8 @@ void set_axis_not_trusted(const AxisEnum axis) {
  * before updating the current position.
  */
 
-void homeaxis(const AxisEnum axis) {
+//void homeaxis(const AxisEnum axis) {
+void homeaxis(const AxisEnum axis, const bool reverse) {
 
   #if IS_SCARA
     // Only Z homing (with probe) is permitted
@@ -1535,7 +1538,7 @@ void homeaxis(const AxisEnum axis) {
     #if ENABLED(DUAL_X_CARRIAGE)
       axis == X_AXIS ? x_home_dir(active_extruder) :
     #endif
-    home_dir(axis)
+    reverse ? -1*home_dir(axis) : home_dir(axis)
   );
 
   // Homing Z towards the bed? Deploy the Z probe or endstop.
@@ -1755,6 +1758,7 @@ void homeaxis(const AxisEnum axis) {
   #if IS_SCARA
 
     set_axis_is_at_home(axis);
+	if ((axis == Z_AXIS) && (reverse)) current_position[Z_AXIS] = zmax_pos_calc;
     sync_plan_position();
 
   #elif ENABLED(DELTA)
@@ -1772,6 +1776,7 @@ void homeaxis(const AxisEnum axis) {
   #else // CARTESIAN / CORE
 
     set_axis_is_at_home(axis);
+	if ((axis == Z_AXIS) && (reverse)) current_position[Z_AXIS] = zmax_pos_calc;
     sync_plan_position();
 
     destination[axis] = current_position[axis];

@@ -171,11 +171,11 @@ void menu_cancelobject();
 #if ENABLED(PID_AUTOTUNE_MENU)
 
   #if ENABLED(PIDTEMP)
-    int16_t autotune_temp[HOTENDS] = ARRAY_BY_HOTENDS1(150);
+    int16_t autotune_temp[HOTENDS] = ARRAY_BY_HOTENDS1(205);
   #endif
 
   #if ENABLED(PIDTEMPBED)
-    int16_t autotune_temp_bed = 70;
+    int16_t autotune_temp_bed = 60;
   #endif
 
   void _lcd_autotune(const int16_t e) {
@@ -302,7 +302,7 @@ void menu_cancelobject();
     #if ENABLED(PID_AUTOTUNE_MENU)
       #define PID_EDIT_MENU_ITEMS(N) \
         _PID_EDIT_MENU_ITEMS(N); \
-        EDIT_ITEM_FAST_N(int3, N, MSG_PID_AUTOTUNE_E, &autotune_temp[N], 150, heater_maxtemp[N] - 15, []{ _lcd_autotune(MenuItemBase::itemIndex); });
+        EDIT_ITEM_FAST_N(int3, N, MSG_PID_AUTOTUNE_E, &autotune_temp[N], 205, heater_maxtemp[N] - 15, []{ _lcd_autotune(MenuItemBase::itemIndex); });
     #else
       #define PID_EDIT_MENU_ITEMS(N) _PID_EDIT_MENU_ITEMS(N);
     #endif
@@ -470,7 +470,7 @@ void menu_cancelobject();
     }
   #endif
 
-#endif // !SLIM_LCD_MENUS
+
 
 // M92 Steps-per-mm
 void menu_advanced_steps_per_mm() {
@@ -492,6 +492,8 @@ void menu_advanced_steps_per_mm() {
 
   END_MENU();
 }
+
+#endif // !SLIM_LCD_MENUS
 
 void menu_advanced_settings() {
   #if ENABLED(FILAMENT_RUNOUT_SENSOR) && FILAMENT_RUNOUT_DISTANCE_MM
@@ -523,11 +525,13 @@ void menu_advanced_settings() {
       if (!printer_busy())
         SUBMENU(MSG_ZPROBE_OFFSETS, menu_probe_offsets);
     #endif
-  #endif // !SLIM_LCD_MENUS
+
 
   // M92 - Steps Per mm
   if (!printer_busy())
     SUBMENU(MSG_STEPS_PER_MM, menu_advanced_steps_per_mm);
+
+  #endif // !SLIM_LCD_MENUS
 
   #if ENABLED(BACKLASH_GCODE)
     SUBMENU(MSG_BACKLASH, menu_backlash);

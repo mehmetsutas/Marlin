@@ -169,7 +169,7 @@ static USB_MicrosoftCompatibleDescriptor microsoft_compatible_id_descriptor = {
   u"Base=SD\0"\
   u"Job3DOutputAreaWidth=" xstr(X_BED_SIZE) "000\0"\
   u"Job3DOutputAreaDepth=" xstr(Y_BED_SIZE) "000\0"\
-  u"Job3DOutputAreaHeight=" xstr(Z_MAX_POS) "000\0"\
+  u"Job3DOutputAreaHeight=" xstr(zmax_pos_calc) "000\0"\
   u"filamentdiameter=1750\0"
 
 typedef struct USB_MicrosoftExtendedPropertiesDescriptor {

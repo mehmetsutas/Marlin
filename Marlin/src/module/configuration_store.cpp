@@ -372,6 +372,9 @@ typedef struct SettingsDataStruct {
   xyz_float_t backlash_distance_mm;                     // M425 X Y Z
   uint8_t backlash_correction;                          // M425 F
   float backlash_smoothing_mm;                          // M425 S
+  
+  // MEASURED ZMAX POSITION
+  float zmax_pos_calc;   								// M821
 
   //
   // EXTENSIBLE_UI
@@ -1312,6 +1315,12 @@ void MarlinSettings::postprocess() {
       EEPROM_WRITE(backlash_correction);
       EEPROM_WRITE(backlash_smoothing_mm);
     }
+	
+    //
+    // Zmax Pos Calc
+    //
+    _FIELD_TEST(zmax_pos_calc);
+    EEPROM_WRITE(zmax_pos_calc);
 
     //
     // Extensible UI User Data
@@ -2172,6 +2181,12 @@ void MarlinSettings::postprocess() {
         EEPROM_READ(backlash_correction);
         EEPROM_READ(backlash_smoothing_mm);
       }
+	  
+      //
+      // Zmax Pos Calc
+      //
+      _FIELD_TEST(zmax_pos_calc);
+      EEPROM_READ(zmax_pos_calc);
 
       //
       // Extensible UI User Data
@@ -2769,6 +2784,11 @@ void MarlinSettings::reset() {
       fc_settings[e].load_length = FILAMENT_CHANGE_FAST_LOAD_LENGTH;
     }
   #endif
+  
+  //
+  // Zmax Pos Calc
+  //
+  zmax_pos_calc = Z_MAX_POS;
 
   postprocess();
 
@@ -3680,6 +3700,13 @@ void MarlinSettings::reset() {
         #endif
       );
     #endif
+	
+    #if HAS_Z_MAX
+      CONFIG_ECHO_HEADING("Measured Zmax:");
+      CONFIG_ECHO_START(); 
+      SERIAL_ECHOLNPAIR(" M821 ", LINEAR_UNIT(zmax_pos_calc));
+    #endif	
+	
   }
 
 #endif // !DISABLE_M503

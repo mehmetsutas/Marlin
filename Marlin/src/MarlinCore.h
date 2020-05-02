@@ -62,6 +62,8 @@ inline void idle_no_sleep() {
   extern bool G38_did_trigger;      // Flag from the ISR to indicate the endstop changed
 #endif
 
+extern float zmax_pos_calc;
+
 /**
  * The axis order in all axis related arrays is X, Y, Z, E
  */

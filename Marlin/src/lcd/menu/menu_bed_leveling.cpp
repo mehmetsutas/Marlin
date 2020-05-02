@@ -248,7 +248,7 @@ void menu_bed_leveling() {
     SUBMENU(MSG_LEVEL_BED, _lcd_level_bed_continue);
   #else
     // Automatic leveling can just run the G-code
-    GCODES_ITEM(MSG_LEVEL_BED, is_homed ? PSTR("G29") : PSTR("G28\nG29"));
+    GCODES_ITEM(MSG_LEVEL_BED, is_homed ? PSTR("G92 E0\nM109 S235 T0\nG1 E6 F60\nG1 E0 F4800\nG1 E-100 F4800\nG92 E0\nG4 S5\nG29\nG4 S5\nM104 S0 T0\nM500") : PSTR("G92 E0\nM109 S235 T0\nG1 E6 F60\nG1 E0 F4800\nG1 E-100 F4800\nG92 E0\nG4 S5\nG28\nG29\nG4 S5\nM104 S0 T0\nM500"));
   #endif
 
   #if ENABLED(MESH_EDIT_MENU)
@@ -280,6 +280,10 @@ void menu_bed_leveling() {
     SUBMENU(MSG_ZPROBE_ZOFFSET, lcd_babystep_zoffset);
   #elif HAS_BED_PROBE
     EDIT_ITEM(LCD_Z_OFFSET_TYPE, MSG_ZPROBE_ZOFFSET, &probe.offset.z, Z_PROBE_OFFSET_RANGE_MIN, Z_PROBE_OFFSET_RANGE_MAX);
+  #endif
+  
+  #if (HAS_Z_MAX && HAS_Z_MIN)
+	GCODES_ITEM(MSG_MEASURE_ZMAX, PSTR("M821\nM500"));
   #endif
 
   #if ENABLED(LEVEL_BED_CORNERS)

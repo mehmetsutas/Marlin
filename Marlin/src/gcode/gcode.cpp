@@ -858,7 +858,12 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       #if ENABLED(POWER_LOSS_RECOVERY)
         case 413: M413(); break;                                  // M413: Enable/disable/query Power-Loss Recovery
         case 1000: M1000(); break;                                // M1000: [INTERNAL] Resume from power-loss
+		case 822: M822(); break;								  // M822: Stop printing and save remaining print job to SD
       #endif
+	  
+	  #if (HAS_Z_MAX && HAS_Z_MIN)
+		case 821: M821(); break;							  // M821: Measure and Save Zmax position
+	  #endif
 
       #if ENABLED(SDSUPPORT)
         case 1001: M1001(); break;                                // M1001: [INTERNAL] Handle SD completion
