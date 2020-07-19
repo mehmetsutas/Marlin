@@ -315,7 +315,7 @@ void GcodeSuite::G28() {
 
 //    const bool homeX = parser.seen('X'), homeY = parser.seen('Y'), homeZ = parser.seen('Z'),
     const bool homeX = parser.seen('X'), homeY = parser.seen('Y'), homeZ = parser.seen('Z'), homeW = parser.seen('W'),
-               home_all = homeX == homeY && homeX == homeZ, // All or None
+               home_all = homeX == homeY && homeX == homeZ && !homeW, // All or None
                doX = home_all || homeX, doY = home_all || homeY, doZ = home_all || homeZ;
 
     destination = current_position;

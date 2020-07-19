@@ -326,7 +326,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_INFO_SCREEN                     = _UxGT("Bilgi Ekranı");
   PROGMEM Language_Str MSG_PREPARE                         = _UxGT("Hazırlık");
   PROGMEM Language_Str MSG_TUNE                            = _UxGT("Ayar");
-  PROGMEM Language_Str MSG_START_PRINT                     = _UxGT("Yaz. Başlat");
+  PROGMEM Language_Str MSG_START_PRINT                     = _UxGT("Yazdırma Başlat");
   PROGMEM Language_Str MSG_BUTTON_NEXT                     = _UxGT("İleri");
   PROGMEM Language_Str MSG_BUTTON_INIT                     = _UxGT("İçinde");
   PROGMEM Language_Str MSG_BUTTON_STOP                     = _UxGT("Durdur");
@@ -340,6 +340,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_RESUME_PRINT                    = _UxGT("Sürdür");
   PROGMEM Language_Str MSG_STOP_PRINT                      = _UxGT("Durdur");
   PROGMEM Language_Str MSG_SAVE_STOP                       = _UxGT("Kaydet & Durdur");
+  PROGMEM Language_Str MSG_RECOVER_PRINT                   = _UxGT("Son Baskıyı Sürdür");
   PROGMEM Language_Str MSG_MEASURE_ZMAX                    = _UxGT("Zmax Ölç"); 
   PROGMEM Language_Str MSG_PRINTING_OBJECT                 = _UxGT("Yazdırma Nesnesi");
   PROGMEM Language_Str MSG_CANCEL_OBJECT                   = _UxGT("Nesneyi İptal Et");
@@ -365,7 +366,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_CONTROL_RETRACT_RECOVER_SWAPF   = _UxGT("S UnRet V");
   PROGMEM Language_Str MSG_AUTORETRACT                     = _UxGT("Oto. Geri Çekme");
   PROGMEM Language_Str MSG_FILAMENT_SWAP_LENGTH            = _UxGT("G.Çekme Boyu");
-  PROGMEM Language_Str MSG_FILAMENT_PURGE_LENGTH           = _UxGT("Tasfiye uzunluğu");
+  PROGMEM Language_Str MSG_FILAMENT_PURGE_LENGTH           = _UxGT("Yükleme uzunluğu");
   PROGMEM Language_Str MSG_TOOL_CHANGE                     = _UxGT("Takım Değişimi");
   PROGMEM Language_Str MSG_TOOL_CHANGE_ZLIFT               = _UxGT("Z Yükselt");
   PROGMEM Language_Str MSG_SINGLENOZZLE_PRIME_SPD          = _UxGT("Birincil Hız");
@@ -496,7 +497,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_HEADER_LOAD     = _UxGT("FILAMAN YüKLE");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_HEADER_UNLOAD   = _UxGT("FILAMAN ÇIKART");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_HEADER   = _UxGT("Seçenekler:");
-  PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_PURGE    = _UxGT("Daha Fazla Tasviye");
+  PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_PURGE    = _UxGT("Daha Fazla Yükle");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_RESUME   = _UxGT("Baskıyı sürdür");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_NOZZLE          = _UxGT("  Nozul: ");
   PROGMEM Language_Str MSG_RUNOUT_SENSOR                   = _UxGT("Filaman Sensörü");

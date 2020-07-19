@@ -34,6 +34,7 @@
 #include "../../module/printcounter.h"
 #include "../../module/stepper.h"
 #include "../../sd/cardreader.h"
+#include "../../feature/powerloss.h"
 
 #if HAS_GAMES && DISABLED(LCD_INFO_MENU)
   #include "game/game.h"
@@ -109,7 +110,7 @@ void menu_main() {
           GET_TEXT(MSG_STOP_PRINT), (PGM_P)nullptr, PSTR("?")
         );
       });
-	  ACTION_ITEM(MSG_SAVE_STOP, lcd_save_stop);
+	  if (IS_SD_PRINTING()) ACTION_ITEM(MSG_SAVE_STOP, lcd_save_stop);
     #endif
     SUBMENU(MSG_TUNE, menu_tune);
   }
@@ -152,13 +153,23 @@ void menu_main() {
     #if MACHINE_CAN_PAUSE
       if (printingIsPaused()) ACTION_ITEM(MSG_RESUME_PRINT, ui.resume_print);
     #endif
+	
+  #if HAS_LCD_MENU && ENABLED(POWER_LOSS_RECOVERY)
+    if (card.isMounted()) {
+      recovery.load();
+      if (!recovery.valid()) recovery.purge();
+         else MENU_ITEM(gcode,MSG_RECOVER_PRINT, PSTR("M1000 S"));
+    }
+  #endif
 
 //    SUBMENU(MSG_MOTION, menu_motion);
-  }
+
 
   #if HAS_CUTTER
     SUBMENU(MSG_CUTTER(MENU), menu_spindle_laser);
   #endif
+  
+
   
   #if HAS_ENCODER_WHEEL && ENABLED(SDSUPPORT)
 
@@ -194,7 +205,7 @@ void menu_main() {
 
   #endif // HAS_ENCODER_WHEEL && SDSUPPORT
 
-  if (!busy) SUBMENU(MSG_MOTION, menu_motion);
+  SUBMENU(MSG_MOTION, menu_motion);
   SUBMENU(MSG_TEMPERATURE, menu_temperature);
 
   #if ENABLED(MIXING_EXTRUDER)
@@ -214,7 +225,7 @@ void menu_main() {
       SUBMENU(MSG_USER_MENU, menu_user);
     #endif
   #endif
-
+  }
   #if ENABLED(ADVANCED_PAUSE_FEATURE)
     #if E_STEPPERS == 1 && DISABLED(FILAMENT_LOAD_UNLOAD_GCODES)
       if (thermalManager.targetHotEnoughToExtrude(active_extruder))

@@ -64,10 +64,10 @@ uint32_t PrintJobRecovery::cmd_sdpos, // = 0
 PrintJobRecovery recovery;
 
 #ifndef POWER_LOSS_PURGE_LEN
-  #define POWER_LOSS_PURGE_LEN 0
+  #define POWER_LOSS_PURGE_LEN 8
 #endif
 #ifndef POWER_LOSS_RETRACT_LEN
-  #define POWER_LOSS_RETRACT_LEN 0
+  #define POWER_LOSS_RETRACT_LEN 3
 #endif
 #ifndef POWER_LOSS_ZRAISE
   #define POWER_LOSS_ZRAISE 2
@@ -271,6 +271,7 @@ bool PrintJobRecovery::loss_lock = false;
 
     #endif
 	
+	if (loss_lock) return;
     loss_lock = true;
     if (IS_SD_PRINTING()) 
 	{
@@ -305,6 +306,7 @@ bool PrintJobRecovery::loss_lock = false;
 
       // Raise Z axis
 //      gcode.process_subcommands_now_P(PSTR("G91\nG0 Z" STRINGIFY(POWER_LOSS_ZRAISE)));
+	  gcode.process_subcommands_now_P(PSTR("G91\nG1 E-" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F600\nG90"));
 	  
       gcode.process_subcommands_now_P(PSTR("G27 P2"));	  
 	  
@@ -351,7 +353,8 @@ void PrintJobRecovery::resume() {
 	#elif (HAS_Z_MAX && HAS_Z_MIN)
 	  "\n"
 	  "G28 W\n"
-      "G28R0"
+	  "G28 X Y\n"
+//      "M420 S1\n"
 
     #else // "G92.9 E0 ..."
 

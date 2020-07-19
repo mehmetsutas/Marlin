@@ -1122,10 +1122,6 @@ void setup() {
     SETUP_RUN(est_init());
   #endif
 
-  #if ENABLED(POWER_LOSS_RECOVERY)
-    SETUP_RUN(recovery.check());
-  #endif
-
   #if ENABLED(USE_WATCHDOG)
     SETUP_RUN(watchdog_init());       // Reinit watchdog after HAL_get_reset_source call
   #endif
@@ -1157,6 +1153,10 @@ void setup() {
 
   #if ENABLED(MAX7219_DEBUG)
     SETUP_RUN(max7219.init());
+  #endif
+  
+  #if ENABLED(POWER_LOSS_RECOVERY)
+    SETUP_RUN(recovery.check());
   #endif
 
   marlin_state = MF_RUNNING;
