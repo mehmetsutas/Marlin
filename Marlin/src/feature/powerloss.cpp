@@ -64,7 +64,7 @@ uint32_t PrintJobRecovery::cmd_sdpos, // = 0
 PrintJobRecovery recovery;
 
 #ifndef POWER_LOSS_PURGE_LEN
-  #define POWER_LOSS_PURGE_LEN 8
+  #define POWER_LOSS_PURGE_LEN 5
 #endif
 #ifndef POWER_LOSS_RETRACT_LEN
   #define POWER_LOSS_RETRACT_LEN 3
@@ -466,7 +466,7 @@ void PrintJobRecovery::resume() {
     memcpy(&mixer.gradient, &info.gradient, sizeof(info.gradient));
   #endif
 
-  // Extrude and retract to clean the nozzle
+/*  // Extrude and retract to clean the nozzle
   #if POWER_LOSS_PURGE_LEN
     //sprintf_P(cmd, PSTR("G1 E%d F200"), POWER_LOSS_PURGE_LEN);
     //gcode.process_subcommands_now(cmd);
@@ -477,7 +477,7 @@ void PrintJobRecovery::resume() {
     sprintf_P(cmd, PSTR("G1 E%d F3000"), POWER_LOSS_PURGE_LEN - (POWER_LOSS_RETRACT_LEN));
     gcode.process_subcommands_now(cmd);
   #endif
-
+*/
   // Move back to the saved XY
   sprintf_P(cmd, PSTR("G1 X%s Y%s F3000"),
     dtostrf(info.current_position.x, 1, 3, str_1),
