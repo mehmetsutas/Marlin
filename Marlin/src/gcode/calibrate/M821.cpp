@@ -98,7 +98,7 @@ void GcodeSuite::M821() {
 
   #if ENABLED(SENSORLESS_HOMING)
 		#if Z_SENSORLESS
-			tmc_disable_stallguard(stepperZ, enable_stealth.z);
+			tmc_disable_stallguard(stepperZ, stealth_states.z);
 		#endif
 		#if (defined(Z_CURRENT_HOME) && Z_CURRENT_HOME != Z_CURRENT)
 			stepperZ.rms_current(tmc_save_current_Z);
