@@ -614,7 +614,7 @@
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
-#define USE_ZMIN_PLUG
+//#define USE_ZMIN_PLUG
 //#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 #define USE_ZMAX_PLUG
@@ -846,7 +846,7 @@
  *      - normally-open switches to 5V and D32.
  *
  */
-#define Z_MIN_PROBE_PIN P1_28//32 // Pin 32 is the RAMPS default
+#define Z_MIN_PROBE_PIN P1_24//P1_28//32 // Pin 32 is the RAMPS default
 
 /**
  * Probe Type
@@ -1087,7 +1087,7 @@
 // :[-1,1]
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
-#define Z_HOME_DIR -1
+#define Z_HOME_DIR 1
 
 // @section machine
 
@@ -1101,7 +1101,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 155
+#define Z_MAX_POS 150
 
 /**
  * Software Endstops
@@ -1364,7 +1364,7 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (50*60)
+#define HOMING_FEEDRATE_XY (25*60)
 #define HOMING_FEEDRATE_Z  (6*60)
 
 // Validate that endstops are triggered on homing moves

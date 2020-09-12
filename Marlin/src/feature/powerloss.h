@@ -177,7 +177,7 @@ class PrintJobRecovery {
 	
   #endif
 
-  #if (HAS_Z_MAX && HAS_Z_MIN)
+  #if ((HAS_Z_MAX && HAS_Z_MIN) || (Z_STALL_SENSITIVITY))
 	static inline void save_stop() {
       if (IS_SD_PRINTING())
 	  {

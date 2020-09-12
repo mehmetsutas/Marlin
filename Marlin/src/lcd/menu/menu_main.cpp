@@ -78,7 +78,7 @@ void menu_configuration();
   void menu_mixer();
 #endif
 
-#if (HAS_Z_MAX && HAS_Z_MIN)
+#if ((HAS_Z_MAX && HAS_Z_MIN) || (Z_STALL_SENSITIVITY))
   static void lcd_save_stop() {
     ui.return_to_status();
     queue.inject_P(PSTR("M822"));
