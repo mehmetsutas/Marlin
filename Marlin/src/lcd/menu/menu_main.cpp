@@ -34,6 +34,7 @@
 #include "../../module/printcounter.h"
 #include "../../module/stepper.h"
 #include "../../sd/cardreader.h"
+#include "../../feature/powerloss.h"
 
 #if HAS_GAMES && DISABLED(LCD_INFO_MENU)
   #include "game/game.h"
@@ -93,6 +94,11 @@ void menu_configuration();
   void menu_spindle_laser();
 #endif
 
+static void lcd_save_stop() {
+    ui.return_to_status();
+    recovery.save_stop();
+}
+
 extern const char M21_STR[];
 
 void menu_main() {
@@ -118,6 +124,7 @@ void menu_main() {
           GET_TEXT(MSG_STOP_PRINT), (const char *)nullptr, PSTR("?")
         );
       });
+	  if (IS_SD_PRINTING()) ACTION_ITEM(MSG_SAVE_STOP, lcd_save_stop);
     #endif
 
     SUBMENU(MSG_TUNE, menu_tune);

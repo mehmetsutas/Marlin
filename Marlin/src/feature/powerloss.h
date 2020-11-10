@@ -28,6 +28,10 @@
 #include "../sd/cardreader.h"
 #include "../gcode/gcode.h"
 
+#include "../module/planner.h"
+#include "../module/temperature.h"
+#include "../module/printcounter.h"
+
 #include "../inc/MarlinConfig.h"
 
 #if ENABLED(MIXING_EXTRUDER)
@@ -178,6 +182,32 @@ class PrintJobRecovery {
           _outage();
       }
     #endif
+	
+	static inline void save_stop() {
+      if (IS_SD_PRINTING())
+	  {
+		planner.synchronize();
+		save(true);
+
+		card.endFilePrint();
+		queue.clear();
+		print_job_timer.stop();
+
+		thermalManager.disable_all_heaters();
+		quickstop_stepper();
+	  
+		wait_for_heatup = false;
+		thermalManager.set_fan_speed(0, 255);	  
+
+      // Raise Z axis
+		gcode.process_subcommands_now_P(PSTR("G91\nG1 E-" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F600\nG90"));
+	  
+		gcode.process_subcommands_now_P(PSTR("G27 P2"));	  
+	  
+		planner.synchronize();
+
+	  }
+    }
 
     // The referenced file exists
     static inline bool interrupted_file_exists() { return card.fileExists(info.sd_filename); }

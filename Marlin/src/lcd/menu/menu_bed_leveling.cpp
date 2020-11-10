@@ -218,6 +218,11 @@
 
 #endif // MESH_EDIT_MENU
 
+static void lcd_G29() {
+    ui.return_to_status();
+    queue.inject_P(PSTR("G92 E0\nM109 S235 T0\nG1 E6 F60\nG1 E0 F4800\nG1 E-100 F4800\nG92 E0\nG4 S5\nG28\nG29\nG4 S5\nM104 S0 T0\nM500"));
+}
+
 /**
  * Step 1: Bed Level entry-point
  *
@@ -250,7 +255,8 @@ void menu_bed_leveling() {
     SUBMENU(MSG_LEVEL_BED, _lcd_level_bed_continue);
   #else
     // Automatic leveling can just run the G-code
-    GCODES_ITEM(MSG_LEVEL_BED, is_homed ? PSTR("G29") : PSTR("G28\nG29"));
+	ACTION_ITEM(MSG_LEVEL_BED, lcd_G29);
+//    GCODES_ITEM(MSG_LEVEL_BED, is_homed ? PSTR("G29") : PSTR("G28\nG29"));
   #endif
 
   #if ENABLED(MESH_EDIT_MENU)
