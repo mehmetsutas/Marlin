@@ -3207,7 +3207,7 @@
  *
  * Execute certain G-code commands immediately after power-on.
  */
-#define STARTUP_COMMANDS "G92 X0 Y0 Z0" //"M17 Z"
+//#define STARTUP_COMMANDS "G92 X0 Y0 Z0" //"M17 Z"
 
 /**
  * G-code Macros
@@ -3264,7 +3264,7 @@
 #define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
   #define HOST_PROMPT_SUPPORT
-  #define HOST_START_MENU_ITEM  // Add a menu item that tells the host to start
+//  #define HOST_START_MENU_ITEM  // Add a menu item that tells the host to start    SUTAS
 #endif
 
 /**
@@ -3560,10 +3560,10 @@
 #if ENABLED(PRINTCOUNTER)
   #define SERVICE_WARNING_BUZZES  3
   // Activate up to 3 service interval watchdogs
-  #define SERVICE_NAME_1      "100 Saat Bakımı"
-  #define SERVICE_INTERVAL_1  100 // print hours
-  #define SERVICE_NAME_2      "1000 Saat Bakımı"
-  #define SERVICE_INTERVAL_2  1000 // print hours
+  //#define SERVICE_NAME_1      "100 Saat Bakımı"
+  //#define SERVICE_INTERVAL_1  100 // print hours
+  //#define SERVICE_NAME_2      "1000 Saat Bakımı"
+  //#define SERVICE_INTERVAL_2  1000 // print hours
   //#define SERVICE_NAME_3      "Service 3"
   //#define SERVICE_INTERVAL_3    1 // print hours
 #endif

@@ -204,7 +204,7 @@ class PrintJobRecovery {
 	  
 		gcode.process_subcommands_now_P(PSTR("G27 P2"));	  
 	  
-		planner.synchronize();
+		//planner.synchronize();
 
 	  }
     }
