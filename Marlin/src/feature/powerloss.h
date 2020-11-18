@@ -191,21 +191,23 @@ class PrintJobRecovery {
 
 		card.endFilePrint();
 		queue.clear();
-		print_job_timer.stop();
-
-		thermalManager.disable_all_heaters();
 		quickstop_stepper();
-	  
-		wait_for_heatup = false;
-		thermalManager.set_fan_speed(0, 255);	  
+		print_job_timer.stop();
+		thermalManager.disable_all_heaters();
+		thermalManager.zero_fan_speeds();
+	  	wait_for_heatup = false;
+		thermalManager.set_fan_speed(0, 255);
+
+		planner.synchronize();
 
       // Raise Z axis
 		gcode.process_subcommands_now_P(PSTR("G91\nG1 E-" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F600\nG90"));
 	  
-		gcode.process_subcommands_now_P(PSTR("G27 P2"));	  
+		planner.synchronize();
 	  
-		//planner.synchronize();
-
+		//gcode.process_subcommands_now_P(PSTR("G27 P2"));	  
+	  
+        queue.inject_P(PSTR(EVENT_GCODE_SD_ABORT));
 	  }
     }
 

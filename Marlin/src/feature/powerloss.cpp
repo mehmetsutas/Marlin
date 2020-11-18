@@ -74,7 +74,7 @@ PrintJobRecovery recovery;
   #undef POWER_LOSS_RETRACT_LEN   // No retract at outage without backup power
 #endif
 #ifndef POWER_LOSS_RETRACT_LEN
-  #define POWER_LOSS_RETRACT_LEN 0
+  #define POWER_LOSS_RETRACT_LEN 3
 #endif
 
 /**
@@ -324,6 +324,9 @@ void PrintJobRecovery::write() {
  * Resume the saved print job
  */
 void PrintJobRecovery::resume() {
+	
+  card.release();
+  card.mount();
 
   char cmd[MAX_CMD_SIZE+16], str_1[16], str_2[16];
 
