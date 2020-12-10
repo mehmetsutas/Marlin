@@ -99,7 +99,7 @@ void event_filament_runout() {
 
   //action:out_of_filament
   #if ENABLED(HOST_PROMPT_SUPPORT)
-    host_action_prompt_begin(PROMPT_FILAMENT_RUNOUT, PSTR("FilamentRunout T"), tool);
+    host_action_prompt_begin(PROMPT_FILAMENT_RUNOUT, PSTR("Filaman Algılanmıyor. E"), tool);
     host_action_prompt_show();
   #endif
 

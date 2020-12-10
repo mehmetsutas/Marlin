@@ -243,6 +243,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_BED_Z                           = _UxGT("Z Mesafesi");
   PROGMEM Language_Str MSG_NOZZLE                          = _UxGT("Nozul");
   PROGMEM Language_Str MSG_NOZZLE_N                        = _UxGT("Nozul ~");
+  PROGMEM Language_Str MSG_NOZZLE_PARKED                   = _UxGT("Kafa Park Edildi");
   PROGMEM Language_Str MSG_BED                             = _UxGT("Tabla");
   PROGMEM Language_Str MSG_CHAMBER                         = _UxGT("Çevirme");
   PROGMEM Language_Str MSG_FAN_SPEED                       = _UxGT("Fan Hızı");
@@ -352,6 +353,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_PRINT_PAUSED                    = _UxGT("Baskı Duraklatıldı");
   PROGMEM Language_Str MSG_PRINTING                        = _UxGT("Baskı Yapılıyor...");
   PROGMEM Language_Str MSG_PRINT_ABORTED                   = _UxGT("Baskı Durduruldu!");
+  PROGMEM Language_Str MSG_PRINT_DONE                      = _UxGT("Baskı Tamamlandı!");
   PROGMEM Language_Str MSG_NO_MOVE                         = _UxGT("İşlem yok.");
   PROGMEM Language_Str MSG_KILLED                          = _UxGT("Kilitlendi. ");
   PROGMEM Language_Str MSG_STOPPED                         = _UxGT("Durdu. ");
@@ -587,6 +589,9 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_BACKLASH_C                      = LCD_STR_C;
   PROGMEM Language_Str MSG_BACKLASH_CORRECTION             = _UxGT("Düzeltme");
   PROGMEM Language_Str MSG_BACKLASH_SMOOTHING              = _UxGT("Yumuşatma");
+  PROGMEM Language_Str MSG_HEATER_TIMEOUT                  = _UxGT("Isıtıcı Zaman Aşımı");
+  PROGMEM Language_Str MSG_REHEAT                          = _UxGT("Tekrar Isıt");
+  PROGMEM Language_Str MSG_REHEATING                       = _UxGT("Isınıyor...");
 }
 
 #if FAN_COUNT == 1

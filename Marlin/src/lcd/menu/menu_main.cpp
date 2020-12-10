@@ -93,11 +93,11 @@ void menu_configuration();
 #if HAS_CUTTER
   void menu_spindle_laser();
 #endif
-
+/*
 static void lcd_save_stop() {
     ui.return_to_status();
     recovery.save_stop();
-}
+}*/
 
 extern const char M21_STR[];
 
@@ -124,7 +124,7 @@ void menu_main() {
           GET_TEXT(MSG_STOP_PRINT), (const char *)nullptr, PSTR("?")
         );
       });
-	  if (IS_SD_PRINTING()) ACTION_ITEM(MSG_SAVE_STOP, lcd_save_stop);
+//	  if (IS_SD_PRINTING()) ACTION_ITEM(MSG_SAVE_STOP, lcd_save_stop);
     #endif
 
     SUBMENU(MSG_TUNE, menu_tune);

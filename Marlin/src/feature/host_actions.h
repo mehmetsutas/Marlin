@@ -58,7 +58,8 @@ void host_action(PGM_P const pstr, const bool eol=true);
     PROMPT_USER_CONTINUE,
     PROMPT_FILAMENT_RUNOUT_REHEAT,
     PROMPT_PAUSE_RESUME,
-    PROMPT_INFO
+    PROMPT_INFO,
+	PROMPT_POWER_LOSS_RECOVERY
   };
 
   extern PromptReason host_prompt_reason;

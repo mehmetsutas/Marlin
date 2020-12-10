@@ -741,7 +741,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600, 415 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 415 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1104,7 +1104,7 @@
 
 // @section homing
 
-//#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed
+#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed
 
 #define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 

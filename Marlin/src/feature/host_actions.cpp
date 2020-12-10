@@ -31,10 +31,16 @@
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #include "pause.h"
   #include "../gcode/queue.h"
+#elif ENABLED(POWER_LOSS_RECOVERY)
+  #include "../gcode/queue.h"
 #endif
 
 #if HAS_FILAMENT_SENSOR
   #include "runout.h"
+#endif
+
+#if ENABLED(POWER_LOSS_RECOVERY)
+  #include "powerloss.h"
 #endif
 
 void host_action(PGM_P const pstr, const bool eol) {
@@ -68,8 +74,8 @@ void host_action(PGM_P const pstr, const bool eol) {
 
 #if ENABLED(HOST_PROMPT_SUPPORT)
 
-  PGMSTR(CONTINUE_STR, "Continue");
-  PGMSTR(DISMISS_STR, "Dismiss");
+  PGMSTR(CONTINUE_STR, "Devam");
+  PGMSTR(DISMISS_STR, "Tamam");
 
   #if HAS_RESUME_CONTINUE
     extern bool wait_for_user;
@@ -182,6 +188,20 @@ void host_action(PGM_P const pstr, const bool eol) {
       case PROMPT_INFO:
         msg = PSTR("GCODE_INFO");
         break;
+	  #if ENABLED(POWER_LOSS_RECOVERY)
+	    case PROMPT_POWER_LOSS_RECOVERY:
+	      msg = PSTR("POWER_LOSS_RECOVERY");
+	      switch (response) {
+		    case 0:
+		      recovery.cancel();
+		      break;
+		    case 1:
+		      queue.inject_P(PSTR("M1000"));
+			  break;
+		    default: break;
+		  }
+		  break;
+	  #endif
       default: break;
     }
     SERIAL_ECHOPGM("M876 Responding PROMPT_");

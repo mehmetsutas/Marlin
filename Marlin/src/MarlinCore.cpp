@@ -443,6 +443,8 @@ void startOrResumeJob() {
 #if ENABLED(SDSUPPORT)
 
   inline void abortSDPrinting() {
+    planner.synchronize();
+	TERN_(POWER_LOSS_RECOVERY, recovery.save(true));
     card.endFilePrint(TERN_(SD_RESORT, true));
     queue.clear();
     quickstop_stepper();
@@ -456,7 +458,7 @@ void startOrResumeJob() {
       cutter.kill();              // Full cutter shutdown including ISR control
     #endif
     wait_for_heatup = false;
-    TERN_(POWER_LOSS_RECOVERY, recovery.purge());
+//    TERN_(POWER_LOSS_RECOVERY, recovery.purge());
     #ifdef EVENT_GCODE_SD_ABORT
       queue.inject_P(PSTR(EVENT_GCODE_SD_ABORT));
     #endif
