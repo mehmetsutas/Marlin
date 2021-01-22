@@ -43,6 +43,10 @@
   #include "powerloss.h"
 #endif
 
+#if HAS_SERVICE_INTERVALS
+  #include "../module/printcounter.h"
+#endif
+
 void host_action(PGM_P const pstr, const bool eol) {
   PORT_REDIRECT(SERIAL_BOTH);
   SERIAL_ECHOPGM("//action:");
@@ -193,7 +197,7 @@ void host_action(PGM_P const pstr, const bool eol) {
 	      msg = PSTR("POWER_LOSS_RECOVERY");
 	      switch (response) {
 		    case 0:
-		      recovery.cancel();
+		      recovery.purge(); //recovery.cancel();
 		      break;
 		    case 1:
 		      queue.inject_P(PSTR("M1000"));
@@ -202,6 +206,35 @@ void host_action(PGM_P const pstr, const bool eol) {
 		  }
 		  break;
 	  #endif
+      #if HAS_SERVICE_INTERVALS
+	    case PROMPT_SERVICE1:
+	      msg = PSTR("SERVICE1");
+	      switch (response) {
+		    case 0:
+		      print_job_timer.resetServiceInterval(1);
+		      break;
+		    default: break;
+		  }
+		  break;
+	    case PROMPT_SERVICE2:
+	      msg = PSTR("SERVICE2");
+	      switch (response) {
+		    case 0:
+		      print_job_timer.resetServiceInterval(2);
+		      break;
+		    default: break;
+		  }
+		  break;
+	    case PROMPT_SERVICE3:
+	      msg = PSTR("SERVICE3");
+	      switch (response) {
+		    case 0:
+		      print_job_timer.resetServiceInterval(3);
+		      break;
+		    default: break;
+		  }
+		  break;
+      #endif
       default: break;
     }
     SERIAL_ECHOPGM("M876 Responding PROMPT_");

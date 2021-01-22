@@ -333,7 +333,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_BUTTON_INIT                     = _UxGT("İçinde");
   PROGMEM Language_Str MSG_BUTTON_STOP                     = _UxGT("Durdur");
   PROGMEM Language_Str MSG_BUTTON_PRINT                    = _UxGT("Yazdır");
-  PROGMEM Language_Str MSG_BUTTON_RESET                    = _UxGT("Resetle");
+  PROGMEM Language_Str MSG_BUTTON_RESET                    = _UxGT("Sıfırla");
   PROGMEM Language_Str MSG_BUTTON_CANCEL                   = _UxGT("İptal");
   PROGMEM Language_Str MSG_BUTTON_DONE                     = _UxGT("Tamamlandı");
   PROGMEM Language_Str MSG_BUTTON_BACK                     = _UxGT("Geri");

@@ -59,7 +59,10 @@ void host_action(PGM_P const pstr, const bool eol=true);
     PROMPT_FILAMENT_RUNOUT_REHEAT,
     PROMPT_PAUSE_RESUME,
     PROMPT_INFO,
-	PROMPT_POWER_LOSS_RECOVERY
+	PROMPT_POWER_LOSS_RECOVERY,
+    PROMPT_SERVICE1,
+    PROMPT_SERVICE2,
+    PROMPT_SERVICE3
   };
 
   extern PromptReason host_prompt_reason;
