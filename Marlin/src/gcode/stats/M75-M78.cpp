@@ -68,6 +68,19 @@ void GcodeSuite::M78() {
   #endif
 
   print_job_timer.showStats();
+
+  #if HAS_SERVICE_INTERVALS
+    #if SERVICE_INTERVAL_1 > 0
+      print_job_timer.needsService(1);
+    #endif
+    #if SERVICE_INTERVAL_2 > 0
+      print_job_timer.needsService(2);
+    #endif
+    #if SERVICE_INTERVAL_3 > 0
+      print_job_timer.needsService(3);
+    #endif
+  #endif
+
 }
 
 #endif // PRINTCOUNTER
