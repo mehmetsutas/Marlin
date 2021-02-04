@@ -32,6 +32,10 @@
   #include "../../../lcd/extui/ui_api.h"
 #endif
 
+#if ENABLED(HOST_ACTION_COMMANDS)
+  #include "../../../feature/host_actions.h"
+#endif
+
 #define DEBUG_OUT ENABLED(DEBUG_POWER_LOSS_RECOVERY)
 #include "../../../core/debug_out.h"
 
@@ -60,6 +64,7 @@ void GcodeSuite::M1000() {
 
   if (recovery.valid()) {
     if (parser.seen('S')) {
+	  TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_POWER_LOSS_RECOVERY, GET_TEXT(MSG_OUTAGE_RECOVERY), GET_TEXT(MSG_STOP_PRINT), GET_TEXT(MSG_RESUME_PRINT)));
       #if HAS_LCD_MENU
         ui.goto_screen(menu_job_recovery);
       #elif ENABLED(DWIN_CREALITY_LCD)
@@ -71,10 +76,9 @@ void GcodeSuite::M1000() {
       #endif
     }
     else if (parser.seen('C')) {
-      #if HAS_LCD_MENU
-        lcd_power_loss_recovery_cancel();
-      #else
         recovery.cancel();
+      #if HAS_LCD_MENU
+        ui.return_to_status();
       #endif
       TERN_(EXTENSIBLE_UI, ExtUI::onPrintTimerStopped());
     }
