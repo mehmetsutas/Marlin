@@ -360,6 +360,8 @@ void startOrResumeJob() {
 #if ENABLED(SDSUPPORT)
 
   inline void abortSDPrinting() {
+    planner.synchronize();
+	TERN_(POWER_LOSS_RECOVERY, recovery.save(true));
     IF_DISABLED(NO_SD_AUTOSTART, card.autofile_cancel());
     card.endFilePrint(TERN_(SD_RESORT, true));
     queue.clear();
@@ -374,7 +376,7 @@ void startOrResumeJob() {
       cutter.kill();              // Full cutter shutdown including ISR control
     #endif
     wait_for_heatup = false;
-    TERN_(POWER_LOSS_RECOVERY, recovery.purge());
+//    TERN_(POWER_LOSS_RECOVERY, recovery.purge());
     #ifdef EVENT_GCODE_SD_ABORT
       queue.inject_P(PSTR(EVENT_GCODE_SD_ABORT));
     #endif
@@ -640,7 +642,23 @@ void idle(TERN_(ADVANCED_PAUSE_FEATURE, bool no_stepper_sleep/*=false*/)) {
 
   // Handle Power-Loss Recovery
   #if ENABLED(POWER_LOSS_RECOVERY) && PIN_EXISTS(POWER_LOSS)
-    if (printJobOngoing()) recovery.outage();
+    static bool battery_lock = false;
+    if (READ(POWER_LOSS_PIN) == POWER_LOSS_STATE)
+    {
+        if (!battery_lock) OUT_WRITE(POWER_LOSS_BATTERY_PIN, POWER_LOSS_BATTERY_ACTIVE_STATE);
+        if (IS_SD_PRINTING() && !battery_lock) abortSDPrinting(); //recovery.outage();
+        thermalManager.disable_all_heaters();
+        thermalManager.set_fan_speed(0,255);
+        if (thermalManager.degHotend(0)<50)
+        {
+            OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
+            battery_lock = true;
+        }
+    } else
+    {
+        battery_lock = false;
+        OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
+    }
   #endif
 
   // Run StallGuard endstop checks

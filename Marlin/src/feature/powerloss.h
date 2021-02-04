@@ -42,7 +42,7 @@
   #define POWER_LOSS_STATE HIGH
 #endif
 
-//#define DEBUG_POWER_LOSS_RECOVERY
+#define DEBUG_POWER_LOSS_RECOVERY
 //#define SAVE_EACH_CMD_MODE
 //#define SAVE_INFO_INTERVAL_MS 0
 
@@ -133,6 +133,9 @@ class PrintJobRecovery {
         #else
           SET_INPUT(POWER_LOSS_PIN);
         #endif
+      #endif
+      #if PIN_EXISTS(POWER_LOSS_BATTERY)
+        OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
       #endif
     }
 
