@@ -197,7 +197,7 @@ bool load_filament(const float &slow_load_length/*=0*/, const float &fast_load_l
           + active_extruder
         #endif
       ;
-      host_prompt_do(PROMPT_USER_CONTINUE, PSTR("Load Filament T"), tool, CONTINUE_STR);
+      host_prompt_do(PROMPT_USER_CONTINUE, GET_TEXT(MSG_FILAMENTLOAD), tool, CONTINUE_STR);
     #endif
 
     TERN_(EXTENSIBLE_UI, ExtUI::onUserConfirmRequired_P(PSTR("Load Filament")));
@@ -241,7 +241,7 @@ bool load_filament(const float &slow_load_length/*=0*/, const float &fast_load_l
 
     if (show_lcd) ui.pause_show_message(PAUSE_MESSAGE_PURGE);
 
-    TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_USER_CONTINUE, PSTR("Filament Purging..."), CONTINUE_STR));
+    TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_USER_CONTINUE, PSTR("Filaman Tasfiye Ediliyor"), CONTINUE_STR));
     TERN_(EXTENSIBLE_UI, ExtUI::onUserConfirmRequired_P(PSTR("Filament Purging...")));
     wait_for_user = true; // A click or M108 breaks the purge_length loop
     for (float purge_count = purge_length; purge_count > 0 && wait_for_user; --purge_count)
@@ -387,7 +387,7 @@ bool pause_print(const float &retract, const xyz_pos_t &park_point, const float 
     #endif
   #endif
 
-  TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_INFO, PSTR("Pause"), DISMISS_STR));
+//  TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_INFO, PSTR("Pause"), DISMISS_STR));
 
   // Indicate that the printer is paused
   ++did_pause_print;
@@ -407,6 +407,9 @@ bool pause_print(const float &retract, const xyz_pos_t &park_point, const float 
 
   // Wait for buffered blocks to complete
   planner.synchronize();
+//  do{planner.synchronize(); idle(); queue.advance(); } while(queue.has_commands_queued());
+
+  TERN_(POWER_LOSS_RECOVERY, if (recovery.enabled) recovery.save(true));
 
   #if ENABLED(ADVANCED_PAUSE_FANS_PAUSE) && HAS_FAN
     thermalManager.set_fans_paused(true);
@@ -508,7 +511,7 @@ void wait_for_confirmation(const bool is_reload/*=false*/, const int8_t max_beep
 
       wait_for_user_response(0, true); // Wait for LCD click or M108
 
-      TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_INFO, GET_TEXT(MSG_REHEATING)));
+      TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_INFO, GET_TEXT(MSG_REHEATING), CONTINUE_STR));
 
       TERN_(EXTENSIBLE_UI, ExtUI::onStatusChanged_P(GET_TEXT(MSG_REHEATING)));
 
@@ -525,7 +528,7 @@ void wait_for_confirmation(const bool is_reload/*=false*/, const int8_t max_beep
       const millis_t nozzle_timeout = SEC_TO_MS(PAUSE_PARK_NOZZLE_TIMEOUT);
 
       HOTEND_LOOP() thermalManager.heater_idle[e].start(nozzle_timeout);
-      TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_USER_CONTINUE, PSTR("Reheat Done"), CONTINUE_STR));
+      TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_USER_CONTINUE, PSTR("Isınma Tamam"), CONTINUE_STR));
       TERN_(EXTENSIBLE_UI, ExtUI::onUserConfirmRequired_P(PSTR("Reheat finished.")));
       wait_for_user = true;
       nozzle_timed_out = false;
@@ -642,7 +645,7 @@ void resume_print(const float &slow_load_length/*=0*/, const float &fast_load_le
 
   --did_pause_print;
 
-  TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_INFO, PSTR("Resuming"), DISMISS_STR));
+//  TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_INFO, PSTR("Resuming"), DISMISS_STR));
 
   #if ENABLED(SDSUPPORT)
     if (did_pause_print) { card.startFileprint(); --did_pause_print; }
