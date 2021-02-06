@@ -55,7 +55,7 @@ void GcodeSuite::M24() {
 
   #if ENABLED(PARK_HEAD_ON_PAUSE)
     if (did_pause_print) {
-      resume_print(); // will call print_job_timer.start()
+      resume_print(0,0,-ABS(PAUSE_PARK_RETRACT_LENGTH),0); // will call print_job_timer.start()
       return;
     }
   #endif

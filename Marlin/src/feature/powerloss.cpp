@@ -394,12 +394,6 @@ void PrintJobRecovery::resume() {
   // Pretend that all axes are homed
   set_all_homed();
 
-  #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
-    // Z has been homed so restore Z to ZsavedPos + POWER_LOSS_ZRAISE
-    sprintf_P(cmd, PSTR("G1 F500 Z%s"), dtostrf(info.current_position.z + POWER_LOSS_ZRAISE, 1, 3, str_1));
-    gcode.process_subcommands_now(cmd);
-  #endif
-
   // Recover volumetric extrusion state
   #if DISABLED(NO_VOLUMETRICS)
     #if HAS_MULTI_EXTRUDER
@@ -460,17 +454,6 @@ void PrintJobRecovery::resume() {
     memcpy(&mixer.gradient, &info.gradient, sizeof(info.gradient));
   #endif
 
-  // Un-retract if there was a retract at outage
-  #if POWER_LOSS_RETRACT_LEN
-    gcode.process_subcommands_now_P(PSTR("G1 E" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F3000"));
-  #endif
-
-  // Additional purge if configured
-  #if POWER_LOSS_PURGE_LEN
-    sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
-    gcode.process_subcommands_now(cmd);
-  #endif
-
   #if ENABLED(NOZZLE_CLEAN_FEATURE)
     gcode.process_subcommands_now_P(PSTR("G12"));
   #endif
@@ -481,6 +464,23 @@ void PrintJobRecovery::resume() {
     dtostrf(info.current_position.y, 1, 3, str_2)
   );
   gcode.process_subcommands_now(cmd);
+  
+  #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
+    // Z has been homed so restore Z to ZsavedPos + POWER_LOSS_ZRAISE
+    sprintf_P(cmd, PSTR("G1 F500 Z%s"), dtostrf(info.current_position.z + POWER_LOSS_ZRAISE, 1, 3, str_1));
+    gcode.process_subcommands_now(cmd);
+  #endif
+  
+  // Un-retract if there was a retract at outage
+  #if POWER_LOSS_RETRACT_LEN
+    gcode.process_subcommands_now_P(PSTR("G1 E" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F3000"));
+  #endif
+
+  // Additional purge if configured
+  #if POWER_LOSS_PURGE_LEN
+    sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
+    gcode.process_subcommands_now(cmd);
+  #endif
 
   // Move back to the saved Z
   dtostrf(info.current_position.z, 1, 3, str_1);

@@ -192,12 +192,12 @@ bool load_filament(const float &slow_load_length/*=0*/, const float &fast_load_l
     KEEPALIVE_STATE(PAUSED_FOR_USER);
     wait_for_user = true;    // LCD click or M108 will clear this
     #if ENABLED(HOST_PROMPT_SUPPORT)
-      const char tool = '0'
+  /*    const char tool = '0'
         #if NUM_RUNOUT_SENSORS > 1
           + active_extruder
-        #endif
+        #endif*/
       ;
-      host_prompt_do(PROMPT_USER_CONTINUE, GET_TEXT(MSG_FILAMENTLOAD), tool, CONTINUE_STR);
+      host_prompt_do(PROMPT_USER_CONTINUE, GET_TEXT(MSG_FILAMENTLOAD), CONTINUE_STR);
     #endif
 
     TERN_(EXTENSIBLE_UI, ExtUI::onUserConfirmRequired_P(PSTR("Load Filament")));
@@ -406,8 +406,11 @@ bool pause_print(const float &retract, const xyz_pos_t &park_point, const float 
   resume_position = current_position;
 
   // Wait for buffered blocks to complete
+//  planner.synchronize();
+  if (queue.has_commands_queued())
+        do{ idle_no_sleep(); queue.advance(); } while(queue.has_commands_queued());
+  idle_no_sleep();
   planner.synchronize();
-//  do{planner.synchronize(); idle(); queue.advance(); } while(queue.has_commands_queued());
 
   TERN_(POWER_LOSS_RECOVERY, if (recovery.enabled) recovery.save(true));
 

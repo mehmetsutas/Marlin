@@ -71,8 +71,8 @@ void GcodeSuite::M1000() {
         recovery.dwin_flag = true;
       #elif ENABLED(EXTENSIBLE_UI)
         ExtUI::onPowerLossResume();
-      #else
-        SERIAL_ECHO_MSG("Resume requires LCD.");
+//      #else
+//        SERIAL_ECHO_MSG("Resume requires LCD.");
       #endif
     }
     else if (parser.seen('C')) {
