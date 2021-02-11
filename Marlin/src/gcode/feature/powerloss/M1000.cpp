@@ -64,7 +64,7 @@ void GcodeSuite::M1000() {
 
   if (recovery.valid()) {
     if (parser.seen('S')) {
-	  TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_POWER_LOSS_RECOVERY, GET_TEXT(MSG_OUTAGE_RECOVERY), GET_TEXT(MSG_STOP_PRINT), GET_TEXT(MSG_RESUME_PRINT)));
+	  TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_POWER_LOSS_RECOVERY, GET_TEXT(MSG_OUTAGE_RECOVERY), GET_TEXT(MSG_RESUME_PRINT), GET_TEXT(MSG_STOP_PRINT)));
       #if HAS_LCD_MENU
         ui.goto_screen(menu_job_recovery);
       #elif ENABLED(DWIN_CREALITY_LCD)

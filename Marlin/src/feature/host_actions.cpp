@@ -205,10 +205,10 @@ void host_action(PGM_P const pstr, const bool eol) {
 	      msg = PSTR("POWER_LOSS_RECOVERY");
 	      switch (response) {
 		    case 0:
-		      recovery.cancel();
+		      queue.inject_P(PSTR("M1000"));
 		      break;
 		    case 1:
-		      queue.inject_P(PSTR("M1000"));
+		      recovery.cancel();
 			  break;
 		    default: break;
 		  }
