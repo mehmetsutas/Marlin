@@ -190,7 +190,6 @@ void host_action(PGM_P const pstr, const bool eol) {
         break;
 	  #if ENABLED(POWER_LOSS_RECOVERY)
 	    case PROMPT_POWER_LOSS_RECOVERY:
-	      msg = PSTR("POWER_LOSS_RECOVERY");
 	      switch (response) {
 		    case 0:
 		      queue.inject_P(PSTR("M1000"));
@@ -204,7 +203,6 @@ void host_action(PGM_P const pstr, const bool eol) {
 	  #endif
       #if HAS_SERVICE_INTERVALS
 	    case PROMPT_SERVICE1:
-	      msg = PSTR("SERVICE1");
 	      switch (response) {
 		    case 0:
 		      print_job_timer.resetServiceInterval(1);
@@ -213,7 +211,6 @@ void host_action(PGM_P const pstr, const bool eol) {
 		  }
 		  break;
 	    case PROMPT_SERVICE2:
-	      msg = PSTR("SERVICE2");
 	      switch (response) {
 		    case 0:
 		      print_job_timer.resetServiceInterval(2);
@@ -222,7 +219,6 @@ void host_action(PGM_P const pstr, const bool eol) {
 		  }
 		  break;
 	    case PROMPT_SERVICE3:
-	      msg = PSTR("SERVICE3");
 	      switch (response) {
 		    case 0:
 		      print_job_timer.resetServiceInterval(3);
