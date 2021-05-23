@@ -322,13 +322,31 @@ void PrintCounter::reset() {
     if (!loaded) loadStats();
     switch (index) {
       #if SERVICE_INTERVAL_1 > 0
-        case 1: return data.nextService1 == 0;
+        case 1: 
+            if (data.nextService1 == 0)
+            {
+                static PGMSTR(service_1, "> " SERVICE_NAME_1 "!");
+                TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_SERVICE1, service_1, GET_TEXT(MSG_BUTTON_RESET), GET_TEXT(MSG_BUTTON_CANCEL)));
+                return true;
+            } else return false;
       #endif
       #if SERVICE_INTERVAL_2 > 0
-        case 2: return data.nextService2 == 0;
+        case 2:
+            if (data.nextService2 == 0)
+            {
+                static PGMSTR(service_2, "> " SERVICE_NAME_2 "!");
+                TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_SERVICE2, service_2, GET_TEXT(MSG_BUTTON_RESET), GET_TEXT(MSG_BUTTON_CANCEL)));
+                return true;
+            } else return false;
       #endif
       #if SERVICE_INTERVAL_3 > 0
-        case 3: return data.nextService3 == 0;
+        case 3:
+            if (data.nextService3 == 0)
+            {
+                static PGMSTR(service_3, "> " SERVICE_NAME_3 "!");
+                TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_SERVICE3, service_3, GET_TEXT(MSG_BUTTON_RESET), GET_TEXT(MSG_BUTTON_CANCEL)));
+                return true;
+            } else return false;
       #endif
       default: return false;
     }

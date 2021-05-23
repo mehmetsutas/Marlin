@@ -64,7 +64,7 @@ void GcodeSuite::M24() {
 
   #if ENABLED(PARK_HEAD_ON_PAUSE)
     if (did_pause_print) {
-      resume_print(); // will call print_job_timer.start()
+      resume_print(0,0,-ABS(PAUSE_PARK_RETRACT_LENGTH),0); // will call print_job_timer.start()
       return;
     }
   #endif
@@ -79,7 +79,7 @@ void GcodeSuite::M24() {
     #ifdef ACTION_ON_RESUME
       host_action_resume();
     #endif
-    TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_INFO, PSTR("Resuming SD"), DISMISS_STR));
+//    TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_INFO, PSTR("Resuming SD"), DISMISS_STR));
   #endif
 
   ui.reset_status();
@@ -116,7 +116,7 @@ void GcodeSuite::M25() {
     IF_DISABLED(DWIN_CREALITY_LCD, ui.reset_status());
 
     #if ENABLED(HOST_ACTION_COMMANDS)
-      TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_PAUSE_RESUME, PSTR("Pause SD"), PSTR("Resume")));
+//      TERN_(HOST_PROMPT_SUPPORT, host_prompt_open(PROMPT_PAUSE_RESUME, PSTR("Pause SD"), PSTR("Resume")));
       #ifdef ACTION_ON_PAUSE
         host_action_pause();
       #endif

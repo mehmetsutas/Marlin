@@ -511,17 +511,6 @@ void PrintJobRecovery::resume() {
     memcpy(&mixer.gradient, &info.gradient, sizeof(info.gradient));
   #endif
 
-  // Un-retract if there was a retract at outage
-  #if ENABLED(BACKUP_POWER_SUPPLY) && POWER_LOSS_RETRACT_LEN > 0
-    gcode.process_subcommands_now_P(PSTR("G1E" STRINGIFY(POWER_LOSS_RETRACT_LEN) "F3000"));
-  #endif
-
-  // Additional purge on resume if configured
-  #if POWER_LOSS_PURGE_LEN
-    sprintf_P(cmd, PSTR("G1 E%d F3000"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
-    gcode.process_subcommands_now(cmd);
-  #endif
-
   #if ENABLED(NOZZLE_CLEAN_FEATURE)
     gcode.process_subcommands_now_P(PSTR("G12"));
   #endif
@@ -532,6 +521,23 @@ void PrintJobRecovery::resume() {
     dtostrf(info.current_position.y, 1, 3, str_2)
   );
   gcode.process_subcommands_now(cmd);
+  
+  #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
+    // Z has been homed so restore Z to ZsavedPos + POWER_LOSS_ZRAISE
+    sprintf_P(cmd, PSTR("G1 F500 Z%s"), dtostrf(info.current_position.z + POWER_LOSS_ZRAISE, 1, 3, str_1));
+    gcode.process_subcommands_now(cmd);
+  #endif
+  
+  // Un-retract if there was a retract at outage
+  #if POWER_LOSS_RETRACT_LEN
+    gcode.process_subcommands_now_P(PSTR("G1 E" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F3000"));
+  #endif
+
+  // Additional purge if configured
+  #if POWER_LOSS_PURGE_LEN
+    sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
+    gcode.process_subcommands_now(cmd);
+  #endif
 
   // Move back down to the saved Z for printing
   sprintf_P(cmd, PSTR("G1Z%sF600"), dtostrf(z_print, 1, 3, str_1));

@@ -52,7 +52,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_MEDIA_READ_ERROR                = _UxGT("Kart Okuma Hatası");
   PROGMEM Language_Str MSG_MEDIA_USB_REMOVED               = _UxGT("USB Çıkarıldı");
   PROGMEM Language_Str MSG_MEDIA_USB_FAILED                = _UxGT("USB Başlat. Hatası");
-  PROGMEM Language_Str MSG_LCD_ENDSTOPS                    = _UxGT("Enstops"); // Max length 8 characters
+  PROGMEM Language_Str MSG_LCD_ENDSTOPS                    = _UxGT("Endstops"); // Max length 8 characters
   PROGMEM Language_Str MSG_LCD_SOFT_ENDSTOPS               = _UxGT("Yazılımsal Endstops");
   PROGMEM Language_Str MSG_MAIN                            = _UxGT("Ana");
   PROGMEM Language_Str MSG_ADVANCED_SETTINGS               = _UxGT("Gelişmiş Ayarlar");
@@ -69,7 +69,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_LEVEL_BED_HOMING                = _UxGT("XYZ Sıfırlanıyor");
   PROGMEM Language_Str MSG_LEVEL_BED_WAITING               = _UxGT("Başlatmak için tıkla");
   PROGMEM Language_Str MSG_LEVEL_BED_NEXT_POINT            = _UxGT("Sonraki Nokta");
-  PROGMEM Language_Str MSG_LEVEL_BED_DONE                  = _UxGT("Hizalama Tamam!");
+  PROGMEM Language_Str MSG_LEVEL_BED_DONE                  = _UxGT("Seviyeleme Tamam!");
   PROGMEM Language_Str MSG_Z_FADE_HEIGHT                   = _UxGT("Kaçınma Yüksekliği");
   PROGMEM Language_Str MSG_SET_HOME_OFFSETS                = _UxGT("Ofset Ayarla");
   PROGMEM Language_Str MSG_HOME_OFFSETS_APPLIED            = _UxGT("Ofset Tamam");
@@ -77,22 +77,22 @@ namespace Language_tr {
   #if PREHEAT_COUNT
     PROGMEM Language_Str MSG_PREHEAT_1                     = _UxGT("Ön Isınma ") PREHEAT_1_LABEL;
     PROGMEM Language_Str MSG_PREHEAT_1_H                   = _UxGT("Ön Isınma ") PREHEAT_1_LABEL " ~";
-    PROGMEM Language_Str MSG_PREHEAT_1_END                 = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Nozul");
-    PROGMEM Language_Str MSG_PREHEAT_1_END_E               = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Nozul ~");
+    PROGMEM Language_Str MSG_PREHEAT_1_END                 = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Nozül");
+    PROGMEM Language_Str MSG_PREHEAT_1_END_E               = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Nozül ~");
     PROGMEM Language_Str MSG_PREHEAT_1_ALL                 = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Tüm");
     PROGMEM Language_Str MSG_PREHEAT_1_BEDONLY             = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Tabla");
     PROGMEM Language_Str MSG_PREHEAT_1_SETTINGS            = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Ayarlar");
 
     PROGMEM Language_Str MSG_PREHEAT_M                     = _UxGT("Ön Isınma $");
     PROGMEM Language_Str MSG_PREHEAT_M_H                   = _UxGT("Ön Isınma $ ~");
-    PROGMEM Language_Str MSG_PREHEAT_M_END                 = _UxGT("Ön Isınma $ Nozul");
-    PROGMEM Language_Str MSG_PREHEAT_M_END_E               = _UxGT("Ön Isınma $ Nozul ~");
+    PROGMEM Language_Str MSG_PREHEAT_M_END                 = _UxGT("Ön Isınma $ Nozül");
+    PROGMEM Language_Str MSG_PREHEAT_M_END_E               = _UxGT("Ön Isınma $ Nozül ~");
     PROGMEM Language_Str MSG_PREHEAT_M_ALL                 = _UxGT("Ön Isınma $ Tüm");
     PROGMEM Language_Str MSG_PREHEAT_M_BEDONLY             = _UxGT("Ön Isınma $ Tabla");
     PROGMEM Language_Str MSG_PREHEAT_M_SETTINGS            = _UxGT("Ön Isınma $ Ayarlar");
   #endif
   PROGMEM Language_Str MSG_PREHEAT_CUSTOM                  = _UxGT("Özel Ön Isınma");
-  PROGMEM Language_Str MSG_COOLDOWN                        = _UxGT("Soğut/(Durdur)");
+  PROGMEM Language_Str MSG_COOLDOWN                        = _UxGT("Soğut");
   PROGMEM Language_Str MSG_LASER_MENU                      = _UxGT("Lazer Kontrolü");
   PROGMEM Language_Str MSG_LASER_POWER                     = _UxGT("Lazer Gücü");
   PROGMEM Language_Str MSG_SPINDLE_MENU                    = _UxGT("Spindle Kontrolü");
@@ -102,10 +102,10 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_SWITCH_PS_OFF                   = _UxGT("Gücü Kapat");
   PROGMEM Language_Str MSG_EXTRUDE                         = _UxGT("Ekstrüzyon");
   PROGMEM Language_Str MSG_RETRACT                         = _UxGT("Geri Çek");
-  PROGMEM Language_Str MSG_MOVE_AXIS                       = _UxGT("Eksen Hareketleri");
-  PROGMEM Language_Str MSG_BED_LEVELING                    = _UxGT("Tabla Hizalama");
-  PROGMEM Language_Str MSG_LEVEL_BED                       = _UxGT("Tabla Hizası");
-  PROGMEM Language_Str MSG_LEVEL_CORNERS                   = _UxGT("Hizalama Köşeleri");
+  PROGMEM Language_Str MSG_MOVE_AXIS                       = _UxGT("Eksenleri Yönet");
+  PROGMEM Language_Str MSG_BED_LEVELING                    = _UxGT("Tabla Seviyeleme");
+  PROGMEM Language_Str MSG_LEVEL_BED                       = _UxGT("Tabla Seviyele");
+  PROGMEM Language_Str MSG_LEVEL_CORNERS                   = _UxGT("Köşeleri Ayarla");
   PROGMEM Language_Str MSG_NEXT_CORNER                     = _UxGT("Sonraki Köşe");
   PROGMEM Language_Str MSG_MESH_EDITOR                     = _UxGT("Mesh Editörü");
   PROGMEM Language_Str MSG_EDIT_MESH                       = _UxGT("Mesh Düzenle");
@@ -225,9 +225,9 @@ namespace Language_tr {
 
   PROGMEM Language_Str MSG_MOVING                          = _UxGT("Hareket Ediyor..");
   PROGMEM Language_Str MSG_FREE_XY                         = _UxGT("Durdur XY");
-  PROGMEM Language_Str MSG_MOVE_X                          = _UxGT("X Hareketi");
-  PROGMEM Language_Str MSG_MOVE_Y                          = _UxGT("Y Hareketi");
-  PROGMEM Language_Str MSG_MOVE_Z                          = _UxGT("Z Hareketi");
+  PROGMEM Language_Str MSG_MOVE_X                          = _UxGT("X");
+  PROGMEM Language_Str MSG_MOVE_Y                          = _UxGT("Y");
+  PROGMEM Language_Str MSG_MOVE_Z                          = _UxGT("Z");
   PROGMEM Language_Str MSG_MOVE_E                          = _UxGT("Ekstruder");
   PROGMEM Language_Str MSG_MOVE_EN                         = _UxGT("Ekstruder *");
   PROGMEM Language_Str MSG_HOTEND_TOO_COLD                 = _UxGT("Nozul Çok Soğuk");
@@ -239,6 +239,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_BED_Z                           = _UxGT("Z Mesafesi");
   PROGMEM Language_Str MSG_NOZZLE                          = _UxGT("Nozul");
   PROGMEM Language_Str MSG_NOZZLE_N                        = _UxGT("Nozul ~");
+  PROGMEM Language_Str MSG_NOZZLE_PARKED                   = _UxGT("Kafa Park Edildi");
   PROGMEM Language_Str MSG_BED                             = _UxGT("Tabla");
   PROGMEM Language_Str MSG_CHAMBER                         = _UxGT("Çevirme");
   PROGMEM Language_Str MSG_FAN_SPEED                       = _UxGT("Fan Hızı");
@@ -313,12 +314,12 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_INFO_SCREEN                     = _UxGT("Bilgi Ekranı");
   PROGMEM Language_Str MSG_PREPARE                         = _UxGT("Hazırlık");
   PROGMEM Language_Str MSG_TUNE                            = _UxGT("Ayar");
-  PROGMEM Language_Str MSG_START_PRINT                     = _UxGT("Yaz. Başlat");
+  PROGMEM Language_Str MSG_START_PRINT                     = _UxGT("Yazdırma Başlat");
   PROGMEM Language_Str MSG_BUTTON_NEXT                     = _UxGT("İleri");
   PROGMEM Language_Str MSG_BUTTON_INIT                     = _UxGT("İçinde");
   PROGMEM Language_Str MSG_BUTTON_STOP                     = _UxGT("Durdur");
   PROGMEM Language_Str MSG_BUTTON_PRINT                    = _UxGT("Yazdır");
-  PROGMEM Language_Str MSG_BUTTON_RESET                    = _UxGT("Resetle");
+  PROGMEM Language_Str MSG_BUTTON_RESET                    = _UxGT("Sıfırla");
   PROGMEM Language_Str MSG_BUTTON_CANCEL                   = _UxGT("İptal");
   PROGMEM Language_Str MSG_BUTTON_DONE                     = _UxGT("Tamamlandı");
   PROGMEM Language_Str MSG_BUTTON_BACK                     = _UxGT("Geri");
@@ -326,7 +327,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_PAUSE_PRINT                     = _UxGT("Duraklat");
   PROGMEM Language_Str MSG_RESUME_PRINT                    = _UxGT("Sürdür");
   PROGMEM Language_Str MSG_STOP_PRINT                      = _UxGT("Durdur");
-  PROGMEM Language_Str MSG_PRINTING_OBJECT                 = _UxGT("Yazdırma Nesnesi");
+  PROGMEM Language_Str MSG_PRINTING_OBJECT                 = _UxGT("Nesne Yazdırılıyor");
   PROGMEM Language_Str MSG_CANCEL_OBJECT                   = _UxGT("Nesneyi İptal Et");
   PROGMEM Language_Str MSG_CANCEL_OBJECT_N                 = _UxGT("Nesneyi İptal Et =");
   PROGMEM Language_Str MSG_OUTAGE_RECOVERY                 = _UxGT("Kesinti Kurtarma");
@@ -337,6 +338,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_PRINT_PAUSED                    = _UxGT("Baskı Duraklatıldı");
   PROGMEM Language_Str MSG_PRINTING                        = _UxGT("Baskı Yapılıyor...");
   PROGMEM Language_Str MSG_PRINT_ABORTED                   = _UxGT("Baskı Durduruldu!");
+  PROGMEM Language_Str MSG_PRINT_DONE                      = _UxGT("Baskı Tamamlandı!");
   PROGMEM Language_Str MSG_NO_MOVE                         = _UxGT("İşlem yok.");
   PROGMEM Language_Str MSG_KILLED                          = _UxGT("Kilitlendi. ");
   PROGMEM Language_Str MSG_STOPPED                         = _UxGT("Durdu. ");
@@ -350,7 +352,7 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_CONTROL_RETRACT_RECOVER_SWAPF   = _UxGT("S UnRet V");
   PROGMEM Language_Str MSG_AUTORETRACT                     = _UxGT("Oto. Geri Çekme");
   PROGMEM Language_Str MSG_FILAMENT_SWAP_LENGTH            = _UxGT("G.Çekme Boyu");
-  PROGMEM Language_Str MSG_FILAMENT_PURGE_LENGTH           = _UxGT("Tasfiye uzunluğu");
+  PROGMEM Language_Str MSG_FILAMENT_PURGE_LENGTH           = _UxGT("Yükleme uzunluğu");
   PROGMEM Language_Str MSG_TOOL_CHANGE                     = _UxGT("Takım Değişimi");
   PROGMEM Language_Str MSG_TOOL_CHANGE_ZLIFT               = _UxGT("Z Yükselt");
   PROGMEM Language_Str MSG_SINGLENOZZLE_PRIME_SPEED        = _UxGT("Birincil Hız");
@@ -474,11 +476,11 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_HEADER_LOAD     = _UxGT("FILAMAN YüKLE");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_HEADER_UNLOAD   = _UxGT("FILAMAN ÇIKART");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_HEADER   = _UxGT("Seçenekler:");
-  PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_PURGE    = _UxGT("Daha Fazla Tasviye");
+  PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_PURGE    = _UxGT("Daha Fazla Yükle");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_OPTION_RESUME   = _UxGT("Baskıyı sürdür");
   PROGMEM Language_Str MSG_FILAMENT_CHANGE_NOZZLE          = _UxGT("  Nozul: ");
-  PROGMEM Language_Str MSG_RUNOUT_SENSOR                   = _UxGT("Runout Sensörü");
-  PROGMEM Language_Str MSG_RUNOUT_DISTANCE_MM              = _UxGT("Aşınma Farkı mm");
+  PROGMEM Language_Str MSG_RUNOUT_SENSOR                   = _UxGT("Filaman Sensörü");
+  PROGMEM Language_Str MSG_RUNOUT_DISTANCE_MM              = _UxGT("Filaman Sonu Mes. mm");
   PROGMEM Language_Str MSG_KILL_HOMING_FAILED              = _UxGT("Sıfırlama Başarısız");
   PROGMEM Language_Str MSG_LCD_PROBING_FAILED              = _UxGT("Probing Başarısız");
 
@@ -572,6 +574,29 @@ namespace Language_tr {
   PROGMEM Language_Str MSG_BACKLASH_C                      = LCD_STR_C;
   PROGMEM Language_Str MSG_BACKLASH_CORRECTION             = _UxGT("Düzeltme");
   PROGMEM Language_Str MSG_BACKLASH_SMOOTHING              = _UxGT("Yumuşatma");
+
+  PROGMEM Language_Str MSG_LEVEL_X_AXIS                    = _UxGT("Level X Axis");
+  PROGMEM Language_Str MSG_AUTO_CALIBRATE                  = _UxGT("Auto Calibrate");
+  #if ENABLED(TOUCH_UI_FTDI_EVE)
+    PROGMEM Language_Str MSG_HEATER_TIMEOUT                = _UxGT("Idle timeout, temperature decreased. Press Okay to reheat and again to resume.");
+  #else
+    PROGMEM Language_Str MSG_HEATER_TIMEOUT                = _UxGT("Isıtıcı Zaman Aşımı");
+  #endif
+  PROGMEM Language_Str MSG_REHEAT                          = _UxGT("Tekrar Isıt");
+  PROGMEM Language_Str MSG_REHEATING                       = _UxGT("Isınıyor...");
+
+  PROGMEM Language_Str MSG_PROBE_WIZARD                    = _UxGT("Z Probe Wizard");
+  PROGMEM Language_Str MSG_PROBE_WIZARD_PROBING            = _UxGT("Probing Z Reference");
+  PROGMEM Language_Str MSG_PROBE_WIZARD_MOVING             = _UxGT("Moving to Probing Pos");
+
+  PROGMEM Language_Str MSG_SOUND                           = _UxGT("Sound");
+
+  PROGMEM Language_Str MSG_TOP_LEFT                        = _UxGT("Top Left");
+  PROGMEM Language_Str MSG_BOTTOM_LEFT                     = _UxGT("Bottom Left");
+  PROGMEM Language_Str MSG_TOP_RIGHT                       = _UxGT("Top Right");
+  PROGMEM Language_Str MSG_BOTTOM_RIGHT                    = _UxGT("Bottom Right");
+  PROGMEM Language_Str MSG_CALIBRATION_COMPLETED           = _UxGT("Calibration Completed");
+  PROGMEM Language_Str MSG_CALIBRATION_FAILED              = _UxGT("Calibration Failed");
 }
 
 #if FAN_COUNT == 1

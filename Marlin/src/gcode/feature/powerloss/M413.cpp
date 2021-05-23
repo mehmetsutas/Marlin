@@ -40,6 +40,8 @@ void GcodeSuite::M413() {
 
   if (parser.seen('S'))
     recovery.enable(parser.value_bool());
+  else if (parser.seen('C'))
+	recovery.check();
   else {
     SERIAL_ECHO_START();
     SERIAL_ECHOPGM("Power-loss recovery ");
