@@ -225,7 +225,7 @@
   #define FAN_PIN                          P2_04  // FAN1
 #endif
 #ifndef FAN1_PIN
-  #define FAN1_PIN                         P1_04  // FAN2
+  #define FAN1_PIN                        -1 //SUTAS P1_04  // FAN2
 #endif
 
 //
@@ -250,6 +250,18 @@
   #define LED2_PIN                         P1_19  // Initialized by HAL/LPC1768/main.cpp
   #define LED3_PIN                         P1_20
   #define LED4_PIN                         P1_21
+#endif
+
+#if ENABLED(NEOPIXEL_LED)    //SUTAS
+  #ifndef NEOPIXEL_PIN
+    #define NEOPIXEL_PIN     P2_00
+  #endif
+#endif
+
+#if ENABLED(USE_CONTROLLER_FAN)   //SUTAS
+  #ifndef CONTROLLER_FAN_PIN
+    #define CONTROLLER_FAN_PIN P1_04        // Set a custom pin for the controller fan
+  #endif
 #endif
 
 /**
