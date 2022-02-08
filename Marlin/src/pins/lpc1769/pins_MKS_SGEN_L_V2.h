@@ -218,7 +218,7 @@
   #endif
 #else
   #ifndef FAN2_PIN
-    #define FAN2_PIN                       P2_06  // HE1 for FAN3
+    #define FAN2_PIN                       -1 //SUTAS P2_06  // HE1 for FAN3
   #endif
 #endif
 #ifndef FAN_PIN
@@ -261,6 +261,12 @@
 #if ENABLED(USE_CONTROLLER_FAN)   //SUTAS
   #ifndef CONTROLLER_FAN_PIN
     #define CONTROLLER_FAN_PIN P1_04        // Set a custom pin for the controller fan
+  #endif
+#endif
+
+#if ENABLED(CASE_LIGHT_ENABLE)    //SUTAS
+  #ifndef CASE_LIGHT_PIN
+    #define CASE_LIGHT_PIN P2_06      
   #endif
 #endif
 
