@@ -334,7 +334,7 @@ void PrintCounter::reset() {
             if (data.nextService1 == 0)
             {
                 static PGMSTR(service_1, "> " SERVICE_NAME_1 "!");
-                TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_SERVICE1, service_1, GET_TEXT(MSG_BUTTON_RESET), GET_TEXT(MSG_BUTTON_CANCEL)));
+                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE1, service_1, GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
                 return true;
             } else return false;
       #endif
@@ -343,7 +343,7 @@ void PrintCounter::reset() {
             if (data.nextService2 == 0)
             {
                 static PGMSTR(service_2, "> " SERVICE_NAME_2 "!");
-                TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_SERVICE2, service_2, GET_TEXT(MSG_BUTTON_RESET), GET_TEXT(MSG_BUTTON_CANCEL)));
+                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE2, service_2, GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
                 return true;
             } else return false;
       #endif
@@ -352,7 +352,7 @@ void PrintCounter::reset() {
             if (data.nextService3 == 0)
             {
                 static PGMSTR(service_3, "> " SERVICE_NAME_3 "!");
-                TERN_(HOST_PROMPT_SUPPORT, host_prompt_do(PROMPT_SERVICE3, service_3, GET_TEXT(MSG_BUTTON_RESET), GET_TEXT(MSG_BUTTON_CANCEL)));
+                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE3, service_3, GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
                 return true;
             } else return false;
       #endif
