@@ -54,7 +54,7 @@
 
 #if EITHER(NO_EEPROM_SELECTED, I2C_EEPROM)
   #define I2C_EEPROM                              // EEPROM on I2C-0
-  #define MARLIN_EEPROM_SIZE              0x1000  // 4KB
+  #define MARLIN_EEPROM_SIZE              0x1000  // 4K
 #endif
 
 //
@@ -341,9 +341,9 @@
     #endif
 
   #elif ENABLED(FYSETC_MINI_12864_2_1)
+    #define LCD_PINS_DC                     PC6
     #define DOGLCD_CS                       PD13
-    #define DOGLCD_A0                       PC6
-    #define LCD_PINS_DC                DOGLCD_A0
+    #define DOGLCD_A0                  DOGLCD_A0
     #define LCD_BACKLIGHT_PIN               -1
     #define LCD_RESET_PIN                   PE14
     #define NEOPIXEL_PIN                    PE15
