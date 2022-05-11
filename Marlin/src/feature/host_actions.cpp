@@ -31,10 +31,20 @@
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #include "pause.h"
   #include "../gcode/queue.h"
+#elif ENABLED(POWER_LOSS_RECOVERY)
+  #include "../gcode/queue.h"
 #endif
 
 #if HAS_FILAMENT_SENSOR
   #include "runout.h"
+#endif
+
+#if ENABLED(POWER_LOSS_RECOVERY)
+  #include "powerloss.h"
+#endif
+
+#if HAS_SERVICE_INTERVALS
+  #include "../module/printcounter.h"
 #endif
 
 HostUI hostui;
@@ -85,8 +95,8 @@ void HostUI::action(FSTR_P const fstr, const bool eol) {
 
   PromptReason HostUI::host_prompt_reason = PROMPT_NOT_DEFINED;
 
-  PGMSTR(CONTINUE_STR, "Continue");
-  PGMSTR(DISMISS_STR, "Dismiss");
+  PGMSTR(CONTINUE_STR, "Devam");
+  PGMSTR(DISMISS_STR, "Tamam");
 
   #if HAS_RESUME_CONTINUE
     extern bool wait_for_user;
@@ -145,8 +155,8 @@ void HostUI::action(FSTR_P const fstr, const bool eol) {
   #if ENABLED(ADVANCED_PAUSE_FEATURE)
     void HostUI::filament_load_prompt() {
       const bool disable_to_continue = TERN0(HAS_FILAMENT_SENSOR, runout.filament_ran_out);
-      prompt_do(PROMPT_FILAMENT_RUNOUT, F("Paused"), F("PurgeMore"),
-        disable_to_continue ? F("DisableRunout") : FPSTR(CONTINUE_STR)
+      prompt_do(PROMPT_FILAMENT_RUNOUT, F("Duraklatıldı"), F("Daha Yükle"),
+        disable_to_continue ? F("Sensör İptal") : FPSTR(CONTINUE_STR)
       );
     }
   #endif
@@ -195,6 +205,45 @@ void HostUI::action(FSTR_P const fstr, const bool eol) {
         break;
       case PROMPT_INFO:
         break;
+	  #if ENABLED(POWER_LOSS_RECOVERY)
+	    case PROMPT_POWER_LOSS_RECOVERY:
+	      switch (response) {
+		    case 0:
+		      queue.inject_P(PSTR("M1000"));
+		      break;
+		    case 1:
+		      recovery.cancel();
+			  break;
+		    default: break;
+		  }
+		  break;
+	  #endif
+      #if HAS_SERVICE_INTERVALS
+	    case PROMPT_SERVICE1:
+	      switch (response) {
+		    case 0:
+		      print_job_timer.resetServiceInterval(1);
+		      break;
+		    default: break;
+		  }
+		  break;
+	    case PROMPT_SERVICE2:
+	      switch (response) {
+		    case 0:
+		      print_job_timer.resetServiceInterval(2);
+		      break;
+		    default: break;
+		  }
+		  break;
+	    case PROMPT_SERVICE3:
+	      switch (response) {
+		    case 0:
+		      print_job_timer.resetServiceInterval(3);
+		      break;
+		    default: break;
+		  }
+		  break;
+      #endif
       default: break;
     }
   }

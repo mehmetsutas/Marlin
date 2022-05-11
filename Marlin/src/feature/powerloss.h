@@ -162,6 +162,9 @@ class PrintJobRecovery {
           SET_INPUT(POWER_LOSS_PIN);
         #endif
       #endif
+      #if PIN_EXISTS(POWER_LOSS_BATTERY)
+        OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
+      #endif
     }
 
     // Track each command's file offsets

@@ -328,7 +328,7 @@ namespace Language_tr {
   LSTR MSG_BUTTON_INIT                    = _UxGT("İçinde");
   LSTR MSG_BUTTON_STOP                    = _UxGT("Durdur");
   LSTR MSG_BUTTON_PRINT                   = _UxGT("Yazdır");
-  LSTR MSG_BUTTON_RESET                   = _UxGT("Resetle");
+  LSTR MSG_BUTTON_RESET                   = _UxGT("Sıfırla");
   LSTR MSG_BUTTON_CANCEL                  = _UxGT("İptal");
   LSTR MSG_BUTTON_DONE                    = _UxGT("Tamamlandı");
   LSTR MSG_BUTTON_BACK                    = _UxGT("Geri");
@@ -487,7 +487,7 @@ namespace Language_tr {
   LSTR MSG_FILAMENT_CHANGE_HEADER_LOAD    = _UxGT("FILAMAN YüKLE");
   LSTR MSG_FILAMENT_CHANGE_HEADER_UNLOAD  = _UxGT("FILAMAN ÇIKART");
   LSTR MSG_FILAMENT_CHANGE_OPTION_HEADER  = _UxGT("Seçenekler:");
-  LSTR MSG_FILAMENT_CHANGE_OPTION_PURGE   = _UxGT("Daha Fazla Tasviye");
+  LSTR MSG_FILAMENT_CHANGE_OPTION_PURGE   = _UxGT("Daha Fazla Yükle");
   LSTR MSG_FILAMENT_CHANGE_OPTION_RESUME  = _UxGT("Baskıyı sürdür");
   LSTR MSG_FILAMENT_CHANGE_NOZZLE         = _UxGT("  Nozul: ");
   LSTR MSG_RUNOUT_SENSOR                  = _UxGT("Runout Sensörü");
@@ -576,8 +576,8 @@ namespace Language_tr {
   LSTR MSG_TMC_HYBRID_THRS                = _UxGT("Hibrit Eşiği");
   LSTR MSG_TMC_HOMING_THRS                = _UxGT("Sensörsüz Sıfırlama");
   LSTR MSG_TMC_STEPPING_MODE              = _UxGT("Adım Modu");
-  LSTR MSG_TMC_STEALTH_ENABLED            = _UxGT("StealthChop Aktif");
-  LSTR MSG_SERVICE_RESET                  = _UxGT("Resetle");
+  LSTR MSG_TMC_STEALTH_ENABLED            = _UxGT("Sessiz Mod Aktif");
+  LSTR MSG_SERVICE_RESET                  = _UxGT("Sıfırla");
   LSTR MSG_SERVICE_IN                     = _UxGT(" içinde:");
   LSTR MSG_BACKLASH                       = _UxGT("Ters Tepki");
   LSTR MSG_BACKLASH_CORRECTION            = _UxGT("Düzeltme");

@@ -202,7 +202,7 @@ bool load_filament(const_float_t slow_load_length/*=0*/, const_float_t fast_load
 
     #if ENABLED(HOST_PROMPT_SUPPORT)
       const char tool = '0' + TERN0(MULTI_FILAMENT_SENSOR, active_extruder);
-      hostui.prompt_do(PROMPT_USER_CONTINUE, F("Load Filament T"), tool, FPSTR(CONTINUE_STR));
+      hostui.prompt_do(PROMPT_USER_CONTINUE, GET_TEXT_F(MSG_FILAMENTLOAD), tool, FPSTR(CONTINUE_STR));
     #endif
 
     while (wait_for_user) {
@@ -406,7 +406,7 @@ bool pause_print(const_float_t retract, const xyz_pos_t &park_point, const bool 
     #endif
   #endif
 
-  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("Pause"), FPSTR(DISMISS_STR)));
+  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("Duraklatıldı"), FPSTR(DISMISS_STR)));
   TERN_(DWIN_LCD_PROUI, DWIN_Print_Pause());
 
   // Indicate that the printer is paused
@@ -436,7 +436,13 @@ bool pause_print(const_float_t retract, const xyz_pos_t &park_point, const bool 
   #endif
 
   // Wait for buffered blocks to complete
+//  planner.synchronize();
+  if (queue.has_commands_queued())
+        do{ idle_no_sleep(); queue.advance(); } while(queue.has_commands_queued());
+  idle_no_sleep();
   planner.synchronize();
+
+  TERN_(POWER_LOSS_RECOVERY, if (recovery.enabled) recovery.save(true));
 
   #if ENABLED(ADVANCED_PAUSE_FANS_PAUSE) && HAS_FAN
     thermalManager.set_fans_paused(true);
@@ -691,7 +697,7 @@ void resume_print(const_float_t slow_load_length/*=0*/, const_float_t fast_load_
 
   --did_pause_print;
 
-  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("Resuming"), FPSTR(DISMISS_STR)));
+  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("Sürdürülüyor"), FPSTR(DISMISS_STR)));
 
   // Resume the print job timer if it was running
   if (print_job_timer.isPaused()) print_job_timer.start();

@@ -64,7 +64,7 @@ void GcodeSuite::M24() {
 
   #if ENABLED(PARK_HEAD_ON_PAUSE)
     if (did_pause_print) {
-      resume_print(); // will call print_job_timer.start()
+      resume_print(0,0,-ABS(PAUSE_PARK_RETRACT_LENGTH),0); // will call print_job_timer.start()
       return;
     }
   #endif
@@ -79,7 +79,7 @@ void GcodeSuite::M24() {
     #ifdef ACTION_ON_RESUME
       hostui.resume();
     #endif
-    TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("Resuming SD"), FPSTR(DISMISS_STR)));
+//    TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_INFO, F("Resuming SD"), FPSTR(DISMISS_STR)));      //SUTAS COMMENTED
   #endif
 
   ui.reset_status();
@@ -116,7 +116,7 @@ void GcodeSuite::M25() {
     IF_DISABLED(DWIN_CREALITY_LCD, ui.reset_status());
 
     #if ENABLED(HOST_ACTION_COMMANDS)
-      TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_PAUSE_RESUME, F("Pause SD"), F("Resume")));
+//      TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_open(PROMPT_PAUSE_RESUME, F("Pause SD"), F("Resume")));  //SUTAS COMMENTED
       #ifdef ACTION_ON_PAUSE
         hostui.pause();
       #endif

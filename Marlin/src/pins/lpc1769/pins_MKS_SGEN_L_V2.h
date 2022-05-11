@@ -46,7 +46,7 @@
 // Servos
 //
 #define SERVO0_PIN                         P1_23  // SERVO P1.23
-#define SERVO1_PIN                         P2_00  // SERVO P2.0
+//#define SERVO1_PIN                         -1 //P2_00  // SERVO P2.0
 
 //
 // Trinamic Stallguard pins, can connect or disconnect by jumpers cap on the board
@@ -63,25 +63,25 @@
 #if X_STALL_SENSITIVITY
   #define X_STOP_PIN                  X_DIAG_PIN
   #if X_HOME_TO_MIN
-    #define X_MAX_PIN                      P1_28  // X+
+    #define X_MAX_PIN                      -1//P1_28  // X+
   #else
-    #define X_MIN_PIN                      P1_28  // X+
+    #define X_MIN_PIN                      -1//P1_28  // X+
   #endif
 #else
   #define X_MIN_PIN                        P1_29  // X-
-  #define X_MAX_PIN                        P1_28  // X+
+  #define X_MAX_PIN                        -1//P1_28  // X+
 #endif
 
 #if Y_STALL_SENSITIVITY
   #define Y_STOP_PIN                  Y_DIAG_PIN
   #if Y_HOME_TO_MIN
-    #define Y_MAX_PIN                      P1_26  // Y+
+    #define Y_MAX_PIN                      -1//P1_26  // Y+
   #else
-    #define Y_MIN_PIN                      P1_26  // Y+
+    #define Y_MIN_PIN                      -1//P1_26  // Y+
   #endif
 #else
   #define Y_MIN_PIN                        P1_27  // Y-
-  #define Y_MAX_PIN                        P1_26  // Y+
+  #define Y_MAX_PIN                        -1//P1_26  // Y+
 #endif
 
 #if Z_STALL_SENSITIVITY
@@ -101,6 +101,13 @@
 //
 #ifndef Z_MIN_PROBE_PIN
   #define Z_MIN_PROBE_PIN                  P1_24
+#endif
+
+//
+// Filament Runout Sensor
+//
+#ifndef FIL_RUNOUT_PIN
+  #define FIL_RUNOUT_PIN                   P0_10//P1_28
 #endif
 
 //
@@ -134,11 +141,11 @@
   #define E0_CS_PIN                        P1_15
 #endif
 
-#define E1_STEP_PIN                        P1_09
-#define E1_DIR_PIN                         P1_14
-#define E1_ENABLE_PIN                      P0_10
+#define E1_STEP_PIN                        -1//P1_09
+#define E1_DIR_PIN                         -1//P1_14
+#define E1_ENABLE_PIN                      -1//P0_10
 #ifndef E1_CS_PIN
-  #define E1_CS_PIN                        P1_17
+  #define E1_CS_PIN                        -1//P1_17
 #endif
 
 //
@@ -214,14 +221,14 @@
   #endif
 #else
   #ifndef FAN2_PIN
-    #define FAN2_PIN                       P2_06  // HE1 for FAN3
+    #define FAN2_PIN                       -1 //SUTAS P2_06  // HE1 for FAN3
   #endif
 #endif
 #ifndef FAN_PIN
   #define FAN_PIN                          P2_04  // FAN1
 #endif
 #ifndef FAN1_PIN
-  #define FAN1_PIN                         P1_04  // FAN2
+  #define FAN1_PIN                        -1 //SUTAS P1_04  // FAN2
 #endif
 
 //
@@ -283,6 +290,24 @@
 #define EXP2_08_PIN                        P3_25
 #define EXP2_09_PIN                        P0_07
 #define EXP2_10_PIN                        P0_08
+
+#if ENABLED(NEOPIXEL_LED)    //SUTAS
+  #ifndef NEOPIXEL_PIN
+    #define NEOPIXEL_PIN     P2_00      //SERVO PIN
+  #endif
+#endif
+
+#if ENABLED(USE_CONTROLLER_FAN)   //SUTAS
+  #ifndef CONTROLLER_FAN_PIN
+    #define CONTROLLER_FAN_PIN P1_04    // FAN2
+  #endif
+#endif
+
+#if ENABLED(CASE_LIGHT_ENABLE)    //SUTAS
+  #ifndef CASE_LIGHT_PIN
+    #define CASE_LIGHT_PIN P2_06     //EXTRUDER 2 = HE1 
+  #endif
+#endif
 
 #if IS_TFTGLCD_PANEL
 

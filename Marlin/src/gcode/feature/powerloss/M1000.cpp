@@ -39,6 +39,10 @@
   #include "../../../lcd/e3v2/jyersui/dwin.h" // Temporary fix until it can be better implemented
 #endif
 
+#if ENABLED(HOST_ACTION_COMMANDS)
+  #include "../../../feature/host_actions.h"
+#endif
+
 #define DEBUG_OUT ENABLED(DEBUG_POWER_LOSS_RECOVERY)
 #include "../../../core/debug_out.h"
 
@@ -67,6 +71,7 @@ void GcodeSuite::M1000() {
 
   if (recovery.valid()) {
     if (parser.seen_test('S')) {
+	  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_POWER_LOSS_RECOVERY, GET_TEXT_F(MSG_OUTAGE_RECOVERY), GET_TEXT_F(MSG_RESUME_PRINT), GET_TEXT_F(MSG_STOP_PRINT)));
       #if HAS_MARLINUI_MENU
         ui.goto_screen(menu_job_recovery);
       #elif HAS_DWIN_E3V2_BASIC
@@ -75,8 +80,8 @@ void GcodeSuite::M1000() {
         CrealityDWIN.Popup_Handler(Resume);
       #elif ENABLED(EXTENSIBLE_UI)
         ExtUI::onPowerLossResume();
-      #else
-        SERIAL_ECHO_MSG("Resume requires LCD.");
+//      #else
+//        SERIAL_ECHO_MSG("Resume requires LCD.");
       #endif
     }
     else if (parser.seen_test('C')) {

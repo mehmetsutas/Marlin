@@ -79,6 +79,15 @@ void GcodeSuite::M77() {
         ui.reset_status();
         return;
       }
+      #if SERVICE_INTERVAL_1 > 0
+        print_job_timer.needsService(1);
+      #endif
+      #if SERVICE_INTERVAL_2 > 0
+        print_job_timer.needsService(2);
+      #endif
+      #if SERVICE_INTERVAL_3 > 0
+        print_job_timer.needsService(3);
+      #endif
     #endif
 
     print_job_timer.showStats();
