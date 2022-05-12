@@ -22,6 +22,10 @@
 
 #include "../inc/MarlinConfig.h"
 
+#if HAS_SERVICE_INTERVALS && ENABLED(HOST_PROMPT_SUPPORT)
+  #include "../feature/host_actions.h"
+#endif
+
 #if DISABLED(PRINTCOUNTER)
 
 #include "../libs/stopwatch.h"
@@ -333,8 +337,7 @@ void PrintCounter::reset() {
         case 1: 
             if (data.nextService1 == 0)
             {
-                static PGMSTR(service_1, "> " SERVICE_NAME_1 "!");
-                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE1, service_1, GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
+                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE1, F(SERVICE_NAME_1), GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
                 return true;
             } else return false;
       #endif
@@ -342,8 +345,7 @@ void PrintCounter::reset() {
         case 2:
             if (data.nextService2 == 0)
             {
-                static PGMSTR(service_2, "> " SERVICE_NAME_2 "!");
-                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE2, service_2, GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
+                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE2, F(SERVICE_NAME_2), GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
                 return true;
             } else return false;
       #endif
@@ -351,8 +353,7 @@ void PrintCounter::reset() {
         case 3:
             if (data.nextService3 == 0)
             {
-                static PGMSTR(service_3, "> " SERVICE_NAME_3 "!");
-                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE3, service_3, GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
+                TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_SERVICE3, F(SERVICE_NAME_3), GET_TEXT_F(MSG_BUTTON_RESET), GET_TEXT_F(MSG_BUTTON_CANCEL)));
                 return true;
             } else return false;
       #endif
