@@ -705,7 +705,9 @@ void PrintJobRecovery::resume() {
 
         DEBUG_ECHOLNPGM("flag.dryrun: ", AS_DIGIT(info.flag.dryrun));
         DEBUG_ECHOLNPGM("flag.allow_cold_extrusion: ", AS_DIGIT(info.flag.allow_cold_extrusion));
-        DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
+        #if DISABLED(NO_VOLUMETRICS)
+          DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
+        #endif
       }
       else
         DEBUG_ECHOLNPGM("INVALID DATA");
