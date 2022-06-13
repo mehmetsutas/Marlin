@@ -309,6 +309,11 @@
   #endif
 #endif
 
+#if DISABLED(CASE_LIGHT_ENABLE) && E0_AUTO_FAN_PIN == -1    //SUTAS
+  #undef E0_AUTO_FAN_PIN
+  #define E0_AUTO_FAN_PIN P2_06     //EXTRUDER 2 = HE1 
+#endif
+
 #if IS_TFTGLCD_PANEL
 
   #if ENABLED(TFTGLCD_PANEL_SPI)
