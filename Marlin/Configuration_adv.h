@@ -1467,7 +1467,7 @@
 //    #define POWER_LOSS_BATTERY_ACTIVE_STATE HIGH
     //#define POWER_LOSS_PULLUP         // Set pullup / pulldown as appropriate for your sensor
     //#define POWER_LOSS_PULLDOWN
-    #define POWER_LOSS_PURGE_LEN      0 // (mm) Length of filament to purge on resume
+    #define POWER_LOSS_PURGE_LEN      1 // (mm) Length of filament to purge on resume
     #define POWER_LOSS_RETRACT_LEN    2 // (mm) Length of filament to retract on fail. Requires backup power.
 
     // Without a POWER_LOSS_PIN the following option helps reduce wear on the SD card,
