@@ -237,6 +237,7 @@ namespace Language_tr {
   LSTR MSG_BED_Z                          = _UxGT("Z Mesafesi");
   LSTR MSG_NOZZLE                         = _UxGT("Nozul");
   LSTR MSG_NOZZLE_N                       = _UxGT("Nozul ~");
+  LSTR MSG_NOZZLE_PARKED                  = _UxGT("Nozul Kenara Çekildi,Sürdür?");
   LSTR MSG_BED                            = _UxGT("Tabla");
   LSTR MSG_CHAMBER                        = _UxGT("Çevirme");
   LSTR MSG_FAN_SPEED                      = _UxGT("Fan Hızı");
@@ -583,6 +584,41 @@ namespace Language_tr {
   LSTR MSG_BACKLASH_CORRECTION            = _UxGT("Düzeltme");
   LSTR MSG_BACKLASH_SMOOTHING             = _UxGT("Yumuşatma");
 }
+
+  LSTR MSG_LEVEL_X_AXIS                   = _UxGT("X Eksen Seviyele");
+  LSTR MSG_AUTO_CALIBRATE                 = _UxGT("Oto Kalibrasyon");
+  #if ENABLED(TOUCH_UI_FTDI_EVE)
+    LSTR MSG_HEATER_TIMEOUT               = _UxGT("Idle timeout, temperature decreased. Press Okay to reheat and again to resume.");
+  #else
+    LSTR MSG_HEATER_TIMEOUT               = _UxGT("Isıtıcı Zaman Aşımı");
+  #endif
+  LSTR MSG_REHEAT                         = _UxGT("Tekrar Isıt");
+  LSTR MSG_REHEATING                      = _UxGT("Isınıyor...");
+  LSTR MSG_REHEATDONE                     = _UxGT("Isınma Tamam");
+
+  LSTR MSG_PROBE_WIZARD                   = _UxGT("Z Algılama Sihirbazı");
+  LSTR MSG_PROBE_WIZARD_PROBING           = _UxGT("Z Referansı Algılanıyor");
+  LSTR MSG_PROBE_WIZARD_MOVING            = _UxGT("Algılama Noktasına Hareket");
+
+  LSTR MSG_XATC                           = _UxGT("X-Twist Wizard");
+  LSTR MSG_XATC_DONE                      = _UxGT("X-Twist Wizard Done!");
+  LSTR MSG_XATC_UPDATE_Z_OFFSET           = _UxGT("Update Probe Z-Offset to ");
+
+  LSTR MSG_SOUND                          = _UxGT("Ses");
+
+  LSTR MSG_TOP_LEFT                       = _UxGT("Top Left");
+  LSTR MSG_BOTTOM_LEFT                    = _UxGT("Bottom Left");
+  LSTR MSG_TOP_RIGHT                      = _UxGT("Top Right");
+  LSTR MSG_BOTTOM_RIGHT                   = _UxGT("Bottom Right");
+  LSTR MSG_CALIBRATION_COMPLETED          = _UxGT("Calibration Completed");
+  LSTR MSG_CALIBRATION_FAILED             = _UxGT("Calibration Failed");
+
+  LSTR MSG_DRIVER_BACKWARD                = _UxGT(" driver backward");
+
+  LSTR MSG_SD_CARD                        = _UxGT("SD Card");
+  LSTR MSG_USB_DISK                       = _UxGT("USB Disk");
+
+  LSTR MSG_HOST_SHUTDOWN                  = _UxGT("Host Shutdown");
 
 #if FAN_COUNT == 1
   #define MSG_FIRST_FAN_SPEED       MSG_FAN_SPEED
