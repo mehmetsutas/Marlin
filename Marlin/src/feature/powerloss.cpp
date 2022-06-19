@@ -345,9 +345,18 @@ void PrintJobRecovery::write() {
  */
 void PrintJobRecovery::resume() {
 
+  load();
+  
   char cmd[MAX_CMD_SIZE+16], str_1[16], str_2[16];
 
   const uint32_t resume_sdpos = info.sdpos; // Get here before the stepper ISR overwrites it
+
+  // Interpret the saved Z according to flags
+  const float z_print = info.current_position.z,
+              x_print = info.current_position.x,
+              y_print = info.current_position.y,
+              e_print = info.current_position.e;
+ //             z_raised = z_print + info.zraise;
 
   // Apply the dry-run flag if enabled
   if (info.flag.dryrun) marlin_debug_flags |= MARLIN_DEBUG_DRYRUN;
@@ -384,9 +393,6 @@ void PrintJobRecovery::resume() {
     }
   #endif
 
-  // Interpret the saved Z according to flags
-  const float z_print = info.current_position.z,
-              z_raised = z_print + info.zraise;
 
   //
   // Home the axes that can safely be homed, and
@@ -397,13 +403,11 @@ void PrintJobRecovery::resume() {
 
   #if Z_HOME_TO_MAX
 
-    float z_now = z_raised;
+//    float z_now = z_raised;
 
     // If Z homing goes to max then just move back to the "raised" position
-    sprintf_P(cmd, PSTR(
-            "G28R0\n"     // Home all axes (no raise)
-            "G1Z%sF1200"  // Move Z down to (raised) height
-          ), dtostrf(z_now, 1, 3, str_1));
+    sprintf_P(cmd, PSTR("G28R0"));     // Home all axes (no raise)
+//            "G1Z%sF1200"  // Move Z down to (raised) height
     gcode.process_subcommands_now(cmd);
 
   #elif DISABLED(BELTPRINTER)
@@ -449,11 +453,11 @@ void PrintJobRecovery::resume() {
     sprintf_P(cmd, PSTR("M420S%cZ%s"), '0' + (char)info.flag.leveling, dtostrf(info.fade, 1, 1, str_1));
     gcode.process_subcommands_now(cmd);
 
-    #if !HOMING_Z_DOWN
+/*    #if !HOMING_Z_DOWN
       // The physical Z was adjusted at power-off so undo the M420S1 correction to Z with G92.9.
       sprintf_P(cmd, PSTR("G92.9Z%s"), dtostrf(z_now, 1, 1, str_1));
       gcode.process_subcommands_now(cmd);
-    #endif
+    #endif*/
   #endif
 
   #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
@@ -533,19 +537,6 @@ void PrintJobRecovery::resume() {
     gcode.process_subcommands_now(F("G12"));
   #endif
 
-  // Move back over to the saved XY
-  sprintf_P(cmd, PSTR("G1X%sY%sF3000"),
-    dtostrf(info.current_position.x, 1, 3, str_1),
-    dtostrf(info.current_position.y, 1, 3, str_2)
-  );
-  gcode.process_subcommands_now(cmd);
-  
-  #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
-    // Z has been homed so restore Z to ZsavedPos + POWER_LOSS_ZRAISE
-    sprintf_P(cmd, PSTR("G1 F500 Z%s"), dtostrf(info.current_position.z + POWER_LOSS_ZRAISE, 1, 3, str_1));
-    gcode.process_subcommands_now(cmd);
-  #endif
-  
   // Un-retract if there was a retract at outage
   #if POWER_LOSS_RETRACT_LEN
     gcode.process_subcommands_now_P(PSTR("G1 E" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F3000"));
@@ -554,6 +545,22 @@ void PrintJobRecovery::resume() {
   // Additional purge if configured
   #if POWER_LOSS_PURGE_LEN
     sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
+    gcode.process_subcommands_now(cmd);
+  #endif
+
+  sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -1);
+  gcode.process_subcommands_now(cmd);
+
+  // Move back over to the saved XY
+  sprintf_P(cmd, PSTR("G1X%sY%sF3000"),
+    dtostrf(x_print, 1, 3, str_1),
+    dtostrf(y_print, 1, 3, str_2)
+  );
+  gcode.process_subcommands_now(cmd);
+  
+  #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
+    // Z has been homed so restore Z to ZsavedPos + POWER_LOSS_ZRAISE
+    sprintf_P(cmd, PSTR("G1 F500 Z%s"), dtostrf(z_print + POWER_LOSS_ZRAISE, 1, 3, str_1));
     gcode.process_subcommands_now(cmd);
   #endif
 
@@ -566,7 +573,7 @@ void PrintJobRecovery::resume() {
   gcode.process_subcommands_now(cmd);
 
   // Restore E position with G92.9
-  sprintf_P(cmd, PSTR("G92.9E%s"), dtostrf(info.current_position.e, 1, 3, str_1));
+  sprintf_P(cmd, PSTR("G92.9 E%s"), dtostrf(e_print, 1, 3, str_1));
   gcode.process_subcommands_now(cmd);
 
   TERN_(GCODE_REPEAT_MARKERS, repeat = info.stored_repeat);
