@@ -4304,10 +4304,10 @@
   // Activate up to 3 service interval watchdogs
   #define SERVICE_NAME_1      "100 Saat Bakımı"
   #define SERVICE_INTERVAL_1  100 // print hours
-  #define SERVICE_NAME_2      "1200 Saat Bakımı"
-  #define SERVICE_INTERVAL_2  1200 // print hours
-  //#define SERVICE_NAME_3      "Service 3"
-  //#define SERVICE_INTERVAL_3    1 // print hours
+  #define SERVICE_NAME_2      "600 Saat Bakımı"
+  #define SERVICE_INTERVAL_2  600 // print hours
+  #define SERVICE_NAME_3      "1200 Saat Bakımı"
+  #define SERVICE_INTERVAL_3   1200 // print hours
 #endif
 
 // @section develop
