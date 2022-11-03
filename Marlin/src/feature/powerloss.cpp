@@ -387,8 +387,8 @@ void PrintJobRecovery::resume() {
   #endif
 
   // Interpret the saved Z according to flags
-  const float z_print = info.current_position.z,
-              z_raised = z_print + info.zraise;
+  const float z_print = info.current_position.z;//,
+ //             z_raised = z_print + info.zraise;      SUTAS
 
   //
   // Home the axes that can safely be homed, and
@@ -541,7 +541,7 @@ void PrintJobRecovery::resume() {
     gcode.process_subcommands_now(cmd);
   #endif
   
-  sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -0.5);    //SUTAS
+  sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -1);    //SUTAS
   gcode.process_subcommands_now(cmd);   //SUTAS
 
   #if ENABLED(NOZZLE_CLEAN_FEATURE)
@@ -703,7 +703,7 @@ void PrintJobRecovery::resume() {
 
         DEBUG_ECHOLNPGM("flag.dryrun: ", AS_DIGIT(info.flag.dryrun));
         DEBUG_ECHOLNPGM("flag.allow_cold_extrusion: ", AS_DIGIT(info.flag.allow_cold_extrusion));
-        DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
+//        DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
       }
       else
         DEBUG_ECHOLNPGM("INVALID DATA");

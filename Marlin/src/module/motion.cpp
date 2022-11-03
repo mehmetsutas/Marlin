@@ -2337,9 +2337,10 @@ void set_axis_is_at_home(const AxisEnum axis) {
   /**
    * Z Probe Z Homing? Account for the probe's Z offset.
    */
-  #if HAS_BED_PROBE && Z_HOME_TO_MIN
+  #if HAS_BED_PROBE //&& Z_HOME_TO_MIN SUTAS
     if (axis == Z_AXIS) {
-      #if HOMING_Z_WITH_PROBE
+     // #if HOMING_Z_WITH_PROBE        SUTAS
+      #if HAS_ABL_OR_UBL
 
         current_position.z -= probe.offset.z;
 
