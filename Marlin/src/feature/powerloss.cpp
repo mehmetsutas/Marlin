@@ -351,13 +351,6 @@ void PrintJobRecovery::resume() {
 
   const uint32_t resume_sdpos = info.sdpos; // Get here before the stepper ISR overwrites it
 
-  // Interpret the saved Z according to flags
-  const float z_print = info.current_position.z,
-              x_print = info.current_position.x,
-              y_print = info.current_position.y,
-              e_print = info.current_position.e;
- //             z_raised = z_print + info.zraise;
-
   // Apply the dry-run flag if enabled
   if (info.flag.dryrun) marlin_debug_flags |= MARLIN_DEBUG_DRYRUN;
 
@@ -393,6 +386,9 @@ void PrintJobRecovery::resume() {
     }
   #endif
 
+  // Interpret the saved Z according to flags
+  const float z_print = info.current_position.z,
+              z_raised = z_print + info.zraise;
 
   //
   // Home the axes that can safely be homed, and
@@ -402,12 +398,13 @@ void PrintJobRecovery::resume() {
   gcode.process_subcommands_now(F("G92.9E0")); // Reset E to 0
 
   #if Z_HOME_TO_MAX
-
-//    float z_now = z_raised;
+//    float z_now = z_raised; SUTAS
 
     // If Z homing goes to max then just move back to the "raised" position
-    sprintf_P(cmd, PSTR("G28R0"));     // Home all axes (no raise)
-//            "G1Z%sF1200"  // Move Z down to (raised) height
+    sprintf_P(cmd, PSTR(
+            "G28R0\n"));     // Home all axes (no raise) SUTAS
+//            "G1Z%sF1200"  // Move Z down to (raised) height SUTAS
+//          ), dtostrf(z_now, 1, 3, str_1)); SUTAS
     gcode.process_subcommands_now(cmd);
 
   #elif DISABLED(BELTPRINTER)
@@ -453,7 +450,7 @@ void PrintJobRecovery::resume() {
     sprintf_P(cmd, PSTR("M420S%cZ%s"), '0' + (char)info.flag.leveling, dtostrf(info.fade, 1, 1, str_1));
     gcode.process_subcommands_now(cmd);
 
-/*    #if !HOMING_Z_DOWN
+/*    #if !HOMING_Z_DOWN           SUTAS
       // The physical Z was adjusted at power-off so undo the M420S1 correction to Z with G92.9.
       sprintf_P(cmd, PSTR("G92.9Z%s"), dtostrf(z_now, 1, 1, str_1));
       gcode.process_subcommands_now(cmd);
@@ -523,7 +520,7 @@ void PrintJobRecovery::resume() {
     EXTRUDER_LOOP() {
       if (info.retract[e] != 0.0) {
         fwretract.current_retract[e] = info.retract[e];
-        fwretract.retracted[e] = true;
+        fwretract.retracted.set(e);
       }
     }
     fwretract.current_hop = info.retract_hop;
@@ -533,36 +530,30 @@ void PrintJobRecovery::resume() {
     memcpy(&mixer.gradient, &info.gradient, sizeof(info.gradient));
   #endif
 
+  // Un-retract if there was a retract at outage
+  #if ENABLED(BACKUP_POWER_SUPPLY) && POWER_LOSS_RETRACT_LEN > 0
+    gcode.process_subcommands_now(F("G1F3000E" STRINGIFY(POWER_LOSS_RETRACT_LEN)));
+  #endif
+
+  // Additional purge on resume if configured
+  #if POWER_LOSS_PURGE_LEN
+    sprintf_P(cmd, PSTR("G1F3000E%d"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
+    gcode.process_subcommands_now(cmd);
+  #endif
+  
+  sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -0.5);    //SUTAS
+  gcode.process_subcommands_now(cmd);   //SUTAS
+
   #if ENABLED(NOZZLE_CLEAN_FEATURE)
     gcode.process_subcommands_now(F("G12"));
   #endif
 
-  // Un-retract if there was a retract at outage
-  #if POWER_LOSS_RETRACT_LEN
-    gcode.process_subcommands_now_P(PSTR("G1 E" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F3000"));
-  #endif
-
-  // Additional purge if configured
-  #if POWER_LOSS_PURGE_LEN
-    sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
-    gcode.process_subcommands_now(cmd);
-  #endif
-
-  sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -1);
-  gcode.process_subcommands_now(cmd);
-
   // Move back over to the saved XY
   sprintf_P(cmd, PSTR("G1X%sY%sF3000"),
-    dtostrf(x_print, 1, 3, str_1),
-    dtostrf(y_print, 1, 3, str_2)
+    dtostrf(info.current_position.x, 1, 3, str_1),
+    dtostrf(info.current_position.y, 1, 3, str_2)
   );
   gcode.process_subcommands_now(cmd);
-  
-  #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
-    // Z has been homed so restore Z to ZsavedPos + POWER_LOSS_ZRAISE
-    sprintf_P(cmd, PSTR("G1 F500 Z%s"), dtostrf(z_print + POWER_LOSS_ZRAISE, 1, 3, str_1));
-    gcode.process_subcommands_now(cmd);
-  #endif
 
   // Move back down to the saved Z for printing
   sprintf_P(cmd, PSTR("G1Z%sF600"), dtostrf(z_print, 1, 3, str_1));
@@ -573,14 +564,14 @@ void PrintJobRecovery::resume() {
   gcode.process_subcommands_now(cmd);
 
   // Restore E position with G92.9
-  sprintf_P(cmd, PSTR("G92.9 E%s"), dtostrf(e_print, 1, 3, str_1));
+  sprintf_P(cmd, PSTR("G92.9E%s"), dtostrf(info.current_position.e, 1, 3, str_1));
   gcode.process_subcommands_now(cmd);
 
   TERN_(GCODE_REPEAT_MARKERS, repeat = info.stored_repeat);
   TERN_(HAS_HOME_OFFSET, home_offset = info.home_offset);
   TERN_(HAS_POSITION_SHIFT, position_shift = info.position_shift);
   #if HAS_HOME_OFFSET || HAS_POSITION_SHIFT
-    LOOP_LINEAR_AXES(i) update_workspace_offset((AxisEnum)i);
+    LOOP_NUM_AXES(i) update_workspace_offset((AxisEnum)i);
   #endif
 
   // Relative axis modes
@@ -630,7 +621,7 @@ void PrintJobRecovery::resume() {
 
         #if HAS_HOME_OFFSET
           DEBUG_ECHOPGM("home_offset: ");
-          LOOP_LINEAR_AXES(i) {
+          LOOP_NUM_AXES(i) {
             if (i) DEBUG_CHAR(',');
             DEBUG_DECIMAL(info.home_offset[i]);
           }
@@ -639,7 +630,7 @@ void PrintJobRecovery::resume() {
 
         #if HAS_POSITION_SHIFT
           DEBUG_ECHOPGM("position_shift: ");
-          LOOP_LINEAR_AXES(i) {
+          LOOP_NUM_AXES(i) {
             if (i) DEBUG_CHAR(',');
             DEBUG_DECIMAL(info.position_shift[i]);
           }
@@ -712,9 +703,7 @@ void PrintJobRecovery::resume() {
 
         DEBUG_ECHOLNPGM("flag.dryrun: ", AS_DIGIT(info.flag.dryrun));
         DEBUG_ECHOLNPGM("flag.allow_cold_extrusion: ", AS_DIGIT(info.flag.allow_cold_extrusion));
-        #if DISABLED(NO_VOLUMETRICS)
-          DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
-        #endif
+        DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
       }
       else
         DEBUG_ECHOLNPGM("INVALID DATA");

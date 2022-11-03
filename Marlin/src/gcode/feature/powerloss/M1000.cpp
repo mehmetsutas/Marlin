@@ -39,7 +39,7 @@
   #include "../../../lcd/e3v2/jyersui/dwin.h" // Temporary fix until it can be better implemented
 #endif
 
-#if ENABLED(HOST_ACTION_COMMANDS)
+#if ENABLED(HOST_ACTION_COMMANDS)             //SUTAS
   #include "../../../feature/host_actions.h"
 #endif
 
@@ -71,7 +71,7 @@ void GcodeSuite::M1000() {
 
   if (recovery.valid()) {
     if (parser.seen_test('S')) {
-	  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_POWER_LOSS_RECOVERY, GET_TEXT_F(MSG_OUTAGE_RECOVERY), GET_TEXT_F(MSG_RESUME_PRINT), GET_TEXT_F(MSG_STOP_PRINT)));
+	  TERN_(HOST_PROMPT_SUPPORT, hostui.prompt_do(PROMPT_POWER_LOSS_RECOVERY, GET_TEXT_F(MSG_OUTAGE_RECOVERY), GET_TEXT_F(MSG_RESUME_PRINT), GET_TEXT_F(MSG_STOP_PRINT)));     //SUTAS
       #if HAS_MARLINUI_MENU
         ui.goto_screen(menu_job_recovery);
       #elif HAS_DWIN_E3V2_BASIC

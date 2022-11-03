@@ -79,7 +79,7 @@ void GcodeSuite::M77() {
         ui.reset_status();
         return;
       }
-      #if SERVICE_INTERVAL_1 > 0
+      #if SERVICE_INTERVAL_1 > 0            //SUTAS
         print_job_timer.needsService(1);
       #endif
       #if SERVICE_INTERVAL_2 > 0

@@ -48,7 +48,7 @@
 
 void GcodeSuite::M303() {
 
-  #if ANY(PID_DEBUG, PID_BED_DEBUG, PID_CHAMBER_DEBUG)
+  #if HAS_PID_DEBUG
     if (parser.seen_test('D')) {
       thermalManager.pid_debug_flag ^= true;
       SERIAL_ECHO_START();
@@ -71,6 +71,7 @@ void GcodeSuite::M303() {
       case H_CHAMBER: default_temp = PREHEAT_1_TEMP_CHAMBER; break;
     #endif
     default:
+      SERIAL_ECHOPGM(STR_PID_AUTOTUNE);
       SERIAL_ECHOLNPGM(STR_PID_BAD_HEATER_ID);
       TERN_(EXTENSIBLE_UI, ExtUI::onPidTuning(ExtUI::result_t::PID_BAD_EXTRUDER_NUM));
       TERN_(DWIN_LCD_PROUI, DWIN_PidTuning(PID_BAD_EXTRUDER_NUM));

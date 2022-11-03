@@ -19,6 +19,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
+<<<<<<<< HEAD:Marlin/src/HAL/STM32/watchdog.cpp
+
+#include "../platforms.h"
+
+#ifdef HAL_STM32
+========
+>>>>>>>> bugfix-2.1.x:Marlin/src/module/polargraph.cpp
 
 /**
  * polargraph.cpp
@@ -37,11 +44,25 @@
 #include "../lcd/marlinui.h"
 #include "../MarlinCore.h"
 
-float segments_per_second; // Initialized by settings.load()
+// Initialized by settings.load()
+float segments_per_second, polargraph_max_belt_len;
+xy_pos_t draw_area_min, draw_area_max;
 
 void inverse_kinematics(const xyz_pos_t &raw) {
-  const float x1 = raw.x - (X_MIN_POS), x2 = (X_MAX_POS) - raw.x, y = raw.y - (Y_MAX_POS);
+  const float x1 = raw.x - draw_area_min.x, x2 = draw_area_max.x - raw.x, y = raw.y - draw_area_max.y;
   delta.set(HYPOT(x1, y), HYPOT(x2, y), raw.z);
 }
 
+<<<<<<<< HEAD:Marlin/src/HAL/STM32/watchdog.cpp
+void HAL_watchdog_refresh() {
+  IWatchdog.reload();
+  #if DISABLED(PINS_DEBUGGING) && PIN_EXISTS(LED)
+    TOGGLE(LED_PIN);  // heartbeat indicator
+  #endif
+}
+
+#endif // USE_WATCHDOG
+#endif // HAL_STM32
+========
 #endif // POLARGRAPH
+>>>>>>>> bugfix-2.1.x:Marlin/src/module/polargraph.cpp
