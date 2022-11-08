@@ -1077,12 +1077,12 @@
  *  X<1>         Set the given parameters only for the X axis.
  *  Y<1>         Set the given parameters only for the Y axis.
  */
-//#define INPUT_SHAPING
+#define INPUT_SHAPING
 #if ENABLED(INPUT_SHAPING)
-  #define SHAPING_FREQ_X    40  // (Hz) The dominant resonant frequency of the X axis.
-  #define SHAPING_FREQ_Y    40  // (Hz) The dominant resonant frequency of the Y axis.
-  #define SHAPING_ZETA_X  0.3f  // Damping ratio of the X axis (range: 0.0 = no damping to 1.0 = critical damping).
-  #define SHAPING_ZETA_Y  0.3f  // Damping ratio of the Y axis (range: 0.0 = no damping to 1.0 = critical damping).
+  #define SHAPING_FREQ_X    19  // (Hz) The dominant resonant frequency of the X axis.
+  #define SHAPING_FREQ_Y    55  // (Hz) The dominant resonant frequency of the Y axis.
+  #define SHAPING_ZETA_X  0.25f  // Damping ratio of the X axis (range: 0.0 = no damping to 1.0 = critical damping).
+  #define SHAPING_ZETA_Y  0.25f  // Damping ratio of the Y axis (range: 0.0 = no damping to 1.0 = critical damping).
   //#define SHAPING_MENU        // Add a menu to the LCD to set shaping parameters.
 #endif
 
@@ -1619,10 +1619,10 @@
 
   // Allow international symbols in long filenames. To display correctly, the
   // LCD's font must contain the characters. Check your selected LCD language.
-   #define UTF_FILENAME_SUPPORT
+  //#define UTF_FILENAME_SUPPORT
 
   #define LONG_FILENAME_HOST_SUPPORT    // Get the long filename of a file/folder with 'M33 <dosname>' and list long filenames with 'M20 L'
-  #define LONG_FILENAME_WRITE_SUPPORT   // Create / delete files with long filenames via M28, M30, and Binary Transfer Protocol
+  //#define LONG_FILENAME_WRITE_SUPPORT   // Create / delete files with long filenames via M28, M30, and Binary Transfer Protocol
   //#define M20_TIMESTAMP_SUPPORT         // Include timestamps by adding the 'T' flag to M20 commands
 
   //#define SCROLL_LONG_FILENAMES         // Scroll long filenames in the SD card menu
@@ -3743,7 +3743,7 @@
 /**
  * Auto-report position with M154 S<seconds>
  */
-//#define AUTO_REPORT_POSITION
+#define AUTO_REPORT_POSITION
 
 /**
  * Auto-report position with M154 S<seconds>
@@ -3801,7 +3801,7 @@
 
 // Extra options for the M114 "Current Position" report
 #define M114_DETAIL         // Use 'M114` for details to check planner calculations
-#define M114_REALTIME       // Real current position based on forward kinematics
+//#define M114_REALTIME       // Real current position based on forward kinematics
 //#define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed.
 
 #define REPORT_FAN_CHANGE   // Report the new fan speed when changed by M106 (and others)
