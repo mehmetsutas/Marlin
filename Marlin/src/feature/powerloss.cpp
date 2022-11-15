@@ -68,14 +68,14 @@ uint32_t PrintJobRecovery::cmd_sdpos, // = 0
 PrintJobRecovery recovery;
 
 #ifndef POWER_LOSS_PURGE_LEN
-  #define POWER_LOSS_PURGE_LEN 0
+  #define POWER_LOSS_PURGE_LEN 5
 #endif
 
 #if DISABLED(BACKUP_POWER_SUPPLY)
   #undef POWER_LOSS_RETRACT_LEN   // No retract at outage without backup power
 #endif
 #ifndef POWER_LOSS_RETRACT_LEN
-  #define POWER_LOSS_RETRACT_LEN 0
+  #define POWER_LOSS_RETRACT_LEN 3
 #endif
 
 /**
@@ -409,7 +409,12 @@ void PrintJobRecovery::resume() {
     sprintf_P(cmd, PSTR("G28R0"));     // Home all axes (no raise)
 //            "G1Z%sF1200"  // Move Z down to (raised) height
     gcode.process_subcommands_now(cmd);
+    
+  #elif (HAS_Z_MAX && HAS_Z_MIN)
 
+	  sprintf_P(cmd, PSTR("G28W\nG28 X Y\n"));
+      gcode.process_subcommands_now(cmd);
+      
   #elif DISABLED(BELTPRINTER)
 
     #if ENABLED(POWER_LOSS_RECOVER_ZHOME) && defined(POWER_LOSS_ZHOME_POS)

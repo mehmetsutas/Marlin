@@ -276,6 +276,8 @@ bool wait_for_heatup = true;
 
 #endif
 
+float zmax_pos_calc;
+
 /**
  * ***************************************************************************
  * ******************************** FUNCTIONS ********************************
@@ -1605,6 +1607,10 @@ void setup() {
 
   #if ENABLED(MAX7219_DEBUG)
     SETUP_RUN(max7219.init());
+  #endif
+  
+  #if ENABLED(POWER_LOSS_RECOVERY)
+    SETUP_RUN(recovery.check());
   #endif
 
   #if ENABLED(DIRECT_STEPPING)

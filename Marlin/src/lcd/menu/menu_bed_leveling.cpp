@@ -295,6 +295,10 @@ void menu_bed_leveling() {
   #elif HAS_BED_PROBE
     EDIT_ITEM(LCD_Z_OFFSET_TYPE, MSG_ZPROBE_ZOFFSET, &probe.offset.z, Z_PROBE_OFFSET_RANGE_MIN, Z_PROBE_OFFSET_RANGE_MAX);
   #endif
+  
+  #if (HAS_Z_MAX && HAS_Z_MIN)
+	GCODES_ITEM(MSG_MEASURE_ZMAX, PSTR("M821\nM500"));
+  #endif
 
   #if ENABLED(LEVEL_BED_CORNERS)
     SUBMENU(MSG_BED_TRAMMING, _lcd_level_bed_corners);

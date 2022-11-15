@@ -161,6 +161,9 @@ class PrintJobRecovery {
         #else
           SET_INPUT(POWER_LOSS_PIN);
         #endif
+	    #if PIN_EXISTS(BATTERY_CONTROL)
+	      SET_OUTPUT(BATTERY_CONTROL_PIN);
+	    #endif
       #endif
       #if PIN_EXISTS(POWER_LOSS_BATTERY)
         OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);

@@ -146,7 +146,7 @@ static void say_failed_to_calibrate()       { SERIAL_ECHOPGM("!Failed to calibra
 
     if (do_bed_cal || do_probe_cal) {
       // Ensure park position is reachable
-      bool reachable = position_is_reachable(parkpos) || WITHIN(parkpos.z, Z_MIN_POS - fslop, Z_MAX_POS + fslop);
+      bool reachable = position_is_reachable(parkpos) || WITHIN(parkpos.z, Z_MIN_POS - fslop, zmax_pos_calc + fslop);
       if (!reachable)
         SERIAL_ECHOLNPGM("!Park");
       else {

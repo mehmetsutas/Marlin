@@ -39,6 +39,9 @@ inline void idle_no_sleep() { idle(true); }
 #endif
 
 void kill(FSTR_P const lcd_error=nullptr, FSTR_P const lcd_component=nullptr, const bool steppers_off=false);
+
+extern float zmax_pos_calc;
+
 void minkill(const bool steppers_off=false);
 
 // Global State of the firmware

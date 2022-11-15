@@ -33,6 +33,8 @@
 #include "../lcd/marlinui.h"
 #include "../inc/MarlinConfig.h"
 
+#include "../MarlinCore.h"
+
 #if IS_SCARA
   #include "../libs/buzzer.h"
   #include "../lcd/marlinui.h"
@@ -651,7 +653,7 @@ void do_blocking_move_to_x(const_float_t rx, const_feedRate_t fr_mm_s/*=0.0*/) {
   void do_z_clearance(const_float_t zclear, const bool lower_allowed/*=false*/) {
     float zdest = zclear;
     if (!lower_allowed) NOLESS(zdest, current_position.z);
-    do_blocking_move_to_z(_MIN(zdest, Z_MAX_POS), TERN(HAS_BED_PROBE, z_probe_fast_mm_s, homing_feedrate(Z_AXIS)));
+    do_blocking_move_to_z(_MIN(zdest, zmax_pos_calc), TERN(HAS_BED_PROBE, z_probe_fast_mm_s, homing_feedrate(Z_AXIS)));
   }
 #endif
 
@@ -680,7 +682,7 @@ void restore_feedrate_and_scaling() {
   soft_endstops_t soft_endstop = {
     true, false,
     LINEAR_AXIS_ARRAY(X_MIN_POS, Y_MIN_POS, Z_MIN_POS, I_MIN_POS, J_MIN_POS, K_MIN_POS),
-    LINEAR_AXIS_ARRAY(X_MAX_BED, Y_MAX_BED, Z_MAX_POS, I_MAX_POS, J_MAX_POS, K_MAX_POS)
+    LINEAR_AXIS_ARRAY(X_MAX_BED, Y_MAX_BED, zmax_pos_calc, I_MAX_POS, J_MAX_POS, K_MAX_POS)
   };
 
   /**
@@ -1710,7 +1712,7 @@ void prepare_line_to_destination() {
    * before updating the current position.
    */
 
-  void homeaxis(const AxisEnum axis) {
+  void homeaxis(const AxisEnum axis, const bool reverse) {
 
     #if EITHER(MORGAN_SCARA, MP_SCARA)
       // Only Z homing (with probe) is permitted
@@ -1735,7 +1737,7 @@ void prepare_line_to_destination() {
     if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM(">>> homeaxis(", AS_CHAR(AXIS_CHAR(axis)), ")");
 
     const int axis_home_dir = TERN0(DUAL_X_CARRIAGE, axis == X_AXIS)
-                ? TOOL_X_HOME_DIR(active_extruder) : home_dir(axis);
+                ? TOOL_X_HOME_DIR(active_extruder) : TERN(reverse, -1*home_dir(axis), home_dir(axis));
 
     //
     // Homing Z with a probe? Raise Z (maybe) and deploy the Z probe.
@@ -1986,6 +1988,7 @@ void prepare_line_to_destination() {
     #if IS_SCARA
 
       set_axis_is_at_home(axis);
+      if ((axis == Z_AXIS) && (reverse)) current_position[Z_AXIS] = zmax_pos_calc;
       sync_plan_position();
 
     #elif ENABLED(DELTA)
@@ -2006,6 +2009,7 @@ void prepare_line_to_destination() {
     #else // CARTESIAN / CORE / MARKFORGED_XY / MARKFORGED_YX
 
       set_axis_is_at_home(axis);
+      if ((axis == Z_AXIS) && (reverse)) current_position[Z_AXIS] = zmax_pos_calc;
       sync_plan_position();
 
       destination[axis] = current_position[axis];

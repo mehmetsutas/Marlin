@@ -1193,6 +1193,11 @@ private:
     static void M413();
     static void M413_report(const bool forReplay=true);
     static void M1000();
+ 	static void M822();								// M822: Stop printing and save remaining print job to SD
+  #endif
+  
+  #if (HAS_Z_MAX && HAS_Z_MIN)
+	static void M821();							  	// M821: Measure and Save Zmax position
   #endif
 
   #if ENABLED(X_AXIS_TWIST_COMPENSATION)

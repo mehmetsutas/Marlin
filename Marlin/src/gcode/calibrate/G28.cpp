@@ -200,6 +200,8 @@
  *  X   Home to the X endstop
  *  Y   Home to the Y endstop
  *  Z   Home to the Z endstop
+ *  W   Home to the Zmax endstop
+ *
  */
 void GcodeSuite::G28() {
   DEBUG_SECTION(log_G28, "G28", DEBUGGING(LEVELING));
@@ -364,6 +366,9 @@ void GcodeSuite::G28() {
     #define _UNSAFE(A) (homeZ && TERN0(Z_SAFE_HOMING, axes_should_home(_BV(A##_AXIS))))
 
     const bool homeZ = TERN0(HAS_Z_AXIS, parser.seen_test('Z')),
+               	#if ((Z_HOME_DIR < 0) && HAS_Z_MAX)
+                    homeW = parser.seen_test('W'),
+                #endif
                LINEAR_AXIS_LIST(              // Other axes should be homed before Z safe-homing
                  needX = _UNSAFE(X), needY = _UNSAFE(Y), needZ = false, // UNUSED
                  needI = _UNSAFE(I), needJ = _UNSAFE(J), needK = _UNSAFE(K)
@@ -377,7 +382,7 @@ void GcodeSuite::G28() {
                home_all = LINEAR_AXIS_GANG(   // Home-all if all or none are flagged
                     homeX == homeX, && homeY == homeX, && homeZ == homeX,
                  && homeI == homeX, && homeJ == homeX, && homeK == homeX
-               ),
+               ) && !homew,
                LINEAR_AXIS_LIST(
                  doX = home_all || homeX, doY = home_all || homeY, doZ = home_all || homeZ,
                  doI = home_all || homeI, doJ = home_all || homeJ, doK = home_all || homeK
@@ -390,6 +395,12 @@ void GcodeSuite::G28() {
     #endif
 
     TERN_(HOME_Z_FIRST, if (doZ) homeaxis(Z_AXIS));
+
+	#if ((Z_HOME_DIR < 0) && HAS_Z_MAX)
+
+		if (homeW) homeaxis(Z_AXIS, true); 
+
+	#endif
 
     const bool seenR = parser.seenval('R');
     const float z_homing_height = seenR ? parser.value_linear_units() : Z_HOMING_HEIGHT;

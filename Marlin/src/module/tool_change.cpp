@@ -1152,7 +1152,7 @@ void tool_change(const uint8_t new_tool, bool no_move/*=false*/) {
           const float newz = current_position.z + _MAX(-diff.z, 0.0);
 
           // Check if Z has space to compensate at least z_offset, and if not, just abort now
-          const float maxz = _MIN(TERN(HAS_SOFTWARE_ENDSTOPS, soft_endstop.max.z, Z_MAX_POS), Z_MAX_POS);
+          const float maxz = _MIN(TERN(HAS_SOFTWARE_ENDSTOPS, soft_endstop.max.z, zmax_pos_calc), zmax_pos_calc);
           if (newz > maxz) return;
 
           current_position.z = _MIN(newz + toolchange_settings.z_raise, maxz);

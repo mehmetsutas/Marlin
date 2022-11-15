@@ -51,7 +51,7 @@
       zvar += float(int32_t(ui.encoderPosition)) * 0.1;
       ui.encoderPosition = 0;
       NOLESS(zvar, 0);
-      NOMORE(zvar, Z_MAX_POS);
+      NOMORE(zvar, zmax_pos_calc);
     }
 
     if (ui.should_draw()) {

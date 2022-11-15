@@ -97,7 +97,7 @@ void GcodeSuite::M701() {
   };
 
   // Raise the Z axis (with max limit)
-  const float park_raise = _MIN(park_point.z, (Z_MAX_POS) - current_position.z);
+  const float park_raise = _MIN(park_point.z, (zmax_pos_calc) - current_position.z);
   move_z_by(park_raise);
 
   // Load filament
@@ -193,7 +193,7 @@ void GcodeSuite::M702() {
 
   // Lift Z axis
   if (park_point.z > 0)
-    do_blocking_move_to_z(_MIN(current_position.z + park_point.z, Z_MAX_POS), feedRate_t(NOZZLE_PARK_Z_FEEDRATE));
+    do_blocking_move_to_z(_MIN(current_position.z + park_point.z, zmax_pos_calc), feedRate_t(NOZZLE_PARK_Z_FEEDRATE));
 
   // Unload filament
   #if HAS_PRUSA_MMU2
