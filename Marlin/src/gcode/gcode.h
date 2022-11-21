@@ -1193,7 +1193,7 @@ private:
     static void M413();
     static void M413_report(const bool forReplay=true);
     static void M1000();
- 	static void M822();								// M822: Stop printing and save remaining print job to SD
+// 	static void M822();								// M822: Stop printing and save remaining print job to SD
   #endif
   
   #if (HAS_Z_MAX && HAS_Z_MIN)

@@ -27,13 +27,13 @@
 #include "../../module/stepper.h"
 #include "../../module/endstops.h"
 #include "../../module/motion.h"
-#include "../../module/configuration_store.h"
+#include "../../module/settings.h"
 
 #if ENABLED(SENSORLESS_HOMING)
   #include "../../feature/tmc_util.h"
 #endif
 
-#include "../../lcd/ultralcd.h"
+#include "../../lcd/marlinui.h"
 
  /**
  * M821 Measure and Save Zmax position
@@ -46,8 +46,8 @@ void GcodeSuite::M821() {
 
     #if HAS_SOFTWARE_ENDSTOPS
       // Store the status of the soft endstops and disable if we're probing a non-printable location
-      static bool enable_soft_endstops = soft_endstops_enabled;
-      soft_endstops_enabled = false;
+      static bool enable_soft_endstops = soft_endstop.enabled();
+      SET_SOFT_ENDSTOP_LOOSE(true);
     #endif     
 
     // Wait for planner moves to finish!
@@ -57,7 +57,7 @@ void GcodeSuite::M821() {
 
     endstops.enable(true);
 
-  #if ENABLED(SENSORLESS_HOMING)
+/*  #if ENABLED(SENSORLESS_HOMING)
 		#if Z_SENSORLESS
 			sensorless_t stealth_states;
 			stealth_states.z = tmc_enable_stallguard(stepperZ);
@@ -69,18 +69,18 @@ void GcodeSuite::M821() {
 			const int16_t tmc_save_current_Z = stepperZ.getMilliamps();
 			stepperZ.rms_current(Z_CURRENT_HOME);
 		#endif
-  #endif	
+  #endif	*/
 
     sync_plan_position();
 
-    do_blocking_move_to_z(zmax_pos_calc * 1.2, MMM_TO_MMS(Z_PROBE_SPEED_FAST));
+    do_blocking_move_to_z(zmax_pos_calc * 1.2, MMM_TO_MMS(Z_PROBE_FEEDRATE_FAST));
     endstops.validate_homing_move();
 	set_current_from_steppers_for_axis(Z_AXIS);
     sync_plan_position();
 
-    do_blocking_move_to_z(current_position[Z_AXIS] - Z_CLEARANCE_BETWEEN_PROBES, MMM_TO_MMS(Z_PROBE_SPEED_FAST));
+    do_blocking_move_to_z(current_position[Z_AXIS] - Z_CLEARANCE_BETWEEN_PROBES, MMM_TO_MMS(Z_PROBE_FEEDRATE_FAST));
 
-    do_blocking_move_to_z(zmax_pos_calc * 1.2, MMM_TO_MMS(Z_PROBE_SPEED_SLOW));
+    do_blocking_move_to_z(zmax_pos_calc * 1.2, MMM_TO_MMS(Z_PROBE_FEEDRATE_SLOW));
     endstops.validate_homing_move();
     set_current_from_steppers_for_axis(Z_AXIS);
     sync_plan_position();
@@ -91,19 +91,19 @@ void GcodeSuite::M821() {
 
     #if HAS_SOFTWARE_ENDSTOPS
       // Restore the soft endstop status
-      soft_endstops_enabled = enable_soft_endstops;
+      SET_SOFT_ENDSTOP_LOOSE(!enable_soft_endstops);
     #endif
 
     endstops.not_homing();
 
-  #if ENABLED(SENSORLESS_HOMING)
+/*  #if ENABLED(SENSORLESS_HOMING)
 		#if Z_SENSORLESS
 			tmc_disable_stallguard(stepperZ, enable_stealth.z);
 		#endif
 		#if (defined(Z_CURRENT_HOME) && Z_CURRENT_HOME != Z_CURRENT)
 			stepperZ.rms_current(tmc_save_current_Z);
 		#endif
-  #endif	
+  #endif	*/
 
 restore_feedrate_and_scaling();
 

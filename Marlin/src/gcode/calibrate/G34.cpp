@@ -59,7 +59,7 @@ void GcodeSuite::G34() {
   #endif
 
   const float move_distance = parser.intval('Z', GANTRY_CALIBRATION_EXTRA_HEIGHT),
-              zbase = ENABLED(GANTRY_CALIBRATION_TO_MIN) ? Z_MIN_POS : Z_MAX_POS,
+              zbase = ENABLED(GANTRY_CALIBRATION_TO_MIN) ? Z_MIN_POS : zmax_pos_calc,
               zpounce = zbase - move_distance, zgrind = zbase + move_distance;
 
   // Move Z to pounce position

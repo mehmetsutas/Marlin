@@ -125,7 +125,7 @@ void GcodeSuite::M360() {
   // Workspace boundaries
   //
   const xyz_pos_t dmin = { X_MIN_POS, Y_MIN_POS, Z_MIN_POS },
-                  dmax = { X_MAX_POS, Y_MAX_POS, Z_MAX_POS };
+                  dmax = { X_MAX_POS, Y_MAX_POS, zmax_pos_calc };
   xyz_pos_t cmin = dmin, cmax = dmax;
   apply_motion_limits(cmin);
   apply_motion_limits(cmax);

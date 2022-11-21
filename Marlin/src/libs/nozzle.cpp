@@ -228,7 +228,7 @@ Nozzle nozzle;
   float Nozzle::park_mode_0_height(const_float_t park_z) {
     // Apply a minimum raise, if specified. Use park.z as a minimum height instead.
     return _MAX(park_z,                       // Minimum height over 0 based on input
-      _MIN(Z_MAX_POS,                         // Maximum height is fixed
+      _MIN(zmax_pos_calc,                         // Maximum height is fixed
         #ifdef NOZZLE_PARK_Z_RAISE_MIN
           NOZZLE_PARK_Z_RAISE_MIN +           // Minimum raise...
         #endif

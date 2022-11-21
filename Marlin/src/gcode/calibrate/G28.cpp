@@ -382,7 +382,7 @@ void GcodeSuite::G28() {
                home_all = LINEAR_AXIS_GANG(   // Home-all if all or none are flagged
                     homeX == homeX, && homeY == homeX, && homeZ == homeX,
                  && homeI == homeX, && homeJ == homeX, && homeK == homeX
-               ) && !homew,
+               ) && !homeW,
                LINEAR_AXIS_LIST(
                  doX = home_all || homeX, doY = home_all || homeY, doZ = home_all || homeZ,
                  doI = home_all || homeI, doJ = home_all || homeJ, doK = home_all || homeK

@@ -68,14 +68,14 @@ uint32_t PrintJobRecovery::cmd_sdpos, // = 0
 PrintJobRecovery recovery;
 
 #ifndef POWER_LOSS_PURGE_LEN
-  #define POWER_LOSS_PURGE_LEN 5
+  #define POWER_LOSS_PURGE_LEN 0
 #endif
 
 #if DISABLED(BACKUP_POWER_SUPPLY)
   #undef POWER_LOSS_RETRACT_LEN   // No retract at outage without backup power
 #endif
 #ifndef POWER_LOSS_RETRACT_LEN
-  #define POWER_LOSS_RETRACT_LEN 3
+  #define POWER_LOSS_RETRACT_LEN 0
 #endif
 
 /**
@@ -296,7 +296,7 @@ void PrintJobRecovery::save(const bool force/*=false*/, const float zraise/*=POW
 
     #if POWER_LOSS_ZRAISE
       // Get the limited Z-raise to do now or on resume
-      const float zraise = _MAX(0, _MIN(current_position.z + POWER_LOSS_ZRAISE, Z_MAX_POS - 1) - current_position.z);
+      const float zraise = _MAX(0, _MIN(current_position.z + POWER_LOSS_ZRAISE, zmax_pos_calc - 1) - current_position.z);
     #else
       constexpr float zraise = 0;
     #endif
@@ -544,7 +544,8 @@ void PrintJobRecovery::resume() {
 
   // Un-retract if there was a retract at outage
   #if POWER_LOSS_RETRACT_LEN
-    gcode.process_subcommands_now_P(PSTR("G1 E" STRINGIFY(POWER_LOSS_RETRACT_LEN) " F3000"));
+    sprintf_P(cmd, PSTR("G1 E%d F3000"), POWER_LOSS_RETRACT_LEN);
+    gcode.process_subcommands_now(cmd);
   #endif
 
   // Additional purge if configured

@@ -619,6 +619,8 @@ namespace Language_tr {
   LSTR MSG_USB_DISK                       = _UxGT("USB Disk");
 
   LSTR MSG_HOST_SHUTDOWN                  = _UxGT("Host Shutdown");
+  
+  LSTR MSG_MEASURE_ZMAX                   = _UxGT("Zmax Ölç");
 
 #if FAN_COUNT == 1
   #define MSG_FIRST_FAN_SPEED       MSG_FAN_SPEED

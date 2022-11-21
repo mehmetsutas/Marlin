@@ -553,6 +553,9 @@ typedef struct SettingsDataStruct {
   #if HAS_MULTI_LANGUAGE
     uint8_t ui_language;                                // M414 S
   #endif
+  
+  // MEASURED ZMAX POSITION SUTAS
+  float zmax_pos_calc;   								// M821
 
 } SettingsData;
 
@@ -1562,6 +1565,12 @@ void MarlinSettings::postprocess() {
     #if HAS_MULTI_LANGUAGE
       EEPROM_WRITE(ui.language);
     #endif
+   
+    //
+    // Zmax Pos Calc SUTAS
+    //
+    _FIELD_TEST(zmax_pos_calc);
+    EEPROM_WRITE(zmax_pos_calc);
 
     //
     // Report final CRC and Data Size
@@ -2512,6 +2521,12 @@ void MarlinSettings::postprocess() {
         ui.set_language(ui_language);
       }
       #endif
+      
+      //
+      // Zmax Pos Calc SUTAS
+      //
+      _FIELD_TEST(zmax_pos_calc);
+      EEPROM_READ(zmax_pos_calc);
 
       //
       // Validate Final Size and CRC
@@ -3212,6 +3227,11 @@ void MarlinSettings::reset() {
   // MKS UI controller
   //
   TERN_(DGUS_LCD_UI_MKS, MKS_reset_settings());
+  
+  //
+  // Zmax Pos Calc SUTAS
+  //
+  zmax_pos_calc = Z_MAX_POS;
 
   postprocess();
 
@@ -3498,6 +3518,13 @@ void MarlinSettings::reset() {
     #endif
 
     TERN_(HAS_MULTI_LANGUAGE, gcode.M414_report(forReplay));
+
+    //
+    // Zmax Pos Calc SUTAS
+    //    
+    CONFIG_ECHO_HEADING("Measured Zmax:");
+    CONFIG_ECHO_START(); 
+    SERIAL_ECHOLNPAIR_F(" M821 ", LINEAR_UNIT(zmax_pos_calc));
   }
 
 #endif // !DISABLE_M503

@@ -543,7 +543,7 @@ void menu_backlash();
     }
   #endif
 
-
+#endif // !SLIM_LCD_MENUS
 
 // M92 Steps-per-mm
 void menu_advanced_steps_per_mm() {
@@ -571,8 +571,6 @@ void menu_advanced_steps_per_mm() {
 
   END_MENU();
 }
-
-#endif // !SLIM_LCD_MENUS
 
 void menu_advanced_settings() {
   const bool is_busy = printer_busy();
@@ -618,8 +616,6 @@ void menu_advanced_settings() {
   // M92 - Steps Per mm
   if (!is_busy)
     SUBMENU(MSG_STEPS_PER_MM, menu_advanced_steps_per_mm);
-
-  #endif // !SLIM_LCD_MENUS
 
   #if ENABLED(BACKLASH_GCODE)
     SUBMENU(MSG_BACKLASH, menu_backlash);

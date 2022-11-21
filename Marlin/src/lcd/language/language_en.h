@@ -813,6 +813,8 @@ namespace Language_en {
   LSTR MSG_BACKLASH_I                     = STR_I;
   LSTR MSG_BACKLASH_J                     = STR_J;
   LSTR MSG_BACKLASH_K                     = STR_K;
+  
+  LSTR MSG_MEASURE_ZMAX                   = _UxGT("Zmax Ölç");
 }
 
 #if FAN_COUNT == 1
