@@ -68,7 +68,7 @@ namespace Language_tr {
   LSTR MSG_LEVEL_BED_HOMING               = _UxGT("XYZ Sıfırlanıyor");
   LSTR MSG_LEVEL_BED_WAITING              = _UxGT("Başlatmak için tıkla");
   LSTR MSG_LEVEL_BED_NEXT_POINT           = _UxGT("Sonraki Nokta");
-  LSTR MSG_LEVEL_BED_DONE                 = _UxGT("Hizalama Tamam!");
+  LSTR MSG_LEVEL_BED_DONE                 = _UxGT("Seviyeleme Tamam!");
   LSTR MSG_Z_FADE_HEIGHT                  = _UxGT("Kaçınma Yüksekliği");
   LSTR MSG_SET_HOME_OFFSETS               = _UxGT("Ofset Ayarla");
   LSTR MSG_HOME_OFFSETS_APPLIED           = _UxGT("Ofset Tamam");
@@ -100,10 +100,10 @@ namespace Language_tr {
   LSTR MSG_SWITCH_PS_OFF                  = _UxGT("Gücü Kapat");
   LSTR MSG_EXTRUDE                        = _UxGT("Ekstrüzyon");
   LSTR MSG_RETRACT                        = _UxGT("Geri Çek");
-  LSTR MSG_MOVE_AXIS                      = _UxGT("Eksen Hareketleri");
-  LSTR MSG_BED_LEVELING                   = _UxGT("Tabla Hizalama");
-  LSTR MSG_LEVEL_BED                      = _UxGT("Tabla Hizası");
-  LSTR MSG_BED_TRAMMING                   = _UxGT("Hizalama Köşeleri");
+  LSTR MSG_MOVE_AXIS                      = _UxGT("Eksen Yönet");
+  LSTR MSG_BED_LEVELING                   = _UxGT("Tabla Seviyeleme");
+  LSTR MSG_LEVEL_BED                      = _UxGT("Seviyeleme Başlat");
+  LSTR MSG_BED_TRAMMING                   = _UxGT("Köşeleri Ayarla");
   LSTR MSG_NEXT_CORNER                    = _UxGT("Sonraki Köşe");
   LSTR MSG_MESH_EDITOR                    = _UxGT("Mesh Editörü");
   LSTR MSG_EDIT_MESH                      = _UxGT("Mesh Düzenle");
@@ -443,7 +443,7 @@ namespace Language_tr {
   LSTR MSG_INFO_PRINTER_MENU              = _UxGT("Yazıcı Bilgisi");
   LSTR MSG_3POINT_LEVELING                = _UxGT("3-Nokta Hizalama");
   LSTR MSG_LINEAR_LEVELING                = _UxGT("Doğrusal Hizalama");
-  LSTR MSG_BILINEAR_LEVELING              = _UxGT("İki Yönlü Doğ. Hiza.");
+  LSTR MSG_BILINEAR_LEVELING              = _UxGT("İki Yönlü Doğ. Sev.");
   LSTR MSG_UBL_LEVELING                   = _UxGT("Birleşik Tabla Hiza.");
   LSTR MSG_MESH_LEVELING                  = _UxGT("Mesh Hizalama");
   LSTR MSG_INFO_STATS_MENU                = _UxGT("İstatistikler");
