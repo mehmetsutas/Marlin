@@ -24,6 +24,7 @@
  * SAMD21 HAL developed by Bart Meijer (brupje)
  * Based on SAMD51 HAL by Giuliano Zaro (AKA GMagician)
  */
+<<<<<<<< HEAD:Marlin/src/HAL/SAMD21/u8g/LCD_pin_routines.c
 
 /**
  * Low level pin manipulation routines - used by all the drivers.
@@ -39,4 +40,11 @@
 
 #include <Arduino.h>
 
+========
+// adapted from  I2C/master/master.c example
+//   https://www-users.cs.york.ac.uk/~pcc/MCP/HAPR-Course-web/CMSIS/examples/html/master_8c_source.html
+
+#ifdef __SAMD21__
+
+>>>>>>>> 2.1.x:Marlin/src/HAL/SAMD21/u8g/LCD_I2C_routines.cpp
 #endif // __SAMD21__
