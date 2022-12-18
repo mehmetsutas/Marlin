@@ -3687,6 +3687,8 @@
 
 // @section gcode
 
+// @section gcode
+
 /**
  * Spend 28 bytes of SRAM to optimize the G-code parser
  */
