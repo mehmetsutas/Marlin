@@ -20,6 +20,7 @@
  *
  */
 
+<<<<<<<< HEAD:Marlin/src/HAL/SAMD21/u8g/LCD_I2C_routines.cpp
 /**
  * SAMD21 HAL developed by Bart Meijer (brupje)
  * Based on SAMD51 HAL by Giuliano Zaro (AKA GMagician)
@@ -30,3 +31,27 @@
 #ifdef __SAMD21__
 
 #endif // __SAMD21__
+========
+#define REVERSE_TEMP_SENSOR_RANGE_1022 1
+
+// Pt1000 with 1k0 pullup
+constexpr temp_entry_t temptable_1022[] PROGMEM = {
+  PtLine(  0, 1000, 2200),
+  PtLine( 25, 1000, 2200),
+  PtLine( 50, 1000, 2200),
+  PtLine( 75, 1000, 2200),
+  PtLine(100, 1000, 2200),
+  PtLine(125, 1000, 2200),
+  PtLine(150, 1000, 2200),
+  PtLine(175, 1000, 2200),
+  PtLine(200, 1000, 2200),
+  PtLine(225, 1000, 2200),
+  PtLine(250, 1000, 2200),
+  PtLine(275, 1000, 2200),
+  PtLine(300, 1000, 2200),
+  PtLine(350, 1000, 2200),
+  PtLine(400, 1000, 2200),
+  PtLine(450, 1000, 2200),
+  PtLine(500, 1000, 2200)
+};
+>>>>>>>> 2.1.x:Marlin/src/module/thermistor/thermistor_1022.h
