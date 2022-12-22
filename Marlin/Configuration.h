@@ -96,7 +96,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_BTT_SKR_V1_4 //BOARD_BTT_SKR_V1_3 //BOARD_MKS_SGEN_L_V2
+  #define MOTHERBOARD BOARD_MKS_SGEN_L_V2 //BOARD_BTT_SKR_V1_4 //BOARD_BTT_SKR_V1_3
 #endif
 
 /**
@@ -1061,7 +1061,7 @@
  *      - normally-closed switches to GND and D32.
  *      - normally-open switches to 5V and D32.
  */
-#define Z_MIN_PROBE_PIN P1_25 //P1_28//32 // Pin 32 is the RAMPS default
+//#define Z_MIN_PROBE_PIN P1_26 //P1_28//32 // Pin 32 is the RAMPS default
 
 /**
  * Probe Type

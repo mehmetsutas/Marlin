@@ -133,6 +133,12 @@
   #define Z_MIN_PROBE_PIN                  P1_25 //P0_10
 #endif
 
+#if ENABLED(CASE_LIGHT_ENABLE)    //SUTAS
+  #ifndef CASE_LIGHT_PIN
+    #define CASE_LIGHT_PIN P2_04     //EXTRUDER 2 = HE1 
+  #endif
+#endif
+
 //
 // Filament Runout Sensor
 //
