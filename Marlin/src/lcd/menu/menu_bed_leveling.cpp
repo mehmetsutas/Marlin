@@ -222,7 +222,7 @@
 
 static void lcd_G29() {
     ui.return_to_status();
-    queue.inject_P(PSTR("M851 Z0\nG28\nM420 S0\nM140 S60\nM104 S235 T0\nM190 S60\nM109 S235 T0\nM117 Tabla Seviyeleme Bekleyiniz...\nM702\nG4 S5\nG29\nG4 S5\nM104 S0 T0\nM140 S0\nM524\nM500\nM117 Tabla Seviyeleme Tamamlandı.\n"));
+    queue.inject_P(PSTR("M851 Z0\nG28\nM420 S0\nM140 S60\nM104 S235 T0\nM190 S60\nM109 S235 T0\nM117 Tabla Seviyeleme Bekleyiniz...\nG4 S3\nG29\nG4 S3\nM104 S0 T0\nM140 S0\nM500\nM117 Tabla Seviyeleme Tamamlandı.\n"));
 }
 
 /**

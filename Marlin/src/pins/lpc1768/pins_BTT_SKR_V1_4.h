@@ -119,37 +119,45 @@
     #define Z_MAX_PIN                      P1_00  // PWRDET
   #endif
 #else
-  #ifndef Z_STOP_PIN
+/*  #ifndef Z_STOP_PIN
     #define Z_STOP_PIN                     P1_27  // Z-STOP
-  #endif
+  #endif*/
+  #define Z_MIN_PIN                     P1_27  // Z-STOP
+  #define Z_MAX_PIN                     P1_00  // Z-STOP
 #endif
 
 //
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                  P0_10
+  #define Z_MIN_PROBE_PIN                  P1_25 //P0_10
+#endif
+
+#if ENABLED(CASE_LIGHT_ENABLE)    //SUTAS
+  #ifndef CASE_LIGHT_PIN
+    #define CASE_LIGHT_PIN P2_04     //EXTRUDER 2 = HE1 
+  #endif
 #endif
 
 //
 // Filament Runout Sensor
 //
 #define FIL_RUNOUT_PIN                     P1_26  // E0DET
-#define FIL_RUNOUT2_PIN                    P1_25  // E1DET
+//#define FIL_RUNOUT2_PIN                    P1_25  // E1DET
 
 //
 // Power Supply Control
 //
-#ifndef PS_ON_PIN
-  #define PS_ON_PIN                        P1_00  // PWRDET
-#endif
+//#ifndef PS_ON_PIN
+//  #define PS_ON_PIN                        P1_00  // PWRDET
+//#endif
 
 //
 // Power Loss Detection
 //
-#ifndef POWER_LOSS_PIN
-  #define POWER_LOSS_PIN                   P1_00  // PWRDET
-#endif
+//#ifndef POWER_LOSS_PIN
+//  #define POWER_LOSS_PIN                   P1_00  // PWRDET
+//#endif
 
 //
 // Steppers
