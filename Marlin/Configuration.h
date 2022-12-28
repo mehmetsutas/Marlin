@@ -96,7 +96,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_BTT_SKR_V1_4 //BOARD_MKS_SGEN_L_V2 //BOARD_BTT_SKR_V1_3
+  #define MOTHERBOARD BOARD_MKS_SGEN_L_V2 //BOARD_BTT_SKR_V1_4 //BOARD_BTT_SKR_V1_3
 #endif
 
 /**
