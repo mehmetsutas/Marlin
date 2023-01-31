@@ -134,11 +134,11 @@
   #define Z_CS_PIN                         P1_10
 #endif
 
-#define E0_STEP_PIN                        P2_13
-#define E0_DIR_PIN                         P0_11
-#define E0_ENABLE_PIN                      P2_12
+#define E0_STEP_PIN                        P1_09 //P2_13
+#define E0_DIR_PIN                         P1_14 //P0_11
+#define E0_ENABLE_PIN                      P0_10 //P2_12
 #ifndef E0_CS_PIN
-  #define E0_CS_PIN                        P1_15
+  #define E0_CS_PIN                        P1_17 //P1_15
 #endif
 
 #define E1_STEP_PIN                        -1//P1_09
