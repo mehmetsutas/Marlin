@@ -69,7 +69,7 @@ namespace Language_tr {
   LSTR MSG_PROGRESS_BAR_TEST              = _UxGT("Durum Çubuğu Testi");
   LSTR MSG_HOMING                         = _UxGT("Sıfırlanıyor");
   LSTR MSG_AUTO_HOME                      = _UxGT("Eksenleri Sıfırla");
-  LSTR MSG_AUTO_HOME_A                    = _UxGT("Home @");
+  LSTR MSG_AUTO_HOME_A                    = _UxGT("Sıfırla @");
   LSTR MSG_AUTO_HOME_X                    = _UxGT("X Sıfırla");
   LSTR MSG_AUTO_HOME_Y                    = _UxGT("Y Sıfırla");
   LSTR MSG_AUTO_HOME_Z                    = _UxGT("Z Sıfırla");
