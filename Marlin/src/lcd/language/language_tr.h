@@ -477,7 +477,7 @@ namespace Language_tr {
   LSTR MSG_ADVANCED_PAUSE                 = _UxGT("Gelişmiş Bekleme");
   LSTR MSG_RESUME_PRINT                   = _UxGT("Sürdür");
   LSTR MSG_STOP_PRINT                     = _UxGT("Durdur");
-  STR MSG_OUTAGE_RECOVERY                 = _UxGT("Kesinti Kurtarma");
+  LSTR MSG_OUTAGE_RECOVERY                = _UxGT("Kesinti Kurtarma");
   #if LCD_WIDTH >= 20 || HAS_DWIN_E3V2
     LSTR MSG_HOST_START_PRINT             = _UxGT("Start Host Print");
     LSTR MSG_PRINTING_OBJECT                = _UxGT("Yazdırma Nesnesi");
