@@ -220,6 +220,11 @@
 
 #endif // MESH_EDIT_MENU
 
+static void lcd_G29() {
+    ui.return_to_status();
+    queue.inject_P(PSTR("M117 Tabla Seviyeleme Bekleyiniz...\nM412 S0\nM851 Z0\nG28\nM420 S0\nM109 S235 T0\nG92 E0\nG1 E3 F180\nG1 E-80 F300\nG92 E0\nG4 S3\nG29\nG4 S3\nM104 S0 T0\nM500\nM412 S1\nM117 Tabla Seviyeleme Tamamlandı.\n"));
+}
+
 /**
  * Step 1: Bed Level entry-point
  *
@@ -252,7 +257,8 @@ void menu_bed_leveling() {
     SUBMENU(MSG_LEVEL_BED, _lcd_level_bed_continue);
   #else
     // Automatic leveling can just run the G-code
-    GCODES_ITEM(MSG_LEVEL_BED, is_homed ? F("G29") : F("G29N"));
+    ACTION_ITEM(MSG_LEVEL_BED, lcd_G29);
+    //GCODES_ITEM(MSG_LEVEL_BED, is_homed ? F("G29") : F("G29N"));
   #endif
 
   #if ENABLED(MESH_EDIT_MENU)

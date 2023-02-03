@@ -68,7 +68,7 @@ namespace Language_tr {
   LSTR MSG_LEVEL_BED_HOMING               = _UxGT("XYZ Sıfırlanıyor");
   LSTR MSG_LEVEL_BED_WAITING              = _UxGT("Başlatmak için tıkla");
   LSTR MSG_LEVEL_BED_NEXT_POINT           = _UxGT("Sonraki Nokta");
-  LSTR MSG_LEVEL_BED_DONE                 = _UxGT("Hizalama Tamam!");
+  LSTR MSG_LEVEL_BED_DONE                 = _UxGT("Seviyeleme Tamam!");
   LSTR MSG_Z_FADE_HEIGHT                  = _UxGT("Kaçınma Yüksekliği");
   LSTR MSG_SET_HOME_OFFSETS               = _UxGT("Ofset Ayarla");
   LSTR MSG_HOME_OFFSETS_APPLIED           = _UxGT("Ofset Tamam");
@@ -100,10 +100,10 @@ namespace Language_tr {
   LSTR MSG_SWITCH_PS_OFF                  = _UxGT("Gücü Kapat");
   LSTR MSG_EXTRUDE                        = _UxGT("Ekstrüzyon");
   LSTR MSG_RETRACT                        = _UxGT("Geri Çek");
-  LSTR MSG_MOVE_AXIS                      = _UxGT("Eksen Hareketleri");
-  LSTR MSG_BED_LEVELING                   = _UxGT("Tabla Hizalama");
-  LSTR MSG_LEVEL_BED                      = _UxGT("Tabla Hizası");
-  LSTR MSG_BED_TRAMMING                   = _UxGT("Hizalama Köşeleri");
+  LSTR MSG_MOVE_AXIS                      = _UxGT("Eksen Yönet");
+  LSTR MSG_BED_LEVELING                   = _UxGT("Tabla Seviyeleme");
+  LSTR MSG_LEVEL_BED                      = _UxGT("Seviyeleme Başlat");
+  LSTR MSG_BED_TRAMMING                   = _UxGT("Köşeleri Ayarla");
   LSTR MSG_NEXT_CORNER                    = _UxGT("Sonraki Köşe");
   LSTR MSG_MESH_EDITOR                    = _UxGT("Mesh Editörü");
   LSTR MSG_EDIT_MESH                      = _UxGT("Mesh Düzenle");
@@ -321,11 +321,11 @@ namespace Language_tr {
   LSTR MSG_BUTTON_INIT                    = _UxGT("İçinde");
   LSTR MSG_BUTTON_STOP                    = _UxGT("Durdur");
   LSTR MSG_BUTTON_PRINT                   = _UxGT("Yazdır");
-  LSTR MSG_BUTTON_RESET                   = _UxGT("Resetle");
+  LSTR MSG_BUTTON_RESET                   = _UxGT("Sıfırla");
   LSTR MSG_BUTTON_CANCEL                  = _UxGT("İptal");
   LSTR MSG_BUTTON_DONE                    = _UxGT("Tamamlandı");
   LSTR MSG_BUTTON_BACK                    = _UxGT("Geri");
-  LSTR MSG_BUTTON_PROCEED                 = _UxGT("Devam ediyor");
+  LSTR MSG_BUTTON_PROCEED                 = _UxGT("Devam et");
   LSTR MSG_PAUSE_PRINT                    = _UxGT("Duraklat");
   LSTR MSG_RESUME_PRINT                   = _UxGT("Sürdür");
   LSTR MSG_STOP_PRINT                     = _UxGT("Durdur");
@@ -434,7 +434,7 @@ namespace Language_tr {
   LSTR MSG_INFO_PRINTER_MENU              = _UxGT("Yazıcı Bilgisi");
   LSTR MSG_3POINT_LEVELING                = _UxGT("3-Nokta Hizalama");
   LSTR MSG_LINEAR_LEVELING                = _UxGT("Doğrusal Hizalama");
-  LSTR MSG_BILINEAR_LEVELING              = _UxGT("İki Yönlü Doğ. Hiza.");
+  LSTR MSG_BILINEAR_LEVELING              = _UxGT("İki Yönlü Doğ. Sev.");
   LSTR MSG_UBL_LEVELING                   = _UxGT("Birleşik Tabla Hiza.");
   LSTR MSG_MESH_LEVELING                  = _UxGT("Mesh Hizalama");
   LSTR MSG_INFO_STATS_MENU                = _UxGT("İstatistikler");
@@ -473,7 +473,7 @@ namespace Language_tr {
   LSTR MSG_FILAMENT_CHANGE_HEADER_LOAD    = _UxGT("FILAMAN YüKLE");
   LSTR MSG_FILAMENT_CHANGE_HEADER_UNLOAD  = _UxGT("FILAMAN ÇIKART");
   LSTR MSG_FILAMENT_CHANGE_OPTION_HEADER  = _UxGT("Seçenekler:");
-  LSTR MSG_FILAMENT_CHANGE_OPTION_PURGE   = _UxGT("Daha Fazla Tasviye");
+  LSTR MSG_FILAMENT_CHANGE_OPTION_PURGE   = _UxGT("Daha Fazla Yükle");
   LSTR MSG_FILAMENT_CHANGE_OPTION_RESUME  = _UxGT("Baskıyı sürdür");
   LSTR MSG_FILAMENT_CHANGE_NOZZLE         = _UxGT("  Nozul: ");
   LSTR MSG_RUNOUT_SENSOR                  = _UxGT("Runout Sensörü");
@@ -563,7 +563,7 @@ namespace Language_tr {
   LSTR MSG_TMC_HOMING_THRS                = _UxGT("Sensörsüz Sıfırlama");
   LSTR MSG_TMC_STEPPING_MODE              = _UxGT("Adım Modu");
   LSTR MSG_TMC_STEALTH_ENABLED            = _UxGT("StealthChop Aktif");
-  LSTR MSG_SERVICE_RESET                  = _UxGT("Resetle");
+  LSTR MSG_SERVICE_RESET                  = _UxGT("Sıfırla");
   LSTR MSG_SERVICE_IN                     = _UxGT(" içinde:");
   LSTR MSG_BACKLASH                       = _UxGT("Ters Tepki");
   LSTR MSG_BACKLASH_CORRECTION            = _UxGT("Düzeltme");
