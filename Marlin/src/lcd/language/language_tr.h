@@ -43,35 +43,63 @@ namespace Language_tr {
   LSTR WELCOME_MSG                        = MACHINE_NAME _UxGT(" hazır.");
   LSTR MSG_YES                            = _UxGT("EVET");
   LSTR MSG_NO                             = _UxGT("HAYIR");
+  LSTR MSG_HIGH                           = _UxGT("YÜKSEK");
+  LSTR MSG_LOW                            = _UxGT("DÜŞÜK");
   LSTR MSG_BACK                           = _UxGT("Geri");
+  LSTR MSG_ERROR                          = _UxGT("Hata");
   LSTR MSG_MEDIA_ABORTING                 = _UxGT("Durduruluyor...");
-  LSTR MSG_MEDIA_INSERTED                 = _UxGT("SD K. Yerleştirildi.");
-  LSTR MSG_MEDIA_REMOVED                  = _UxGT("SD Kart Çıkarıldı.");
-  LSTR MSG_MEDIA_WAITING                  = _UxGT("SD Kart Bekleniyor");
-  LSTR MSG_MEDIA_READ_ERROR               = _UxGT("Kart Okuma Hatası");
+  LSTR MSG_MEDIA_INSERTED                 = _UxGT("SD K. Yerleştirildi."); //MEDIA_TYPE_EN _UxGT(" Inserted");
+  LSTR MSG_MEDIA_REMOVED                  = _UxGT("SD Kart Çıkarıldı."); //MEDIA_TYPE_EN _UxGT(" Removed");
+  LSTR MSG_MEDIA_WAITING                  = _UxGT("SD Kart Bekleniyor"); //
+  LSTR MSG_MEDIA_INIT_FAIL                = _UxGT("SD Init Fail"); //MEDIA_TYPE_EN _UxGT(" Init Fail");
+  LSTR MSG_MEDIA_READ_ERROR               = _UxGT("Kart Okuma Hatası"); //MEDIA_TYPE_EN _UxGT(" read error");
   LSTR MSG_MEDIA_USB_REMOVED              = _UxGT("USB Çıkarıldı");
   LSTR MSG_MEDIA_USB_FAILED               = _UxGT("USB Başlat. Hatası");
+  LSTR MSG_KILL_SUBCALL_OVERFLOW          = _UxGT("Subcall Overflow");
   LSTR MSG_LCD_ENDSTOPS                   = _UxGT("Enstops"); // Max length 8 characters
   LSTR MSG_LCD_SOFT_ENDSTOPS              = _UxGT("Yazılımsal Endstops");
   LSTR MSG_MAIN                           = _UxGT("Ana");
   LSTR MSG_ADVANCED_SETTINGS              = _UxGT("Gelişmiş Ayarlar");
+  LSTR MSG_TOOLBAR_SETUP                  = _UxGT("Toolbar Setup");
+  LSTR MSG_OPTION_DISABLED                = _UxGT("Option Disabled");
   LSTR MSG_CONFIGURATION                  = _UxGT("Yapılandırma");
   LSTR MSG_RUN_AUTO_FILES                 = _UxGT("Oto. Başlat");
   LSTR MSG_DISABLE_STEPPERS               = _UxGT("Motorları Durdur");
   LSTR MSG_DEBUG_MENU                     = _UxGT("Hata Ayıklama");
   LSTR MSG_PROGRESS_BAR_TEST              = _UxGT("Durum Çubuğu Testi");
+  LSTR MSG_HOMING                         = _UxGT("Sıfırlanıyor");
   LSTR MSG_AUTO_HOME                      = _UxGT("Eksenleri Sıfırla");
+  LSTR MSG_AUTO_HOME_A                    = _UxGT("Sıfırla @");
   LSTR MSG_AUTO_HOME_X                    = _UxGT("X Sıfırla");
   LSTR MSG_AUTO_HOME_Y                    = _UxGT("Y Sıfırla");
   LSTR MSG_AUTO_HOME_Z                    = _UxGT("Z Sıfırla");
+  LSTR MSG_FILAMENT_SET                   = _UxGT("Filament Settings");
+  LSTR MSG_FILAMENT_MAN                   = _UxGT("Filament Management");
+  LSTR MSG_MANUAL_LEVELING                = _UxGT("Manual Leveling");
+  LSTR MSG_LEVBED_FL                      = _UxGT("Front Left");
+  LSTR MSG_LEVBED_FR                      = _UxGT("Front Right");
+  LSTR MSG_LEVBED_C                       = _UxGT("Center");
+  LSTR MSG_LEVBED_BL                      = _UxGT("Back Left");
+  LSTR MSG_LEVBED_BR                      = _UxGT("Back Right");
+  LSTR MSG_MANUAL_MESH                    = _UxGT("Manual Mesh");
+  LSTR MSG_AUTO_MESH                      = _UxGT("Auto Build Mesh");
   LSTR MSG_AUTO_Z_ALIGN                   = _UxGT("Oto. Z-Hizalama");
+  LSTR MSG_ITERATION                      = _UxGT("G34 Iteration: %i");
+  LSTR MSG_DECREASING_ACCURACY            = _UxGT("Accuracy Decreasing!");
+  LSTR MSG_ACCURACY_ACHIEVED              = _UxGT("Accuracy Achieved");
   LSTR MSG_LEVEL_BED_HOMING               = _UxGT("XYZ Sıfırlanıyor");
   LSTR MSG_LEVEL_BED_WAITING              = _UxGT("Başlatmak için tıkla");
   LSTR MSG_LEVEL_BED_NEXT_POINT           = _UxGT("Sonraki Nokta");
-  LSTR MSG_LEVEL_BED_DONE                 = _UxGT("Hizalama Tamam!");
+  LSTR MSG_LEVEL_BED_DONE                 = _UxGT("Seviyeleme Tamam!");
   LSTR MSG_Z_FADE_HEIGHT                  = _UxGT("Kaçınma Yüksekliği");
   LSTR MSG_SET_HOME_OFFSETS               = _UxGT("Ofset Ayarla");
+  LSTR MSG_HOME_OFFSET_X                  = _UxGT("Home Offset X");
+  LSTR MSG_HOME_OFFSET_Y                  = _UxGT("Home Offset Y");
+  LSTR MSG_HOME_OFFSET_Z                  = _UxGT("Home Offset Z");
   LSTR MSG_HOME_OFFSETS_APPLIED           = _UxGT("Ofset Tamam");
+  LSTR MSG_TRAMMING_WIZARD                = _UxGT("Tramming Wizard");
+  LSTR MSG_SELECT_ORIGIN                  = _UxGT("Select Origin");
+  LSTR MSG_LAST_VALUE_SP                  = _UxGT("Last value ");
   #if HAS_PREHEAT
     LSTR MSG_PREHEAT_1                    = _UxGT("Ön Isınma ") PREHEAT_1_LABEL;
     LSTR MSG_PREHEAT_1_H                  = _UxGT("Ön Isınma ") PREHEAT_1_LABEL " ~";
@@ -80,7 +108,14 @@ namespace Language_tr {
     LSTR MSG_PREHEAT_1_ALL                = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Tüm");
     LSTR MSG_PREHEAT_1_BEDONLY            = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Tabla");
     LSTR MSG_PREHEAT_1_SETTINGS           = _UxGT("Ön Isınma ") PREHEAT_1_LABEL _UxGT(" Ayarlar");
-
+    #ifdef PREHEAT_2_LABEL
+      LSTR MSG_PREHEAT_2                  = _UxGT("Preheat ") PREHEAT_2_LABEL;
+      LSTR MSG_PREHEAT_2_SETTINGS         = _UxGT("Preheat ") PREHEAT_2_LABEL _UxGT(" Conf");
+    #endif
+    #ifdef PREHEAT_3_LABEL
+      LSTR MSG_PREHEAT_3                  = _UxGT("Preheat ") PREHEAT_3_LABEL;
+      LSTR MSG_PREHEAT_3_SETTINGS         = _UxGT("Preheat ") PREHEAT_3_LABEL _UxGT(" Conf");
+    #endif
     LSTR MSG_PREHEAT_M                    = _UxGT("Ön Isınma $");
     LSTR MSG_PREHEAT_M_H                  = _UxGT("Ön Isınma $ ~");
     LSTR MSG_PREHEAT_M_END                = _UxGT("Ön Isınma $ Nozul");
@@ -91,30 +126,59 @@ namespace Language_tr {
   #endif
   LSTR MSG_PREHEAT_CUSTOM                 = _UxGT("Özel Ön Isınma");
   LSTR MSG_COOLDOWN                       = _UxGT("Soğut/(Durdur)");
+
+  LSTR MSG_CUTTER_FREQUENCY               = _UxGT("Frequency");
   LSTR MSG_LASER_MENU                     = _UxGT("Lazer Kontrolü");
-  LSTR MSG_LASER_POWER                    = _UxGT("Lazer Gücü");
   LSTR MSG_SPINDLE_MENU                   = _UxGT("Spindle Kontrolü");
+  LSTR MSG_LASER_POWER                    = _UxGT("Lazer Gücü");
   LSTR MSG_SPINDLE_POWER                  = _UxGT("Spindle Gücü");
+  LSTR MSG_LASER_TOGGLE                   = _UxGT("Toggle Laser");
+  LSTR MSG_LASER_EVAC_TOGGLE              = _UxGT("Toggle Blower");
+  LSTR MSG_LASER_ASSIST_TOGGLE            = _UxGT("Air Assist");
+  LSTR MSG_LASER_PULSE_MS                 = _UxGT("Test Pulse ms");
+  LSTR MSG_LASER_FIRE_PULSE               = _UxGT("Fire Pulse");
+  LSTR MSG_FLOWMETER_FAULT                = _UxGT("Coolant Flow Fault");
+  LSTR MSG_SPINDLE_TOGGLE                 = _UxGT("Toggle Spindle");
+  LSTR MSG_SPINDLE_EVAC_TOGGLE            = _UxGT("Toggle Vacuum");
+  LSTR MSG_SPINDLE_FORWARD                = _UxGT("Spindle Forward");
   LSTR MSG_SPINDLE_REVERSE                = _UxGT("Spindle Ters Yön");
   LSTR MSG_SWITCH_PS_ON                   = _UxGT("Gücü Aç");
   LSTR MSG_SWITCH_PS_OFF                  = _UxGT("Gücü Kapat");
   LSTR MSG_EXTRUDE                        = _UxGT("Ekstrüzyon");
   LSTR MSG_RETRACT                        = _UxGT("Geri Çek");
-  LSTR MSG_MOVE_AXIS                      = _UxGT("Eksen Hareketleri");
-  LSTR MSG_BED_LEVELING                   = _UxGT("Tabla Hizalama");
-  LSTR MSG_LEVEL_BED                      = _UxGT("Tabla Hizası");
-  LSTR MSG_BED_TRAMMING                   = _UxGT("Hizalama Köşeleri");
+  LSTR MSG_MOVE_AXIS                      = _UxGT("Eksen Yönet");
+  LSTR MSG_BED_LEVELING                   = _UxGT("Tabla Seviyeleme");
+  LSTR MSG_LEVEL_BED                      = _UxGT("Seviyeleme Başlat");
+  LSTR MSG_BED_TRAMMING                   = _UxGT("Köşeleri Ayarla");
+  LSTR MSG_BED_TRAMMING_MANUAL            = _UxGT("Manual Tramming");
+  LSTR MSG_BED_TRAMMING_RAISE             = _UxGT("Adjust bed until the probe triggers.");
+  LSTR MSG_BED_TRAMMING_IN_RANGE          = _UxGT("Corners within tolerance. Bed trammed.");
+  LSTR MSG_BED_TRAMMING_GOOD_POINTS       = _UxGT("Good Points: ");
+  LSTR MSG_BED_TRAMMING_LAST_Z            = _UxGT("Last Z: ");
   LSTR MSG_NEXT_CORNER                    = _UxGT("Sonraki Köşe");
   LSTR MSG_MESH_EDITOR                    = _UxGT("Mesh Editörü");
+  LSTR MSG_MESH_VIEWER                    = _UxGT("Mesh Viewer");
   LSTR MSG_EDIT_MESH                      = _UxGT("Mesh Düzenle");
+  LSTR MSG_MESH_VIEW                      = _UxGT("View Mesh");
   LSTR MSG_EDITING_STOPPED                = _UxGT("Mesh Düzenleme Durdu");
+  LSTR MSG_NO_VALID_MESH                  = _UxGT("No valid mesh");
+  LSTR MSG_ACTIVATE_MESH                  = _UxGT("Activate Leveling");
   LSTR MSG_PROBING_POINT                  = _UxGT("Prop Noktası");
   LSTR MSG_MESH_X                         = _UxGT("İndeks X");
   LSTR MSG_MESH_Y                         = _UxGT("İndeks Y");
+  LSTR MSG_MESH_INSET                     = _UxGT("Mesh Inset");
+  LSTR MSG_MESH_MIN_X                     = _UxGT("Mesh X Minimum");
+  LSTR MSG_MESH_MAX_X                     = _UxGT("Mesh X Maximum");
+  LSTR MSG_MESH_MIN_Y                     = _UxGT("Mesh Y Minimum");
+  LSTR MSG_MESH_MAX_Y                     = _UxGT("Mesh Y Maximum");
+  LSTR MSG_MESH_AMAX                      = _UxGT("Maximize Area");
+  LSTR MSG_MESH_CENTER                    = _UxGT("Center Area");
   LSTR MSG_MESH_EDIT_Z                    = _UxGT("Z Değeri");
+  LSTR MSG_MESH_CANCEL                    = _UxGT("Mesh cancelled");
   LSTR MSG_CUSTOM_COMMANDS                = _UxGT("Özel Komutlar");
   LSTR MSG_M48_TEST                       = _UxGT("M48 Prob Testi");
   LSTR MSG_M48_POINT                      = _UxGT("M48 Nokta");
+  LSTR MSG_M48_OUT_OF_BOUNDS              = _UxGT("Probe out of bounds");
   LSTR MSG_M48_DEVIATION                  = _UxGT("Sapma");
   LSTR MSG_IDEX_MENU                      = _UxGT("IDEX Modu");
   LSTR MSG_OFFSETS_MENU                   = _UxGT("Takım Ofsetleri");
@@ -122,13 +186,18 @@ namespace Language_tr {
   LSTR MSG_IDEX_MODE_DUPLICATE            = _UxGT("Kopyala");
   LSTR MSG_IDEX_MODE_MIRRORED_COPY        = _UxGT("Yansıtılmış kopya");
   LSTR MSG_IDEX_MODE_FULL_CTRL            = _UxGT("Tam Kontrol");
+  LSTR MSG_IDEX_DUPE_GAP                  = _UxGT("Duplicate X-Gap");
   LSTR MSG_HOTEND_OFFSET_Z                = _UxGT("2. nozul Z");
   LSTR MSG_HOTEND_OFFSET_A                = _UxGT("2. nozul @");
   LSTR MSG_UBL_DOING_G29                  = _UxGT("G29 Çalışıyor");
   LSTR MSG_UBL_TOOLS                      = _UxGT("UBL Araçları");
   LSTR MSG_UBL_LEVEL_BED                  = _UxGT("UBL Yatak Hizalama");
   LSTR MSG_LCD_TILTING_MESH               = _UxGT("Eğim Noktası");
+  LSTR MSG_UBL_TILT_MESH                  = _UxGT("Tilt Mesh");
+  LSTR MSG_UBL_TILTING_GRID               = _UxGT("Tilting Grid Size");
+  LSTR MSG_UBL_MESH_TILTED                = _UxGT("Mesh Tilted");
   LSTR MSG_UBL_MANUAL_MESH                = _UxGT("Elle Mesh Oluştur");
+  LSTR MSG_UBL_MESH_WIZARD                = _UxGT("UBL Mesh Wizard");
   LSTR MSG_UBL_BC_INSERT                  = _UxGT("Altlık & Ölçü Ver");
   LSTR MSG_UBL_BC_INSERT2                 = _UxGT("Ölçü");
   LSTR MSG_UBL_BC_REMOVE                  = _UxGT("Yataktan Ölçü Kaldır");
@@ -145,14 +214,12 @@ namespace Language_tr {
   LSTR MSG_UBL_DONE_EDITING_MESH          = _UxGT("Mesh Düzenleme Tamam");
   LSTR MSG_UBL_BUILD_CUSTOM_MESH          = _UxGT("Özel Mesh Oluştur");
   LSTR MSG_UBL_BUILD_MESH_MENU            = _UxGT("Mesh Oluştur");
-  #if HAS_PREHEAT
-    LSTR MSG_UBL_BUILD_MESH_M             = _UxGT("Mesh Oluştur ($)");
-    LSTR MSG_UBL_VALIDATE_MESH_M          = _UxGT("Doğrulama Mesh ($)");
-  #endif
+  LSTR MSG_UBL_BUILD_MESH_M             = _UxGT("Mesh Oluştur ($)");
   LSTR MSG_UBL_BUILD_COLD_MESH            = _UxGT("Soğuk Mesh Oluştur");
   LSTR MSG_UBL_MESH_HEIGHT_ADJUST         = _UxGT("Mesh Yükseklik Ayarı");
   LSTR MSG_UBL_MESH_HEIGHT_AMOUNT         = _UxGT("Yükseklik miktarı");
   LSTR MSG_UBL_VALIDATE_MESH_MENU         = _UxGT("Doğrulama Mesh");
+  LSTR MSG_UBL_VALIDATE_MESH_M          = _UxGT("Doğrulama Mesh ($)");
   LSTR MSG_UBL_VALIDATE_CUSTOM_MESH       = _UxGT("Özel Mesh Doğrulama");
   LSTR MSG_G26_HEATING_BED                = _UxGT("G26 Isıtma Tablası");
   LSTR MSG_G26_HEATING_NOZZLE             = _UxGT("G26 Isıtma Memesi");
@@ -177,6 +244,8 @@ namespace Language_tr {
   LSTR MSG_UBL_MANUAL_FILLIN              = _UxGT("Manuel Dolgu");
   LSTR MSG_UBL_SMART_FILLIN               = _UxGT("Akıllı Dogu");
   LSTR MSG_UBL_FILLIN_MESH                = _UxGT("Mesh Dolgu");
+  LSTR MSG_UBL_MESH_FILLED                = _UxGT("Missing Points Filled");
+  LSTR MSG_UBL_MESH_INVALID               = _UxGT("Invalid Mesh");
   LSTR MSG_UBL_INVALIDATE_ALL             = _UxGT("Tümünü Geçersiz Kıl");
   LSTR MSG_UBL_INVALIDATE_CLOSEST         = _UxGT("Yakını Geçersiz Kıl");
   LSTR MSG_UBL_FINE_TUNE_ALL              = _UxGT("Tümünü İnce Ayarla");
@@ -185,6 +254,7 @@ namespace Language_tr {
   LSTR MSG_UBL_STORAGE_SLOT               = _UxGT("Bellek Yuvası");
   LSTR MSG_UBL_LOAD_MESH                  = _UxGT("Yatak Mesh Yükle");
   LSTR MSG_UBL_SAVE_MESH                  = _UxGT("Yatak Mesh Kayıt Et");
+  LSTR MSG_UBL_INVALID_SLOT               = _UxGT("First Select a Mesh Slot");
   LSTR MSG_MESH_LOADED                    = _UxGT("Mesh %i yüklendi");
   LSTR MSG_MESH_SAVED                     = _UxGT("Mesh %i kayıtlandı");
   LSTR MSG_UBL_NO_STORAGE                 = _UxGT("Depolama Yok");
@@ -213,6 +283,10 @@ namespace Language_tr {
   LSTR MSG_SET_LEDS_VIOLET                = _UxGT("Menekşe");
   LSTR MSG_SET_LEDS_WHITE                 = _UxGT("Beyaz");
   LSTR MSG_SET_LEDS_DEFAULT               = _UxGT("Varsayılan");
+  LSTR MSG_LED_CHANNEL_N                  = _UxGT("Channel =");
+  LSTR MSG_LEDS2                          = _UxGT("Lights #2");
+  LSTR MSG_NEO2_PRESETS                   = _UxGT("Light #2 Presets");
+  LSTR MSG_NEO2_BRIGHTNESS                = _UxGT("Brightness");
   LSTR MSG_CUSTOM_LEDS                    = _UxGT("Özel Işıklar");
   LSTR MSG_INTENSITY_R                    = _UxGT("Kırmızı Şiddeti");
   LSTR MSG_INTENSITY_G                    = _UxGT("Yeşil Şiddeti");
@@ -233,19 +307,36 @@ namespace Language_tr {
   LSTR MSG_MOVE_01MM                      = _UxGT("0.1mm");
   LSTR MSG_MOVE_1MM                       = _UxGT("1mm");
   LSTR MSG_MOVE_10MM                      = _UxGT("10mm");
+  LSTR MSG_MOVE_50MM                      = _UxGT("50mm");
   LSTR MSG_MOVE_100MM                     = _UxGT("100mm");
+  LSTR MSG_MOVE_0001IN                    = _UxGT("Move 0.001in");
+  LSTR MSG_MOVE_001IN                     = _UxGT("Move 0.01in");
+  LSTR MSG_MOVE_01IN                      = _UxGT("Move 0.1in");
+  LSTR MSG_MOVE_05IN                      = _UxGT("Move 0.5in");
+  LSTR MSG_MOVE_1IN                       = _UxGT("Move 1.0in");
   LSTR MSG_SPEED                          = _UxGT("Hız");
   LSTR MSG_BED_Z                          = _UxGT("Z Mesafesi");
   LSTR MSG_NOZZLE                         = _UxGT("Nozul");
   LSTR MSG_NOZZLE_N                       = _UxGT("Nozul ~");
-  LSTR MSG_NOZZLE_PARKED                  = _UxGT("Nozul Kenara Çekildi,Sürdür?");
+  LSTR MSG_NOZZLE_PARKED                  = _UxGT("Nozzle Parkta");
+  LSTR MSG_NOZZLE_STANDBY                 = _UxGT("Nozzle Beklemede");
   LSTR MSG_BED                            = _UxGT("Tabla");
   LSTR MSG_CHAMBER                        = _UxGT("Çevirme");
+  LSTR MSG_COOLER                         = _UxGT("Laser Coolant");
+  LSTR MSG_COOLER_TOGGLE                  = _UxGT("Toggle Cooler");
+  LSTR MSG_FLOWMETER_SAFETY               = _UxGT("Flow Safety");
+  LSTR MSG_CUTTER                         = _UxGT("Cutter");
+  LSTR MSG_LASER                          = _UxGT("Laser");
   LSTR MSG_FAN_SPEED                      = _UxGT("Fan Hızı");
   LSTR MSG_FAN_SPEED_N                    = _UxGT("Fan Hızı ~");
   LSTR MSG_STORED_FAN_N                   = _UxGT("Depolanan Fan ~");
   LSTR MSG_EXTRA_FAN_SPEED                = _UxGT("Ekstra Fan Hızı");
   LSTR MSG_EXTRA_FAN_SPEED_N              = _UxGT("Ekstra Fan Hızı ~");
+  LSTR MSG_CONTROLLER_FAN                 = _UxGT("Controller Fan");
+  LSTR MSG_CONTROLLER_FAN_IDLE_SPEED      = _UxGT("Idle Speed");
+  LSTR MSG_CONTROLLER_FAN_AUTO_ON         = _UxGT("Auto Mode");
+  LSTR MSG_CONTROLLER_FAN_SPEED           = _UxGT("Active Speed");
+  LSTR MSG_CONTROLLER_FAN_DURATION        = _UxGT("Idle Period");
   LSTR MSG_FLOW                           = _UxGT("Akış");
   LSTR MSG_FLOW_N                         = _UxGT("Akış ~");
   LSTR MSG_CONTROL                        = _UxGT("Kontrol");
@@ -257,10 +348,26 @@ namespace Language_tr {
   LSTR MSG_LCD_OFF                        = _UxGT("Kapalı");
   LSTR MSG_PID_AUTOTUNE                   = _UxGT("PID Kalibrasyon");
   LSTR MSG_PID_AUTOTUNE_E                 = _UxGT("PID Kalibrasyon *");
+  LSTR MSG_PID_CYCLE                      = _UxGT("PID Cycles");
+  LSTR MSG_PID_AUTOTUNE_DONE              = _UxGT("PID tuning done");
+  LSTR MSG_PID_AUTOTUNE_FAILED            = _UxGT("PID Autotune failed!");
+  LSTR MSG_BAD_EXTRUDER_NUM               = _UxGT("Bad extruder.");
+  LSTR MSG_TEMP_TOO_HIGH                  = _UxGT("Temperature too high.");
+  LSTR MSG_TIMEOUT                        = _UxGT("Timeout.");
+  LSTR MSG_PID_BAD_EXTRUDER_NUM           = _UxGT("Autotune failed! Bad extruder.");
+  LSTR MSG_PID_TEMP_TOO_HIGH              = _UxGT("Autotune failed! Temperature too high.");
+  LSTR MSG_PID_TIMEOUT                    = _UxGT("Autotune failed! Timeout.");
+  LSTR MSG_MPC_MEASURING_AMBIENT          = _UxGT("Testing heat loss");
+  LSTR MSG_MPC_AUTOTUNE                   = _UxGT("MPC Autotune");
+  LSTR MSG_MPC_EDIT                       = _UxGT("Edit * MPC");
+  LSTR MSG_MPC_POWER_E                    = _UxGT("Power *");
+  LSTR MSG_MPC_BLOCK_HEAT_CAPACITY_E      = _UxGT("Block C *");
+  LSTR MSG_SENSOR_RESPONSIVENESS_E        = _UxGT("Sensor res *");
+  LSTR MSG_MPC_AMBIENT_XFER_COEFF_E       = _UxGT("Ambient h *");
+  LSTR MSG_MPC_AMBIENT_XFER_COEFF_FAN_E   = _UxGT("Amb. h fan *");
   LSTR MSG_SELECT                         = _UxGT("Seç");
   LSTR MSG_SELECT_E                       = _UxGT("Seç *");
   LSTR MSG_ACC                            = _UxGT("İvme");
-
   LSTR MSG_JERK                           = _UxGT("Sarsım");
   LSTR MSG_VA_JERK                        = _UxGT("V") STR_A _UxGT("-Sarsım");
   LSTR MSG_VB_JERK                        = _UxGT("V") STR_B _UxGT("-Sarsım");
@@ -286,6 +393,13 @@ namespace Language_tr {
   LSTR MSG_AMAX_EN                        = _UxGT("Max. ivme *");
   LSTR MSG_A_RETRACT                      = _UxGT("Ivme-geri çekme");
   LSTR MSG_A_TRAVEL                       = _UxGT("Ivme-gezinme");
+  LSTR MSG_INPUT_SHAPING                  = _UxGT("Input Shaping");
+  LSTR MSG_SHAPING_ENABLE                 = _UxGT("Enable @ shaping");
+  LSTR MSG_SHAPING_DISABLE                = _UxGT("Disable @ shaping");
+  LSTR MSG_SHAPING_FREQ                   = _UxGT("@ frequency");
+  LSTR MSG_SHAPING_ZETA                   = _UxGT("@ damping");
+  LSTR MSG_XY_FREQUENCY_LIMIT             = _UxGT("XY Freq Limit");
+  LSTR MSG_XY_FREQUENCY_FEEDRATE          = _UxGT("Min FR Factor");
   LSTR MSG_STEPS_PER_MM                   = _UxGT("Adım/mm");
   LSTR MSG_A_STEPS                        = STR_A _UxGT(" adım/mm");
   LSTR MSG_B_STEPS                        = STR_B _UxGT(" adım/mm");
@@ -297,13 +411,24 @@ namespace Language_tr {
   LSTR MSG_MOTION                         = _UxGT("Hareket");
   LSTR MSG_FILAMENT                       = _UxGT("Filaman");
   LSTR MSG_VOLUMETRIC_ENABLED             = _UxGT("Ekstrüzyon/mm") SUPERSCRIPT_THREE;
+  LSTR MSG_VOLUMETRIC_LIMIT               = _UxGT("E Limit in mm") SUPERSCRIPT_THREE;
+  LSTR MSG_VOLUMETRIC_LIMIT_E             = _UxGT("E Limit *");
   LSTR MSG_FILAMENT_DIAM                  = _UxGT("Filaman Çapı");
   LSTR MSG_FILAMENT_DIAM_E                = _UxGT("Filaman Çapı *");
   LSTR MSG_FILAMENT_UNLOAD                = _UxGT("Çıkart mm");
   LSTR MSG_FILAMENT_LOAD                  = _UxGT("Yükle mm");
+  LSTR MSG_SEGMENTS_PER_SECOND            = _UxGT("Segments/Sec");
+  LSTR MSG_DRAW_MIN_X                     = _UxGT("Draw Min X");
+  LSTR MSG_DRAW_MAX_X                     = _UxGT("Draw Max X");
+  LSTR MSG_DRAW_MIN_Y                     = _UxGT("Draw Min Y");
+  LSTR MSG_DRAW_MAX_Y                     = _UxGT("Draw Max Y");
+  LSTR MSG_MAX_BELT_LEN                   = _UxGT("Max Belt Len");
   LSTR MSG_ADVANCE_K                      = _UxGT("K İlerlet");
   LSTR MSG_ADVANCE_K_E                    = _UxGT("K İlerlet *");
   LSTR MSG_CONTRAST                       = _UxGT("LCD Kontrast");
+  LSTR MSG_BRIGHTNESS                     = _UxGT("LCD Brightness");
+  LSTR MSG_SCREEN_TIMEOUT                 = _UxGT("LCD Timeout (m)");
+  LSTR MSG_BRIGHTNESS_OFF                 = _UxGT("Backlight Off");
   LSTR MSG_STORE_EEPROM                   = _UxGT("Hafızaya Al");
   LSTR MSG_LOAD_EEPROM                    = _UxGT("Hafızadan Yükle");
   LSTR MSG_RESTORE_DEFAULTS               = _UxGT("Fabrika Ayarları");
@@ -311,39 +436,81 @@ namespace Language_tr {
   LSTR MSG_ERR_EEPROM_CRC                 = _UxGT("Hata: EEPROM CRC");
   LSTR MSG_ERR_EEPROM_INDEX               = _UxGT("Hata: EEPROM Indeks");
   LSTR MSG_ERR_EEPROM_VERSION             = _UxGT("Hata: EEPROM Versiyonu");
+  LSTR MSG_SETTINGS_STORED                = _UxGT("Ayarlar Kaydedildi");
   LSTR MSG_MEDIA_UPDATE                   = _UxGT("SD Güncellemesi");
   LSTR MSG_RESET_PRINTER                  = _UxGT("Yazıcıyı Resetle");
   LSTR MSG_REFRESH                        = LCD_STR_REFRESH  _UxGT("Yenile");
   LSTR MSG_INFO_SCREEN                    = _UxGT("Bilgi Ekranı");
+  LSTR MSG_INFO_MACHINENAME               = _UxGT("Cihaz Adı");
+  LSTR MSG_INFO_SIZE                      = _UxGT("Boyut");
+  LSTR MSG_INFO_FWVERSION                 = _UxGT("Firmware Version");
+  LSTR MSG_INFO_BUILD                     = _UxGT("Build Datetime");
   LSTR MSG_PREPARE                        = _UxGT("Hazırlık");
   LSTR MSG_TUNE                           = _UxGT("Ayar");
+  LSTR MSG_POWER_MONITOR                  = _UxGT("Power monitor");
+  LSTR MSG_CURRENT                        = _UxGT("Current");
+  LSTR MSG_VOLTAGE                        = _UxGT("Voltage");
+  LSTR MSG_POWER                          = _UxGT("Power");
   LSTR MSG_START_PRINT                    = _UxGT("Yaz. Başlat");
   LSTR MSG_BUTTON_NEXT                    = _UxGT("İleri");
   LSTR MSG_BUTTON_INIT                    = _UxGT("İçinde");
   LSTR MSG_BUTTON_STOP                    = _UxGT("Durdur");
   LSTR MSG_BUTTON_PRINT                   = _UxGT("Yazdır");
-  LSTR MSG_BUTTON_RESET                   = _UxGT("Resetle");
+  LSTR MSG_BUTTON_RESET                   = _UxGT("Sıfırla");
+  LSTR MSG_BUTTON_IGNORE                  = _UxGT("Geç");
   LSTR MSG_BUTTON_CANCEL                  = _UxGT("İptal");
+  LSTR MSG_BUTTON_CONFIRM                 = _UxGT("Onayla");
+  LSTR MSG_BUTTON_CONTINUE                = _UxGT("Devam");
   LSTR MSG_BUTTON_DONE                    = _UxGT("Tamamlandı");
   LSTR MSG_BUTTON_BACK                    = _UxGT("Geri");
-  LSTR MSG_BUTTON_PROCEED                 = _UxGT("Devam ediyor");
+  LSTR MSG_BUTTON_PROCEED                 = _UxGT("Devam et");
+  LSTR MSG_BUTTON_SKIP                    = _UxGT("Atla");
+  LSTR MSG_BUTTON_INFO                    = _UxGT("Info");
+  LSTR MSG_BUTTON_LEVEL                   = _UxGT("Seviye");
+  LSTR MSG_BUTTON_PAUSE                   = _UxGT("Duraklat");
+  LSTR MSG_BUTTON_RESUME                  = _UxGT("Sürdür");
+  LSTR MSG_BUTTON_ADVANCED                = _UxGT("Gelişmiş");
+  LSTR MSG_BUTTON_SAVE                    = _UxGT("Kaydet");
+  LSTR MSG_BUTTON_PURGE                   = _UxGT("İlerlet");
+  LSTR MSG_PAUSING                        = _UxGT("Bekleme...");
   LSTR MSG_PAUSE_PRINT                    = _UxGT("Duraklat");
+  LSTR MSG_ADVANCED_PAUSE                 = _UxGT("Gelişmiş Bekleme");
   LSTR MSG_RESUME_PRINT                   = _UxGT("Sürdür");
   LSTR MSG_STOP_PRINT                     = _UxGT("Durdur");
-  LSTR MSG_PRINTING_OBJECT                = _UxGT("Yazdırma Nesnesi");
-  LSTR MSG_CANCEL_OBJECT                  = _UxGT("Nesneyi İptal Et");
-  LSTR MSG_CANCEL_OBJECT_N                = _UxGT("Nesneyi İptal Et =");
   LSTR MSG_OUTAGE_RECOVERY                = _UxGT("Kesinti Kurtarma");
-  LSTR MSG_MEDIA_MENU                     = _UxGT("SD Karttan Yazdır");
+  #if LCD_WIDTH >= 20 || HAS_DWIN_E3V2
+    LSTR MSG_HOST_START_PRINT             = _UxGT("Start Host Print");
+    LSTR MSG_PRINTING_OBJECT                = _UxGT("Yazdırma Nesnesi");
+    LSTR MSG_CANCEL_OBJECT                  = _UxGT("Nesneyi İptal Et");
+    LSTR MSG_CANCEL_OBJECT_N                = _UxGT("Nesneyi İptal Et =");
+    LSTR MSG_CONTINUE_PRINT_JOB             = _UxGT("Baskıya Devam Et");
+    LSTR MSG_MEDIA_MENU                     = _UxGT("SD Karttan Yazdır"); //_UxGT("Print from ") MEDIA_TYPE_EN;
+    LSTR MSG_TURN_OFF                     = _UxGT("Turn off the printer");
+    LSTR MSG_END_LOOPS                    = _UxGT("End Repeat Loops");
+  #else
+    LSTR MSG_HOST_START_PRINT             = _UxGT("Host Start");
+    LSTR MSG_PRINTING_OBJECT              = _UxGT("Print Obj");
+    LSTR MSG_CANCEL_OBJECT                = _UxGT("Cancel Obj");
+    LSTR MSG_CANCEL_OBJECT_N              = _UxGT("Cancel Obj =");
+    LSTR MSG_CONTINUE_PRINT_JOB           = _UxGT("Continue Job");
+    LSTR MSG_MEDIA_MENU                   = MEDIA_TYPE_EN _UxGT(" Print");
+    LSTR MSG_TURN_OFF                     = _UxGT("Turn off now");
+    LSTR MSG_END_LOOPS                    = _UxGT("End Loops");
+  #endif
   LSTR MSG_NO_MEDIA                       = _UxGT("SD Kart Yok!");
   LSTR MSG_DWELL                          = _UxGT("Uyku...");
   LSTR MSG_USERWAIT                       = _UxGT("Operatör bekleniyor.");
   LSTR MSG_PRINT_PAUSED                   = _UxGT("Baskı Duraklatıldı");
   LSTR MSG_PRINTING                       = _UxGT("Baskı Yapılıyor...");
+  LSTR MSG_STOPPING                       = _UxGT("Durduruluyor...");
+  LSTR MSG_REMAINING_TIME                 = _UxGT("Kalan");
   LSTR MSG_PRINT_ABORTED                  = _UxGT("Baskı Durduruldu!");
+  LSTR MSG_PRINT_DONE                     = _UxGT("Baskı Tamamlandı");
+  LSTR MSG_PRINTER_KILLED                 = _UxGT("Yazıcı kilitlendi!");
   LSTR MSG_NO_MOVE                        = _UxGT("İşlem yok.");
   LSTR MSG_KILLED                         = _UxGT("Kilitlendi. ");
   LSTR MSG_STOPPED                        = _UxGT("Durdu. ");
+  LSTR MSG_FWRETRACT                      = _UxGT("Firmware Retract");
   LSTR MSG_CONTROL_RETRACT                = _UxGT("Geri Çek mm");
   LSTR MSG_CONTROL_RETRACT_SWAP           = _UxGT("Swap Re.mm");
   LSTR MSG_CONTROL_RETRACTF               = _UxGT("Geri Çekme V");
@@ -354,12 +521,23 @@ namespace Language_tr {
   LSTR MSG_CONTROL_RETRACT_RECOVER_SWAPF  = _UxGT("S UnRet V");
   LSTR MSG_AUTORETRACT                    = _UxGT("Oto. Geri Çekme");
   LSTR MSG_FILAMENT_SWAP_LENGTH           = _UxGT("G.Çekme Boyu");
+  LSTR MSG_FILAMENT_SWAP_EXTRA            = _UxGT("Swap Extra");
   LSTR MSG_FILAMENT_PURGE_LENGTH          = _UxGT("Tasfiye uzunluğu");
   LSTR MSG_TOOL_CHANGE                    = _UxGT("Takım Değişimi");
   LSTR MSG_TOOL_CHANGE_ZLIFT              = _UxGT("Z Yükselt");
   LSTR MSG_SINGLENOZZLE_PRIME_SPEED       = _UxGT("Birincil Hız");
+  LSTR MSG_SINGLENOZZLE_WIPE_RETRACT      = _UxGT("Wipe Retract");
   LSTR MSG_SINGLENOZZLE_RETRACT_SPEED     = _UxGT("Geri Çekme Hızı");
-  LSTR MSG_NOZZLE_STANDBY                 = _UxGT("Nozul Beklemede");
+  LSTR MSG_FILAMENT_PARK_ENABLED          = _UxGT("Park Head");
+  LSTR MSG_SINGLENOZZLE_UNRETRACT_SPEED   = _UxGT("Recover Speed");
+  LSTR MSG_SINGLENOZZLE_FAN_SPEED         = _UxGT("Fan Speed");
+  LSTR MSG_SINGLENOZZLE_FAN_TIME          = _UxGT("Fan Time");
+  LSTR MSG_TOOL_MIGRATION_ON              = _UxGT("Auto ON");
+  LSTR MSG_TOOL_MIGRATION_OFF             = _UxGT("Auto OFF");
+  LSTR MSG_TOOL_MIGRATION                 = _UxGT("Tool Migration");
+  LSTR MSG_TOOL_MIGRATION_AUTO            = _UxGT("Auto-migration");
+  LSTR MSG_TOOL_MIGRATION_END             = _UxGT("Last Extruder");
+  LSTR MSG_TOOL_MIGRATION_SWAP            = _UxGT("Migrate to *");
   LSTR MSG_FILAMENTCHANGE                 = _UxGT("Filaman Değiştir");
   LSTR MSG_FILAMENTCHANGE_E               = _UxGT("Filaman Değiştir *");
   LSTR MSG_FILAMENTLOAD                   = _UxGT("Filaman Yükle");
@@ -378,6 +556,7 @@ namespace Language_tr {
   LSTR MSG_BLTOUCH_STOW                   = _UxGT("Kapat");
   LSTR MSG_BLTOUCH_DEPLOY                 = _UxGT("Aç");
   LSTR MSG_BLTOUCH_SW_MODE                = _UxGT("SW-Modu");
+  LSTR MSG_BLTOUCH_SPEED_MODE             = _UxGT("High Speed");
   LSTR MSG_BLTOUCH_5V_MODE                = _UxGT("5V-Modu");
   LSTR MSG_BLTOUCH_OD_MODE                = _UxGT("OD-Modu");
   LSTR MSG_BLTOUCH_MODE_STORE             = _UxGT("Mode-Store");
@@ -393,10 +572,15 @@ namespace Language_tr {
   LSTR MSG_MANUAL_DEPLOY                  = _UxGT("Z-Probe Aç");
   LSTR MSG_MANUAL_STOW                    = _UxGT("Z-Probe Kapat");
   LSTR MSG_HOME_FIRST                     = _UxGT("Önce %s%s%s Sıfırla");
+  LSTR MSG_ZPROBE_SETTINGS                = _UxGT("Probe Settings");
   LSTR MSG_ZPROBE_OFFSETS                 = _UxGT("Prob Ofsetleri");
   LSTR MSG_ZPROBE_XOFFSET                 = _UxGT("X Prob Ofset");
   LSTR MSG_ZPROBE_YOFFSET                 = _UxGT("Y Prob Ofset");
   LSTR MSG_ZPROBE_ZOFFSET                 = _UxGT("Z Prob Ofset");
+  LSTR MSG_ZPROBE_MARGIN                  = _UxGT("Probe Margin");
+  LSTR MSG_Z_FEED_RATE                    = _UxGT("Z Feed Rate");
+  LSTR MSG_ENABLE_HS_MODE                 = _UxGT("Enable HS mode");
+  LSTR MSG_MOVE_NOZZLE_TO_BED             = _UxGT("Move Nozzle to Bed");
   LSTR MSG_BABYSTEP_X                     = _UxGT("Miniadım X");
   LSTR MSG_BABYSTEP_Y                     = _UxGT("Miniadım Y");
   LSTR MSG_BABYSTEP_Z                     = _UxGT("Miniadım Z");
@@ -406,21 +590,26 @@ namespace Language_tr {
   LSTR MSG_HEATING_FAILED_LCD             = _UxGT("Isınma başarısız");
   LSTR MSG_ERR_REDUNDANT_TEMP             = _UxGT("Hata: Sıcaklık Aşımı");
   LSTR MSG_THERMAL_RUNAWAY                = _UxGT("TERMAL PROBLEM");
+  LSTR MSG_TEMP_MALFUNCTION               = _UxGT("TEMP MALFUNCTION");
   LSTR MSG_THERMAL_RUNAWAY_BED            = _UxGT("TABLA TERMAL PROBLEM");
   LSTR MSG_THERMAL_RUNAWAY_CHAMBER        = _UxGT("ODA TERMAL PROBLEM");
+  LSTR MSG_THERMAL_RUNAWAY_COOLER         = _UxGT("Cooler Runaway");
+  LSTR MSG_COOLING_FAILED                 = _UxGT("Cooling Failed");
   LSTR MSG_ERR_MAXTEMP                    = _UxGT("Hata: MAX.SICAKLIK");
   LSTR MSG_ERR_MINTEMP                    = _UxGT("Hata: MIN.SICAKLIK");
   LSTR MSG_HALTED                         = _UxGT("YAZICI DURDURULDU");
+  LSTR MSG_PLEASE_WAIT                    = _UxGT("Lütfen bekleyiniz...");
   LSTR MSG_PLEASE_RESET                   = _UxGT("Lütfen Resetleyin");
-  LSTR MSG_SHORT_DAY                      = _UxGT("G"); // One character only
-  LSTR MSG_SHORT_HOUR                     = _UxGT("S"); // One character only
-  LSTR MSG_SHORT_MINUTE                   = _UxGT("D"); // One character only
+  LSTR MSG_PREHEATING                     = _UxGT("Ön ısınma...");
   LSTR MSG_HEATING                        = _UxGT("Isınıyor...");
   LSTR MSG_COOLING                        = _UxGT("Soğuyor...");
   LSTR MSG_BED_HEATING                    = _UxGT("Tabla Isınıyor...");
   LSTR MSG_BED_COOLING                    = _UxGT("Tabla Soğuyor...");
+  LSTR MSG_PROBE_HEATING                  = _UxGT("Probe Heating...");
+  LSTR MSG_PROBE_COOLING                  = _UxGT("Probe Cooling...");
   LSTR MSG_CHAMBER_HEATING                = _UxGT("Oda Isınıyor...");
   LSTR MSG_CHAMBER_COOLING                = _UxGT("Oda Soğuyor...");
+  LSTR MSG_LASER_COOLING                  = _UxGT("Laser Cooling...");
   LSTR MSG_DELTA_CALIBRATE                = _UxGT("Delta Kalibrasyonu");
   LSTR MSG_DELTA_CALIBRATE_X              = _UxGT("Ayarla X");
   LSTR MSG_DELTA_CALIBRATE_Y              = _UxGT("Ayarla Y");
@@ -435,33 +624,57 @@ namespace Language_tr {
   LSTR MSG_INFO_PRINTER_MENU              = _UxGT("Yazıcı Bilgisi");
   LSTR MSG_3POINT_LEVELING                = _UxGT("3-Nokta Hizalama");
   LSTR MSG_LINEAR_LEVELING                = _UxGT("Doğrusal Hizalama");
-  LSTR MSG_BILINEAR_LEVELING              = _UxGT("İki Yönlü Doğ. Hiza.");
+  LSTR MSG_BILINEAR_LEVELING              = _UxGT("Çok Yönlü Doğ. Sev.");
   LSTR MSG_UBL_LEVELING                   = _UxGT("Birleşik Tabla Hiza.");
   LSTR MSG_MESH_LEVELING                  = _UxGT("Mesh Hizalama");
+  LSTR MSG_MESH_DONE                      = _UxGT("Mesh probing done");
   LSTR MSG_INFO_STATS_MENU                = _UxGT("İstatistikler");
   LSTR MSG_INFO_BOARD_MENU                = _UxGT("Kontrolcü Bilgisi");
   LSTR MSG_INFO_THERMISTOR_MENU           = _UxGT("Termistörler");
   LSTR MSG_INFO_EXTRUDERS                 = _UxGT("Ekstruderler");
   LSTR MSG_INFO_BAUDRATE                  = _UxGT("İletişim Hızı");
   LSTR MSG_INFO_PROTOCOL                  = _UxGT("Protokol");
+  LSTR MSG_INFO_RUNAWAY_OFF               = _UxGT("Runaway Watch: OFF");
+  LSTR MSG_INFO_RUNAWAY_ON                = _UxGT("Runaway Watch: ON");
+  LSTR MSG_HOTEND_IDLE_TIMEOUT            = _UxGT("Hotend Idle Timeout");
+  LSTR MSG_FAN_SPEED_FAULT                = _UxGT("Fan speed fault");
+
   LSTR MSG_CASE_LIGHT                     = _UxGT("Aydınlatmayı Aç");
   LSTR MSG_CASE_LIGHT_BRIGHTNESS          = _UxGT("Aydınlatma Parlaklğı");
   LSTR MSG_KILL_EXPECTED_PRINTER          = _UxGT("Yanlış Yazıcı");
 
+  LSTR MSG_COLORS_GET                     = _UxGT("Get Color");
+  LSTR MSG_COLORS_SELECT                  = _UxGT("Select Colors");
+  LSTR MSG_COLORS_APPLIED                 = _UxGT("Colors applied");
+  LSTR MSG_COLORS_RED                     = _UxGT("Red");
+  LSTR MSG_COLORS_GREEN                   = _UxGT("Green");
+  LSTR MSG_COLORS_BLUE                    = _UxGT("Blue");
+  LSTR MSG_COLORS_WHITE                   = _UxGT("White");
+  LSTR MSG_UI_LANGUAGE                    = _UxGT("UI Language");
+  LSTR MSG_SOUND_ENABLE                   = _UxGT("Enable sound");
+  LSTR MSG_LOCKSCREEN                     = _UxGT("Lock Screen");
+  LSTR MSG_LOCKSCREEN_LOCKED              = _UxGT("Printer is Locked,");
+  LSTR MSG_LOCKSCREEN_UNLOCK              = _UxGT("Scroll to unlock.");
+  LSTR MSG_PLEASE_WAIT_REBOOT             = _UxGT("Please wait until reboot.");
+
   #if LCD_WIDTH >= 20 || HAS_DWIN_E3V2
+    LSTR MSG_MEDIA_NOT_INSERTED           = _UxGT("No media inserted.");
+    LSTR MSG_PLEASE_PREHEAT               = _UxGT("Please preheat the hot end.");
+    LSTR MSG_INFO_PRINT_COUNT_RESET       = _UxGT("Reset Print Count");
     LSTR MSG_INFO_PRINT_COUNT             = _UxGT("Baskı Sayısı");
-    LSTR MSG_INFO_COMPLETED_PRINTS        = _UxGT("Tamamlanan");
     LSTR MSG_INFO_PRINT_TIME              = _UxGT("Toplam Baskı Süresi");
     LSTR MSG_INFO_PRINT_LONGEST           = _UxGT("En Uzun Baskı Süresi");
     LSTR MSG_INFO_PRINT_FILAMENT          = _UxGT("Toplam Filaman");
   #else
+    LSTR MSG_MEDIA_NOT_INSERTED           = _UxGT("No Media");
+    LSTR MSG_PLEASE_PREHEAT               = _UxGT("Please Preheat");
     LSTR MSG_INFO_PRINT_COUNT             = _UxGT("Baskı");
-    LSTR MSG_INFO_COMPLETED_PRINTS        = _UxGT("Tamamlanan");
     LSTR MSG_INFO_PRINT_TIME              = _UxGT("Süre");
     LSTR MSG_INFO_PRINT_LONGEST           = _UxGT("En Uzun");
     LSTR MSG_INFO_PRINT_FILAMENT          = _UxGT("Filaman");
   #endif
 
+  LSTR MSG_INFO_COMPLETED_PRINTS          = _UxGT("Tamamlanan");
   LSTR MSG_INFO_MIN_TEMP                  = _UxGT("Min Sıc.");
   LSTR MSG_INFO_MAX_TEMP                  = _UxGT("Max Sıc.");
   LSTR MSG_INFO_PSU                       = _UxGT("Güç Kaynağı");
@@ -474,11 +687,17 @@ namespace Language_tr {
   LSTR MSG_FILAMENT_CHANGE_HEADER_LOAD    = _UxGT("FILAMAN YüKLE");
   LSTR MSG_FILAMENT_CHANGE_HEADER_UNLOAD  = _UxGT("FILAMAN ÇIKART");
   LSTR MSG_FILAMENT_CHANGE_OPTION_HEADER  = _UxGT("Seçenekler:");
-  LSTR MSG_FILAMENT_CHANGE_OPTION_PURGE   = _UxGT("Daha Fazla Tasviye");
+  LSTR MSG_FILAMENT_CHANGE_OPTION_PURGE   = _UxGT("Daha Fazla Yükle");
   LSTR MSG_FILAMENT_CHANGE_OPTION_RESUME  = _UxGT("Baskıyı sürdür");
+  LSTR MSG_FILAMENT_CHANGE_PURGE_CONTINUE = _UxGT("Yükle ya da Devam?");
   LSTR MSG_FILAMENT_CHANGE_NOZZLE         = _UxGT("  Nozul: ");
   LSTR MSG_RUNOUT_SENSOR                  = _UxGT("Runout Sensörü");
   LSTR MSG_RUNOUT_DISTANCE_MM             = _UxGT("Aşınma Farkı mm");
+  LSTR MSG_RUNOUT_ENABLE                  = _UxGT("Fil. Sensörü Aç");
+  LSTR MSG_RUNOUT_ACTIVE                  = _UxGT("Fil. Sensör Devrede");
+  LSTR MSG_INVERT_EXTRUDER                = _UxGT("Invert Extruder");
+  LSTR MSG_EXTRUDER_MIN_TEMP              = _UxGT("Extruder Min Temp.");
+  LSTR MSG_FANCHECK                       = _UxGT("Fan Tacho Check");
   LSTR MSG_KILL_HOMING_FAILED             = _UxGT("Sıfırlama Başarısız");
   LSTR MSG_LCD_PROBING_FAILED             = _UxGT("Probing Başarısız");
 
@@ -528,12 +747,25 @@ namespace Language_tr {
   LSTR MSG_SNAKE                          = _UxGT("Sn4k3");
   LSTR MSG_MAZE                           = _UxGT("Maze");
 
+  LSTR MSG_BAD_PAGE                       = _UxGT("Bad page index");
+  LSTR MSG_BAD_PAGE_SPEED                 = _UxGT("Bad page speed");
+
+  LSTR MSG_EDIT_PASSWORD                  = _UxGT("Edit Password");
+  LSTR MSG_LOGIN_REQUIRED                 = _UxGT("Login Required");
+  LSTR MSG_PASSWORD_SETTINGS              = _UxGT("Password Settings");
+  LSTR MSG_ENTER_DIGIT                    = _UxGT("Enter Digit");
+  LSTR MSG_CHANGE_PASSWORD                = _UxGT("Set/Edit Password");
+  LSTR MSG_REMOVE_PASSWORD                = _UxGT("Remove Password");
+  LSTR MSG_PASSWORD_SET                   = _UxGT("Password is ");
+  LSTR MSG_START_OVER                     = _UxGT("Start Over");
+  LSTR MSG_REMINDER_SAVE_SETTINGS         = _UxGT("Remember to Save!");
+  LSTR MSG_PASSWORD_REMOVED               = _UxGT("Password Removed");
+
   //
   // Filament Değişim ekranları 4 satırlı ekranda 3 satıra kadar gösterilir
   //                        ...veya 3 satırlı ekranda 2 satıra kadar
   //
   #if LCD_HEIGHT >= 4
-
     LSTR MSG_ADVANCED_PAUSE_WAITING       = _UxGT(MSG_2_LINE("Baskıya devam etmek", "için Butona bas"));
     LSTR MSG_PAUSE_PRINT_PARKING          = _UxGT(MSG_1_LINE("Park Ediliyor..."));
     LSTR MSG_FILAMENT_CHANGE_INIT         = _UxGT(MSG_3_LINE("Filaman değişimi", "için başlama", "bekleniyor"));
@@ -564,27 +796,26 @@ namespace Language_tr {
   LSTR MSG_TMC_HOMING_THRS                = _UxGT("Sensörsüz Sıfırlama");
   LSTR MSG_TMC_STEPPING_MODE              = _UxGT("Adım Modu");
   LSTR MSG_TMC_STEALTH_ENABLED            = _UxGT("StealthChop Aktif");
-  LSTR MSG_SERVICE_RESET                  = _UxGT("Resetle");
+  LSTR MSG_SERVICE_RESET                  = _UxGT("Sıfırla");
   LSTR MSG_SERVICE_IN                     = _UxGT(" içinde:");
   LSTR MSG_BACKLASH                       = _UxGT("Ters Tepki");
   LSTR MSG_BACKLASH_CORRECTION            = _UxGT("Düzeltme");
   LSTR MSG_BACKLASH_SMOOTHING             = _UxGT("Yumuşatma");
-}
 
   LSTR MSG_LEVEL_X_AXIS                   = _UxGT("X Eksen Seviyele");
-  LSTR MSG_AUTO_CALIBRATE                 = _UxGT("Oto Kalibrasyon");
+  LSTR MSG_AUTO_CALIBRATE                 = _UxGT("Auto Calibrate");
   #if ENABLED(TOUCH_UI_FTDI_EVE)
     LSTR MSG_HEATER_TIMEOUT               = _UxGT("Idle timeout, temperature decreased. Press Okay to reheat and again to resume.");
   #else
     LSTR MSG_HEATER_TIMEOUT               = _UxGT("Isıtıcı Zaman Aşımı");
   #endif
   LSTR MSG_REHEAT                         = _UxGT("Tekrar Isıt");
-  LSTR MSG_REHEATING                      = _UxGT("Isınıyor...");
-  LSTR MSG_REHEATDONE                     = _UxGT("Isınma Tamam");
+  LSTR MSG_REHEATING                      = _UxGT("Tekrar Isınıyor...");
+  LSTR MSG_REHEATDONE                     = _UxGT("Tekrar Isınma Tamam");
 
-  LSTR MSG_PROBE_WIZARD                   = _UxGT("Z Algılama Sihirbazı");
-  LSTR MSG_PROBE_WIZARD_PROBING           = _UxGT("Z Referansı Algılanıyor");
-  LSTR MSG_PROBE_WIZARD_MOVING            = _UxGT("Algılama Noktasına Hareket");
+  LSTR MSG_PROBE_WIZARD                   = _UxGT("Z Probe Wizard");
+  LSTR MSG_PROBE_WIZARD_PROBING           = _UxGT("Probing Z Reference");
+  LSTR MSG_PROBE_WIZARD_MOVING            = _UxGT("Moving to Probing Pos");
 
   LSTR MSG_XATC                           = _UxGT("X-Twist Wizard");
   LSTR MSG_XATC_DONE                      = _UxGT("X-Twist Wizard Done!");
@@ -601,10 +832,28 @@ namespace Language_tr {
 
   LSTR MSG_DRIVER_BACKWARD                = _UxGT(" driver backward");
 
-  LSTR MSG_SD_CARD                        = _UxGT("SD Card");
-  LSTR MSG_USB_DISK                       = _UxGT("USB Disk");
+  LSTR MSG_SD_CARD                        = _UxGT("SD Kart");
+  LSTR MSG_USB_DISK                       = _UxGT("Flaş Bellek");
 
   LSTR MSG_HOST_SHUTDOWN                  = _UxGT("Host Shutdown");
+
+  // These strings can be the same in all languages
+  LSTR MSG_MARLIN                         = _UxGT("Marlin");
+  LSTR MSG_SHORT_DAY                      = _UxGT("g"); // One character only
+  LSTR MSG_SHORT_HOUR                     = _UxGT("s"); // One character only
+  LSTR MSG_SHORT_MINUTE                   = _UxGT("d"); // One character only
+  LSTR MSG_PID_P                          = _UxGT("PID-P");
+  LSTR MSG_PID_P_E                        = _UxGT("PID-P *");
+  LSTR MSG_PID_I                          = _UxGT("PID-I");
+  LSTR MSG_PID_I_E                        = _UxGT("PID-I *");
+  LSTR MSG_PID_D                          = _UxGT("PID-D");
+  LSTR MSG_PID_D_E                        = _UxGT("PID-D *");
+  LSTR MSG_PID_C                          = _UxGT("PID-C");
+  LSTR MSG_PID_C_E                        = _UxGT("PID-C *");
+  LSTR MSG_PID_F                          = _UxGT("PID-F");
+  LSTR MSG_PID_F_E                        = _UxGT("PID-F *");
+  LSTR MSG_BACKLASH_N                     = _UxGT("@");
+}
 
 #if FAN_COUNT == 1
   #define MSG_FIRST_FAN_SPEED       MSG_FAN_SPEED
