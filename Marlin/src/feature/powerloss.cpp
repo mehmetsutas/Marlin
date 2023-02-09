@@ -345,8 +345,6 @@ void PrintJobRecovery::write() {
  */
 void PrintJobRecovery::resume() {
 
-  load();
-  
   char cmd[MAX_CMD_SIZE+16], str_1[16], str_2[16];
 
   const uint32_t resume_sdpos = info.sdpos; // Get here before the stepper ISR overwrites it

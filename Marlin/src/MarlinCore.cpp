@@ -817,27 +817,7 @@ void idle(bool no_stepper_sleep/*=false*/) {
 
   // Handle Power-Loss Recovery
   #if ENABLED(POWER_LOSS_RECOVERY) && PIN_EXISTS(POWER_LOSS)
-//SUTAS
-    static bool battery_lock = false;
-    if (READ(POWER_LOSS_PIN) == POWER_LOSS_STATE)
-    {
-        if (!battery_lock) OUT_WRITE(POWER_LOSS_BATTERY_PIN, POWER_LOSS_BATTERY_ACTIVE_STATE);
-        if (IS_SD_PRINTING() && !battery_lock) abortSDPrinting(); //recovery.outage();
-        thermalManager.disable_all_heaters();
-        thermalManager.set_fan_speed(0,255);
-        if (thermalManager.degHotend(0)<50)
-        {
-            OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
-            battery_lock = true;
-        }
-    } else
-    {
-        battery_lock = false;
-        OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
-    }
-
-//    if (IS_SD_PRINTING()) recovery.outage();
-//SUTAS
+    if (IS_SD_PRINTING()) recovery.outage();
   #endif
 
   // Run StallGuard endstop checks
