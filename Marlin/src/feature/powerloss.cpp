@@ -344,8 +344,6 @@ void PrintJobRecovery::write() {
  * Resume the saved print job
  */
 void PrintJobRecovery::resume() {
-    
-  load();
 
   char cmd[MAX_CMD_SIZE+16], str_1[16], str_2[16];
 
