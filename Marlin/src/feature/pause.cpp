@@ -438,7 +438,7 @@ bool pause_print(const_float_t retract, const xyz_pos_t &park_point, const bool 
   #if ENABLED(POWER_LOSS_RECOVERY)
     // Save PLR info in case the power goes out while parked
     const float park_raise = do_park ? nozzle.park_mode_0_height(park_point.z) - current_position.z : POWER_LOSS_ZRAISE;
-    if (was_sd_printing && recovery.enabled) recovery.save(true, park_raise, do_park);
+    if (was_sd_printing && recovery.enabled) recovery.save(true); //SUTAS , park_raise, do_park);
   #endif
 
   // Wait for buffered blocks to complete
