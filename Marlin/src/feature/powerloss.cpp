@@ -348,6 +348,13 @@ void PrintJobRecovery::resume() {
   char cmd[MAX_CMD_SIZE+16], str_1[16], str_2[16];
 
   const uint32_t resume_sdpos = info.sdpos; // Get here before the stepper ISR overwrites it
+  
+  // Interpret the saved Z according to flags
+  const float z_print = info.current_position.z,
+              x_print = info.current_position.x,
+              y_print = info.current_position.y,
+              e_print = info.current_position.e;
+ //             z_raised = z_print + info.zraise;
 
   // Apply the dry-run flag if enabled
   if (info.flag.dryrun) marlin_debug_flags |= MARLIN_DEBUG_DRYRUN;
@@ -383,10 +390,6 @@ void PrintJobRecovery::resume() {
       }
     }
   #endif
-
-  // Interpret the saved Z according to flags
-  const float z_print = info.current_position.z;//,
- //             z_raised = z_print + info.zraise;      SUTAS
 
   //
   // Home the axes that can safely be homed, and
@@ -548,8 +551,10 @@ void PrintJobRecovery::resume() {
 
   // Move back over to the saved XY
   sprintf_P(cmd, PSTR("G1X%sY%sF3000"),
-    dtostrf(info.current_position.x, 1, 3, str_1),
-    dtostrf(info.current_position.y, 1, 3, str_2)
+    dtostrf(x_print, 1, 3, str_1),
+    dtostrf(y_print, 1, 3, str_1),
+   // dtostrf(info.current_position.x, 1, 3, str_1),
+   // dtostrf(info.current_position.y, 1, 3, str_2)
   );
   gcode.process_subcommands_now(cmd);
 
@@ -562,7 +567,8 @@ void PrintJobRecovery::resume() {
   gcode.process_subcommands_now(cmd);
 
   // Restore E position with G92.9
-  sprintf_P(cmd, PSTR("G92.9E%s"), dtostrf(info.current_position.e, 1, 3, str_1));
+  sprintf_P(cmd, PSTR("G92.9E%s"), dtostrf(e_print, 1, 3, str_1));
+  //sprintf_P(cmd, PSTR("G92.9E%s"), dtostrf(info.current_position.e, 1, 3, str_1));
   gcode.process_subcommands_now(cmd);
 
   TERN_(GCODE_REPEAT_MARKERS, repeat = info.stored_repeat);
