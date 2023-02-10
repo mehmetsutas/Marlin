@@ -25,6 +25,7 @@
  */
 
 #include "../inc/MarlinConfigPre.h"
+#include "../module/motion.h"
 
 #if ENABLED(POWER_LOSS_RECOVERY)
 
@@ -191,6 +192,8 @@ void PrintJobRecovery::save(const bool force/*=false*/, const float zraise/*=POW
 
     // Machine state
     // info.sdpos and info.current_position are pre-filled from the Stepper ISR
+    
+    info.current_position = current_position;   //SUTAS
 
     info.feedrate = uint16_t(MMS_TO_MMM(feedrate_mm_s));
     info.zraise = zraise;
@@ -351,19 +354,19 @@ void PrintJobRecovery::resume() {
   char cmd[MAX_CMD_SIZE+16], str_1[16], str_2[16];
 
   const uint32_t resume_sdpos = info.sdpos; // Get here before the stepper ISR overwrites it
+  
+  // Interpret the saved Z according to flags
+  const float x_print = info.current_position.x,
+              y_print = info.current_position.y,
+              e_print = info.current_position.e,
+              z_print = info.current_position.z;//,
+ //             z_raised = z_print + info.zraise;      SUTAS
 
   // Apply the dry-run flag if enabled
   if (info.flag.dryrun) marlin_debug_flags |= MARLIN_DEBUG_DRYRUN;
 
   // Restore cold extrusion permission
   TERN_(PREVENT_COLD_EXTRUSION, thermalManager.allow_cold_extrude = info.flag.allow_cold_extrusion);
-
-  // Interpret the saved Z according to flags
-  const float x_print = info.current_position.x;
-              y_print = info.current_position.y;
-              e_print = info.current_position.e;
-              z_print = info.current_position.z;//,
- //             z_raised = z_print + info.zraise;      SUTAS
 
   #if HAS_LEVELING
     // Make sure leveling is off before any G92 and G28
