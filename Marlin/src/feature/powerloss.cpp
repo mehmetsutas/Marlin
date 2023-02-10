@@ -542,10 +542,11 @@ void PrintJobRecovery::resume() {
   #if POWER_LOSS_PURGE_LEN
     sprintf_P(cmd, PSTR("G1F3000E%d"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
     gcode.process_subcommands_now(cmd);
-  #endif
+
+    sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -1);    //SUTAS
+    gcode.process_subcommands_now(cmd);   //SUTAS
   
-  sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -1);    //SUTAS
-  gcode.process_subcommands_now(cmd);   //SUTAS
+  #endif
 
   #if ENABLED(NOZZLE_CLEAN_FEATURE)
     gcode.process_subcommands_now(F("G12"));
@@ -554,7 +555,7 @@ void PrintJobRecovery::resume() {
   // Move back over to the saved XY
   sprintf_P(cmd, PSTR("G1X%sY%sF3000"),
     dtostrf(x_print, 1, 3, str_1),
-    dtostrf(y_print, 1, 3, str_1),
+    dtostrf(y_print, 1, 3, str_2)
    // dtostrf(info.current_position.x, 1, 3, str_1),
    // dtostrf(info.current_position.y, 1, 3, str_2)
   );
