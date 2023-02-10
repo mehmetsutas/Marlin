@@ -70,13 +70,13 @@
 #define E1_DIAG_PIN                           15
 
 #ifndef SERVO1_PIN
-  #define SERVO1_PIN                          12
+  #define SERVO1_PIN                          -1//12
 #endif
 #ifndef SERVO2_PIN
-  #define SERVO2_PIN                          39
+  #define SERVO2_PIN                          -1//39
 #endif
 #ifndef SERVO3_PIN
-  #define SERVO3_PIN                          32
+  #define SERVO3_PIN                          -1//32
 #endif
 
 #ifndef E1_SERIAL_TX_PIN
