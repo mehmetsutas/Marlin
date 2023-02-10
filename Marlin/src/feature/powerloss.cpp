@@ -71,9 +71,12 @@ PrintJobRecovery recovery;
   #define POWER_LOSS_PURGE_LEN 0
 #endif
 
+/*                              SUTAS
 #if DISABLED(BACKUP_POWER_SUPPLY)
   #undef POWER_LOSS_RETRACT_LEN   // No retract at outage without backup power
 #endif
+*/
+
 #ifndef POWER_LOSS_RETRACT_LEN
   #define POWER_LOSS_RETRACT_LEN 0
 #endif
@@ -362,6 +365,13 @@ void PrintJobRecovery::resume() {
   // Restore cold extrusion permission
   TERN_(PREVENT_COLD_EXTRUSION, thermalManager.allow_cold_extrude = info.flag.allow_cold_extrusion);
 
+  // Interpret the saved Z according to flags
+  const float x_print = info.current_position.x;
+              y_print = info.current_position.y;
+              e_print = info.current_position.e;
+              z_print = info.current_position.z;//,
+ //             z_raised = z_print + info.zraise;      SUTAS
+
   #if HAS_LEVELING
     // Make sure leveling is off before any G92 and G28
     gcode.process_subcommands_now(F("M420 S0 Z0"));
@@ -434,12 +444,12 @@ void PrintJobRecovery::resume() {
 
   #endif
 
-  #if HOMING_Z_DOWN
+  /*#if HOMING_Z_DOWN
     // Move to a safe XY position and home Z while avoiding the print.
     const xy_pos_t p = xy_pos_t(POWER_LOSS_ZHOME_POS) TERN_(HOMING_Z_WITH_PROBE, - probe.offset_xy);
     sprintf_P(cmd, PSTR("G1X%sY%sF1000\nG28HZ"), dtostrf(p.x, 1, 3, str_1), dtostrf(p.y, 1, 3, str_2));
     gcode.process_subcommands_now(cmd);
-  #endif
+  #endif*/ //SUTAS
 
   // Mark all axes as having been homed (no effect on current_position)
   set_all_homed();
@@ -458,12 +468,12 @@ void PrintJobRecovery::resume() {
     #endif*/
   #endif
 
-  #if ENABLED(POWER_LOSS_RECOVER_ZHOME)
+  /*#if ENABLED(POWER_LOSS_RECOVER_ZHOME)
     // Z was homed down to the bed, so move up to the raised height.
     z_now = z_raised;
     sprintf_P(cmd, PSTR("G1Z%sF600"), dtostrf(z_now, 1, 3, str_1));
     gcode.process_subcommands_now(cmd);
-  #endif
+  #endif*/   //SUTAS
 
   // Recover volumetric extrusion state
   #if DISABLED(NO_VOLUMETRICS)
@@ -540,8 +550,8 @@ void PrintJobRecovery::resume() {
   #if POWER_LOSS_PURGE_LEN
     sprintf_P(cmd, PSTR("G1F3000E%d"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN));
     gcode.process_subcommands_now(cmd);
-
-    sprintf_P(cmd, PSTR("G1 E%d F200"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -1);    //SUTAS
+    
+    sprintf_P(cmd, PSTR("G1F3000E%d"), (POWER_LOSS_PURGE_LEN) + (POWER_LOSS_RETRACT_LEN) -1);    //SUTAS
     gcode.process_subcommands_now(cmd);   //SUTAS
   
   #endif
@@ -554,8 +564,6 @@ void PrintJobRecovery::resume() {
   sprintf_P(cmd, PSTR("G1X%sY%sF3000"),
     dtostrf(x_print, 1, 3, str_1),
     dtostrf(y_print, 1, 3, str_2)
-   // dtostrf(info.current_position.x, 1, 3, str_1),
-   // dtostrf(info.current_position.y, 1, 3, str_2)
   );
   gcode.process_subcommands_now(cmd);
 
@@ -569,7 +577,6 @@ void PrintJobRecovery::resume() {
 
   // Restore E position with G92.9
   sprintf_P(cmd, PSTR("G92.9E%s"), dtostrf(e_print, 1, 3, str_1));
-  //sprintf_P(cmd, PSTR("G92.9E%s"), dtostrf(info.current_position.e, 1, 3, str_1));
   gcode.process_subcommands_now(cmd);
 
   TERN_(GCODE_REPEAT_MARKERS, repeat = info.stored_repeat);
@@ -708,7 +715,9 @@ void PrintJobRecovery::resume() {
 
         DEBUG_ECHOLNPGM("flag.dryrun: ", AS_DIGIT(info.flag.dryrun));
         DEBUG_ECHOLNPGM("flag.allow_cold_extrusion: ", AS_DIGIT(info.flag.allow_cold_extrusion));
-//        DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
+        #if DISABLED(NO_VOLUMETRICS)
+          DEBUG_ECHOLNPGM("flag.volumetric_enabled: ", AS_DIGIT(info.flag.volumetric_enabled));
+        #endif
       }
       else
         DEBUG_ECHOLNPGM("INVALID DATA");
