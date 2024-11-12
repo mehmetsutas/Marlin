@@ -817,7 +817,21 @@ void idle(bool no_stepper_sleep/*=false*/) {
 
   // Handle Power-Loss Recovery
   #if ENABLED(POWER_LOSS_RECOVERY) && PIN_EXISTS(POWER_LOSS)
-    if (IS_SD_PRINTING()) recovery.outage();
+    static uint8_t outage_counter = 0;
+    if (recovery.enabled && (READ(POWER_LOSS_PIN) == POWER_LOSS_STATE))
+      {
+        outage_counter++;
+        if (outage_counter >= 3)
+        {
+            if (IS_SD_PRINTING()) abortSDPrinting(); //recovery.outage();
+            thermalManager.disable_all_heaters();
+            thermalManager.set_fan_speed(0,255);
+            if (thermalManager.degHotend(0)<50)
+            {
+              OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
+            }
+        } else outage_counter = 0;
+      }
   #endif
 
   // Run StallGuard endstop checks

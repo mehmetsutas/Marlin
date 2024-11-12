@@ -111,7 +111,7 @@
     #define X_MIN_PIN                          3
   #endif
   #ifndef X_MAX_PIN
-    #define X_MAX_PIN                          2
+    #define X_MAX_PIN                          -1 //2
   #endif
 #endif
 #ifndef Y_STOP_PIN
@@ -119,7 +119,7 @@
     #define Y_MIN_PIN                         14
   #endif
   #ifndef Y_MAX_PIN
-    #define Y_MAX_PIN                         15
+    #define Y_MAX_PIN                         -1 //15
   #endif
 #endif
 #ifndef Z_STOP_PIN
@@ -135,7 +135,7 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                     12//32
+  #define Z_MIN_PROBE_PIN                     32
 #endif
 
 //
@@ -282,7 +282,7 @@
 
 // RAMPS 1.4 DIO 4 on the servos connector
 #ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN                       11//4
+  #define FIL_RUNOUT_PIN                       12 //11//4
 #endif
 
 #ifndef PS_ON_PIN

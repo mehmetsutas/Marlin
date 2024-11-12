@@ -220,10 +220,12 @@
 
 #endif // MESH_EDIT_MENU
 
+#if NONE(PROBE_MANUALLY, MESH_BED_LEVELING)
 static void lcd_G29() {
     ui.return_to_status();
     queue.inject_P(PSTR("M117 Tabla Seviyeleme Bekleyiniz...\nM412 S0\nM851 Z0\nG28\nM420 S0\nM140 S60\nM109 S235 T0\nG92 E0\nG1 E3 F180\nG1 E-80 F300\nG92 E0\nG4 S3\nG29\nG4 S3\nM140 S0\nM104 S0 T0\nM500\nM412 S1\nM117 Tabla Seviyeleme Tamamlandı.\n"));
 }
+#endif
 
 /**
  * Step 1: Bed Level entry-point
