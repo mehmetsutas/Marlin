@@ -1573,7 +1573,7 @@
     #define POWER_LOSS_PIN      2 //P1_26 // Pin to detect power loss. Set to -1 to disable default pin on boards without module.
     #define POWER_LOSS_STATE     1 // State of pin indicating power loss
     #define POWER_LOSS_BATTERY_PIN 15 //P1_28
-    #define POWER_LOSS_BATTERY_ACTIVE_STATE 1
+    #define POWER_LOSS_BATTERY_ACTIVE_STATE 0
     //#define POWER_LOSS_PULLUP         // Set pullup / pulldown as appropriate for your sensor
     //#define POWER_LOSS_PULLDOWN
     #define POWER_LOSS_PURGE_LEN      1 // (mm) Length of filament to purge on resume

@@ -285,6 +285,14 @@
   #define FIL_RUNOUT_PIN                       12 //11//4
 #endif
 
+#ifndef POWER_LOSS_PIN
+  #define POWER_LOSS_PIN                       2 //11//4
+#endif
+
+#ifndef POWER_LOSS_BATTERY_PIN
+  #define POWER_LOSS_BATTERY_PIN                       15 //11//4
+#endif
+
 #ifndef PS_ON_PIN
   #define PS_ON_PIN                           -1//12
 #endif
