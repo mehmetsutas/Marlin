@@ -832,7 +832,7 @@ void idle(bool no_stepper_sleep/*=false*/) {
             }
         } else {
             outage_counter = 0;
-            OUT_WRITE(POWER_LOSS_BATTERY_PIN, POWER_LOSS_BATTERY_ACTIVE_STATE);
+            WRITE(POWER_LOSS_BATTERY_PIN, POWER_LOSS_BATTERY_ACTIVE_STATE);
         }
       }
   #endif
