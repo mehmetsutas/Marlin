@@ -830,7 +830,10 @@ void idle(bool no_stepper_sleep/*=false*/) {
             {
               OUT_WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
             }
-        } else outage_counter = 0;
+        } else {
+            outage_counter = 0;
+            OUT_WRITE(POWER_LOSS_BATTERY_PIN, POWER_LOSS_BATTERY_ACTIVE_STATE);
+        }
       }
   #endif
 
