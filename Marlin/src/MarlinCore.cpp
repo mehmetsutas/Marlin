@@ -364,6 +364,8 @@ void startOrResumeJob() {
 
     queue.clear();
     quickstop_stepper();
+    
+    queue.clear();
 
     print_job_timer.abort();
 
