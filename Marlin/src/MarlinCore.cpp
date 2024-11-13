@@ -818,12 +818,17 @@ void idle(bool no_stepper_sleep/*=false*/) {
   // Handle Power-Loss Recovery
   #if ENABLED(POWER_LOSS_RECOVERY) && PIN_EXISTS(POWER_LOSS)
     static uint8_t outage_counter = 0;
+    static bool locked = false;
     if (recovery.enabled && (READ(POWER_LOSS_PIN) == POWER_LOSS_STATE))
       {
         if (outage_counter<10) outage_counter++;
         if (outage_counter >= 3)
         {
-            if (IS_SD_PRINTING()) abortSDPrinting(); //recovery.outage();
+            if (!locked) // No re-entrance from idle() 
+            {
+                locked = true;
+                if (IS_SD_PRINTING()) abortSDPrinting(); //recovery.outage();
+            }
             thermalManager.disable_all_heaters();
             thermalManager.set_fan_speed(0,255);
             if (thermalManager.degHotend(0)<50)
@@ -833,6 +838,7 @@ void idle(bool no_stepper_sleep/*=false*/) {
         }
       } else {
             outage_counter = 0;
+            locked = false;
             WRITE(POWER_LOSS_BATTERY_PIN, POWER_LOSS_BATTERY_ACTIVE_STATE);
         }
   #endif
