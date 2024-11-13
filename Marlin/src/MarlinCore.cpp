@@ -829,8 +829,8 @@ void idle(bool no_stepper_sleep/*=false*/) {
                 locked = true;
                 if (IS_SD_PRINTING()) abortSDPrinting(); //recovery.outage();
             }
-            thermalManager.disable_all_heaters();
-            thermalManager.set_fan_speed(0,255);
+        //    thermalManager.disable_all_heaters();
+        //    thermalManager.set_fan_speed(0,255);
             if (thermalManager.degHotend(0)<50)
             {
               WRITE(POWER_LOSS_BATTERY_PIN, !POWER_LOSS_BATTERY_ACTIVE_STATE);
